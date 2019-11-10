@@ -1,0 +1,95 @@
+openapi: 3.0.0
+info:
+  title: pypyr scheduler
+  version: '1.0'
+  contact:
+    url: 'https://github.com/dzerrenner'
+    email: dazer017@gmail.com
+    name: David Zerrenner
+  license:
+    name: MIT
+    url: 'https://choosealicense.com/licenses/mit/'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /status:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  is_runninge:
+                    type: boolean
+                required:
+                  - is_runninge
+      description: Returns some status information for the scheduler
+components:
+  schemas:
+    Job:
+      title: Job
+      type: object
+      properties:
+        version:
+          type: integer
+        id:
+          type: string
+        func:
+          type: string
+        trigger:
+          type: object
+          properties:
+            version:
+              type:
+                - string
+                - integer
+            timezone:
+              type: string
+            start_date:
+              type: string
+            end_date:
+              type:
+                - string
+                - 'null'
+            interval:
+              type:
+                - string
+                - 'null'
+            jitter:
+              type:
+                - string
+                - 'null'
+        executor:
+          type: string
+        args:
+          type: array
+          items:
+            type: string
+        kwargs:
+          type: object
+        name:
+          type: string
+        misfire_grace_time:
+          type: integer
+        coalesce:
+          type:
+            - string
+            - 'null'
+        max_instances:
+          type: integer
+        next_run_time:
+          type: string
+      required:
+        - version
+        - id
+        - func
+        - trigger
+        - executor
+        - args
+        - kwargs
+        - name
