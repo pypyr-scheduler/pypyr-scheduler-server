@@ -10,10 +10,11 @@ info:
     name: MIT
     url: 'https://choosealicense.com/licenses/mit/'
 servers:
-  - url: 'http://localhost:3000'
+  - url: 'http://localhost:8080'
 paths:
   /status:
     get:
+      operationId: pyrsched.api.status.get
       summary: Your GET endpoint
       tags: []
       responses:
@@ -27,7 +28,7 @@ paths:
                   is_runninge:
                     type: boolean
                 required:
-                  - is_runninge
+                  - is_running
       description: Returns some status information for the scheduler
 components:
   schemas:
@@ -51,17 +52,11 @@ components:
             start_date:
               type: string
             end_date:
-              type:
-                - string
-                - 'null'
+              type: string
             interval:
-              type:
-                - string
-                - 'null'
+              type: string
             jitter:
-              type:
-                - string
-                - 'null'
+              type: string
         executor:
           type: string
         args:
@@ -75,9 +70,7 @@ components:
         misfire_grace_time:
           type: integer
         coalesce:
-          type:
-            - string
-            - 'null'
+          type: string
         max_instances:
           type: integer
         next_run_time:
