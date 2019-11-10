@@ -1,0 +1,171 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "api.yaml",
+    "version": "1.0",
+    "description": "pypyr-scheduler API",
+    "contact": {
+      "name": "David Zerrenner",
+      "email": "dazer017@gmail.com",
+      "url": "https://github.com/dzerrenner"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://choosealicense.com/licenses/mit/"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/jobs": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Job"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Get a list and description of all known jobs, running or suspended."
+      }
+    },
+    "/job/{job_id}": {
+      "parameters": [
+        {
+          "type": "string",
+          "name": "job_id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "maxLength": 32,
+            "minLength": 32
+          },
+          "description": "Id of the job to retrieve"
+        }
+      ],
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Job"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "description": "Get the details of a job."
+      }
+    },
+    "/status": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {},
+        "description": "Get some status data of the scheduler."
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Job": {
+        "title": "Job",
+        "type": "object",
+        "x-examples": {},
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "version": {
+            "type": "integer"
+          },
+          "func": {
+            "type": "string"
+          },
+          "trigger": {
+            "type": "object",
+            "required": [
+              "version"
+            ],
+            "properties": {
+              "version": {
+                "type": "integer"
+              },
+              "timezone": {
+                "type": "string"
+              },
+              "start_date": {
+                "type": "string"
+              },
+              "end_date": {
+                "type": "string"
+              },
+              "interval": {
+                "type": "string"
+              },
+              "jitter": {
+                "type": "string"
+              }
+            }
+          },
+          "executor": {
+            "type": "string"
+          },
+          "args": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "kwargs": {
+            "type": "object"
+          },
+          "name": {
+            "type": "string"
+          },
+          "misfire_grace_time": {
+            "type": "integer"
+          },
+          "coalesce": {
+            "type": "boolean"
+          },
+          "max_instances": {
+            "type": "integer"
+          },
+          "next_run_time": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "version",
+          "func",
+          "trigger"
+        ],
+        "description": "This describes a Job in the System. Jobs consist of a trigger, an executable python callable, its arguments and some metadata."
+      }
+    }
+  }
+}
