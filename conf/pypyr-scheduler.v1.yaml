@@ -25,7 +25,7 @@ paths:
               schema:
                 type: object
                 properties:
-                  is_runninge:
+                  is_running:
                     type: boolean
                 required:
                   - is_running
