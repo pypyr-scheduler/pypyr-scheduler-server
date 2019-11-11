@@ -9,6 +9,7 @@ info:
   license:
     name: MIT
     url: 'https://choosealicense.com/licenses/mit/'
+  description: ''
 servers:
   - url: 'http://localhost:8080'
 paths:
@@ -16,7 +17,8 @@ paths:
     get:
       operationId: pyrsched.api.status.get
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - operations
       responses:
         '200':
           description: OK
@@ -30,6 +32,22 @@ paths:
                 required:
                   - is_running
       description: Returns some status information for the scheduler
+  /pipelines:
+    get:
+      summary: Your GET endpoint
+      tags: ["Pipelines", ]
+      responses: {}
+      operationId: pyrsched.api.pipelines.all
+  '/pipelines/{pipeline-id}':
+    parameters:
+      - type: string
+        name: pipeline-id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: ["Pipelines", ]
+      responses: {}
 components:
   schemas:
     Job:
