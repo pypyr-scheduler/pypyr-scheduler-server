@@ -121,4 +121,4 @@ components:
       type: object
       properties:
         id:
-          $ref: ''
+          type: string
