@@ -9,7 +9,7 @@ info:
   license:
     name: MIT
     url: 'https://choosealicense.com/licenses/mit/'
-  description: ''
+  description: Pypyr-Scheduler API spec
 servers:
   - url: 'http://localhost:8080'
 paths:
@@ -17,8 +17,6 @@ paths:
     get:
       operationId: pyrsched.api.status.get
       summary: Your GET endpoint
-      tags:
-        - operations
       responses:
         '200':
           description: OK
@@ -32,22 +30,38 @@ paths:
                 required:
                   - is_running
       description: Returns some status information for the scheduler
+      tags:
+        - Operations
   /pipelines:
     get:
       summary: Your GET endpoint
-      tags: ["Pipelines", ]
-      responses: {}
+      tags:
+        - Pipelines
+      responses:
+        '200':
+          description: OK
       operationId: pyrsched.api.pipelines.all
+      description: Get pipeline descriptions
   '/pipelines/{pipeline-id}':
+    get:
+      summary: Your GET endpoint
+      tags:
+        - Pipelines
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pipeline'
+      operationId: pyrsched.api.pipelines.get
+      description: Get a single pipeline description
     parameters:
-      - type: string
+      - schema:
+          type: string
         name: pipeline-id
         in: path
         required: true
-    get:
-      summary: Your GET endpoint
-      tags: ["Pipelines", ]
-      responses: {}
 components:
   schemas:
     Job:
@@ -102,3 +116,9 @@ components:
         - args
         - kwargs
         - name
+    Pipeline:
+      title: Pipeline
+      type: object
+      properties:
+        id:
+          $ref: ''
