@@ -3,10 +3,12 @@ logging = {
     "disable_existing_loggers": False,
     "formatters": {
         "standard": {
-            "format": "%(asctime)s [%(thread)x] [%(levelname)s] %(name)s: %(message)s"
+            "format": "%(asctime)s [%(thread)x] [%(levelname)s]"
+                      " %(name)s: %(message)s"
         },
         "with_function": {
-            "format": "%(asctime)s [%(thread)x] [%(levelname)s] %(name)s.%(funcName)s: %(message)s"
+            "format": "%(asctime)s [%(thread)x] [%(levelname)s]"
+                      " %(name)s.%(funcName)s: %(message)s"
         },
     },
     "handlers": {
@@ -17,7 +19,7 @@ logging = {
             "when": "d",  # days
             "interval": 1,
             "backupCount": 10,  # keep 10 Files
-            "filename": "/gematik/pypyr-scheduler/log/pyrsched.log",  # Default is stderr
+            "filename": "/gematik/pypyr-scheduler/log/pyrsched.log",
         },
         "console": {
             "level": "DEBUG",
@@ -64,5 +66,6 @@ logging = {
 }
 
 pipelines = {
-    "base_path": "/gematik/pypyr-scheduler/",  # pypyr appends pipelines/ to this automatically
+    # pypyr appends pipelines/ to this automatically
+    "base_path": "/gematik/pypyr-scheduler/",
 }
