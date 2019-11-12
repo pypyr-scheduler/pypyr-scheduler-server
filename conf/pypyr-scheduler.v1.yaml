@@ -12,6 +12,7 @@ info:
   description: Pypyr-Scheduler API spec
 servers:
   - url: 'http://localhost:8080'
+    description: local-dev
 paths:
   /status:
     get:
