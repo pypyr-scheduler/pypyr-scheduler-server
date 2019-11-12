@@ -8,7 +8,6 @@ flake8 = "*"
 
 [packages]
 connexion = {extras = ["swagger-ui"],version = "*"}
-swagger-spec-validator = "*"
 
 [requires]
 python_version = "3.7"
