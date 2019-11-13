@@ -5,9 +5,16 @@ verify_ssl = true
 
 [dev-packages]
 flake8 = "*"
+pytest = "*"
+webtest = "*"
+pytest-runner = "*"
+swagger-tester = "*"
 
 [packages]
 connexion = {extras = ["swagger-ui"],version = "*"}
 
 [requires]
 python_version = "3.7"
+
+[scripts]
+test = "pytest tests"

@@ -1,14 +1,14 @@
-def get(pipeline_id):
+def get_one(filename):
     """
     Return a specific pipeline.
     """
-    print(f'GET /pipelines/{pipeline_id}')
+    print(f'GET /pipelines/{filename}')
     return {
-        'id': pipeline_id,
+        'filename': filename,
     }
 
 
-def all():
+def get_all():
     """
     Return a list of all known pipelines.
     """
@@ -16,3 +16,15 @@ def all():
     return [
         {}
     ]
+
+def create(filename):
+    print(f'POST /pipelines/{filename}')
+    return {}
+
+def update(filename):
+    print(f'PUT /pipelines/{filename}')
+    return {}    
+
+def delete(filename):
+    print(f'DELETE /pipelines/{filename}')
+    return {}        

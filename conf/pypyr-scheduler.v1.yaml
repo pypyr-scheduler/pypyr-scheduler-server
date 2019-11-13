@@ -9,7 +9,9 @@ info:
   license:
     name: MIT
     url: 'https://choosealicense.com/licenses/mit/'
-  description: Pypyr-Scheduler API spec
+  description: >
+    Pypyr-Scheduler API spec.
+    `TODO:` More header information.
 servers:
   - url: 'http://localhost:8080'
     description: local-dev
@@ -17,7 +19,9 @@ paths:
   /status:
     get:
       operationId: pyrsched.api.status.get
-      summary: Your GET endpoint
+      summary: >
+        Get some status information about the
+        scheduler.
       responses:
         '200':
           description: OK
@@ -30,22 +34,16 @@ paths:
                     type: boolean
                 required:
                   - is_running
-      description: Returns some status information for the scheduler
+              example:
+                is_running: false
+      description: >
+        Returns some status information for the
+        scheduler
       tags:
         - Operations
   /pipelines:
     get:
-      summary: Your GET endpoint
-      tags:
-        - Pipelines
-      responses:
-        '200':
-          description: OK
-      operationId: pyrsched.api.pipelines.all
-      description: Get pipeline descriptions
-  '/pipelines/{pipeline-id}':
-    get:
-      summary: Your GET endpoint
+      summary: List all known pipelines
       tags:
         - Pipelines
       responses:
@@ -54,15 +52,17 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pipeline'
-      operationId: pyrsched.api.pipelines.get
-      description: Get a single pipeline description
-    parameters:
-      - schema:
-          type: string
-        name: pipeline-id
-        in: path
-        required: true
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pipeline'
+              example:
+                - filename: test_pipeline_1.yaml
+                - filename: test_pipeline_2.yaml
+                - filename: test_pipeline_3.yaml
+      operationId: pyrsched.api.pipelines.get_all
+      description: Get pipeline descriptions.
+
+
 components:
   schemas:
     Job:
@@ -121,6 +121,19 @@ components:
       title: Pipeline
       type: object
       properties:
-        id:
+        filename:
           type: string
-          format: uuid
+          # format: string
+      example:
+        filename: test_pipeline_3.yaml
+  securitySchemes:
+    token-header:
+      name: X-VPN-ZUGD-AUTH-TOKEN
+      type: apiKey
+      in: header
+      description: API-Key as Header
+    token-query:
+      name: token
+      type: apiKey
+      in: query
+      description: API-Key as query param
