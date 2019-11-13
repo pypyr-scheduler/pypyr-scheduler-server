@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 from os import path
-import re
+# import re
 
 NAME = "pypyr-scheduler"
 
@@ -17,12 +17,14 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 #         r".*__version__ = '(.*?)'",
 #         re.S).match(v_file.read()).group(1)
 
-VERSION="0.0.1"
+VERSION = "0.0.1"
 
 setup(
     name=NAME,
     version=VERSION,
-    description="Schedule pypyr pipelines with apscheduler and control them via REST. The API interface is provided by Zalando's connexion.",
+    description="Schedule pypyr pipelines with apscheduler and control them"
+                "via REST. The API interface is provided by Zalando's"
+                "connexion.",
     long_description=LONG_DESCRIPTION,
     long_description_content_type='text/markdown',
     url="https://github.com/dzerrenner/pypyr-scheduler",

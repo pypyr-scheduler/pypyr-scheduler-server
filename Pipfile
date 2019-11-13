@@ -9,6 +9,7 @@ pytest = "*"
 webtest = "*"
 pytest-runner = "*"
 swagger-tester = "*"
+black = "*"
 
 [packages]
 connexion = {extras = ["swagger-ui"],version = "*"}
@@ -18,3 +19,6 @@ python_version = "3.7"
 
 [scripts]
 test = "pytest tests"
+
+[pipenv]
+allow_prereleases = true
