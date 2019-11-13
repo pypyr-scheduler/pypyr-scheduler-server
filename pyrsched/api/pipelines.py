@@ -17,14 +17,17 @@ def get_all():
         {}
     ]
 
+
 def create(filename):
     print(f'POST /pipelines/{filename}')
     return {}
 
+
 def update(filename):
     print(f'PUT /pipelines/{filename}')
-    return {}    
+    return {}
+
 
 def delete(filename):
     print(f'DELETE /pipelines/{filename}')
-    return {}        
+    return {}
