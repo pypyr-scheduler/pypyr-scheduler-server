@@ -10,7 +10,7 @@ Welcome to pypyr-scheduler's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-    usage/installation
+   usage/installation
 
 Indices and tables
 ==================
