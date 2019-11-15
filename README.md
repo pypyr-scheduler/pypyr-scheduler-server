@@ -12,6 +12,10 @@ TODO: pipenv
 Run `python -m pyrsched start`.
 Browse to `http://localhost:8090/api/doc`. New pipelines have to be present in the `pipelines` directory first before adding them. This will likely change in the future, you'll be able to upload them using the restful interface.
 
+## Documentation
+
+Detailed documentaion is available on [ReadThedocs](https://pypyr-scheduler.readthedocs.io). It is generated from the `docs/source` folder in this repository. Feel free to send a PR is you find any typos.
+
 ## Development
 
-The API schema was created with [Spotlight Studio](https://stoplight.io/studio/). It should be compliant to the [OpenAPI 3.0.0 specification](https://swagger.io/docs/specification/).
+The API schema should be compliant to the [OpenAPI 3.0.0 specification](https://swagger.io/docs/specification/).
