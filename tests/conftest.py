@@ -24,6 +24,11 @@ def app():
     ctx = _app.app.test_request_context()
     ctx.push()
 
+    # delete test pipeline upload directory if present
+    pipeline_base_path = Path(_app.app.config['PYRSCHED_PIPELINES_BASE_PATH'])
+    if pipeline_base_path.exists():
+        pipeline_base_path.rmdir()
+
     yield _app.app
 
     ctx.pop()
