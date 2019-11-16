@@ -13,6 +13,8 @@ Welcome to pypyr-scheduler's documentation!
    usage/installation
    usage/configuration
 
+   api/api_with_pipeline.rst
+
 Indices and tables
 ==================
 
