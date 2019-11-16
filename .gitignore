@@ -51,6 +51,7 @@ coverage.xml
 *.cover
 .hypothesis/
 .pytest_cache/
+.coveralls.yml
 
 # Translations
 *.mo
@@ -108,3 +109,4 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+.coveralls.yml

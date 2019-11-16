@@ -15,6 +15,7 @@ sphinxcontrib-httpexample = "*"
 sphinx-rtd-theme = "*"
 pytest-cov = "*"
 python-coveralls = "*"
+coveralls = "*"
 
 [packages]
 connexion = {extras = ["swagger-ui"],version = "*"}
