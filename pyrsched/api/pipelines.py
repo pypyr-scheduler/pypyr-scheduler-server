@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 def _make_target_filename(filename):
     filename = secure_filename(filename)
     base_path = current_app.config.get("PYRSCHED_PIPELINES_BASE_PATH", current_app.instance_path)
-    return str((Path(base_path) / filename).resolve())
+    return (Path(base_path) / filename).resolve()
 
 
 def get_one(filename):
@@ -40,7 +40,11 @@ def get_all():
 
 
 def _save_file(filename, content, success_status = 201):   
-    content.save(_make_target_filename(filename))    
+    # make directory if it does not exist
+    target = _make_target_filename(filename)
+    if not target.parent.exists():
+        target.parent.mkdir()
+    content.save(str(target))    
     if success_status == 204:  # 204 NO CONTENT requires to send nothing, not even headers 
         return empty_response()
     return "OK, Pipeline was uploaded", success_status
