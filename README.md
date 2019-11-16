@@ -31,3 +31,8 @@ Detailed documentaion is available on [ReadThedocs](https://pypyr-scheduler.read
 ## Development
 
 The API schema should be compliant to the [OpenAPI 3.0.0 specification](https://swagger.io/docs/specification/).
+
+## Quick links
+
+- <https://travis-ci.org/dzerrenner/pypyr-scheduler>
+- <https://coveralls.io/github/dzerrenner/pypyr-scheduler>

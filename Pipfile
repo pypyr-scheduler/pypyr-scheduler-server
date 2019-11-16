@@ -16,6 +16,7 @@ sphinx-rtd-theme = "*"
 pytest-cov = "*"
 python-coveralls = "*"
 coveralls = "*"
+sphinxcontrib-openapi = {extras = ["markdown"],version = "*"}
 
 [packages]
 connexion = {extras = ["swagger-ui"],version = "*"}
