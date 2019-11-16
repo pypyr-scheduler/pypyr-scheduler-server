@@ -10,9 +10,14 @@ webtest = "*"
 pytest-runner = "*"
 swagger-tester = "*"
 black = "*"
+sphinx = "*"
+sphinxcontrib-httpexample = "*"
+sphinx-rtd-theme = "*"
+pytest-cov = "*"
 
 [packages]
 connexion = {extras = ["swagger-ui"],version = "*"}
+pyyaml = "*"
 
 [requires]
 python_version = "3.7"

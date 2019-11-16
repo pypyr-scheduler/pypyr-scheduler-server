@@ -2,6 +2,9 @@
 
 Schedule [pypyr](https://github.com/pypyr/pypyr-cli) pipelines with [apscheduler](https://github.com/agronholm/apscheduler) and control them via REST. The API interface is provided by Zalando's [connexion](https://connexion.readthedocs.io/en/latest/index.html).
 
+[![Documentation Status](https://readthedocs.org/projects/pypyr-scheduler/badge/?version=latest)](https://pypyr-scheduler.readthedocs.io/en/latest/?badge=latest)
+[![Coverage Status](https://coveralls.io/repos/github/dzerrenner/pypyr-scheduler/badge.svg?branch=master)](https://coveralls.io/github/dzerrenner/pypyr-scheduler?branch=master)
+
 ## Install
 
 Make a new venv, activate it, clone the repo, run `pip install`. No pypi release yet.

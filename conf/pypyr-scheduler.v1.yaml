@@ -61,6 +61,235 @@ paths:
                 - filename: test_pipeline_3.yaml
       operationId: pyrsched.api.pipelines.get_all
       description: Get pipeline descriptions.
+  '/pipelines/{filename}':
+    get:
+      summary: Download a pipeline file
+      tags:
+        - Pipelines
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pipeline'
+            '*/*':
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Pipeline not found  
+      operationId: pyrsched.api.pipelines.get_one
+      description: "Get a single pipeline description. Use `Accept: application/json` to get pipeline information or `Accept: text/plain` to retrieve the file contents."
+      parameters:
+        - schema:
+            type: string
+          name: filename
+          in: path
+          required: true
+    post:
+      summary: Upload a new pipeline
+      operationId: pyrsched.api.pipelines.create
+      tags:
+        - Pipelines
+      responses:
+        '201':
+          description: OK, Pipeline was uploaded
+        '406':
+          description: Not Acceptable, possible malicious content detected
+      parameters:
+        - schema:
+            type: string
+          name: filename
+          in: path
+          required: true
+      requestBody:
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+    put:
+      summary: Change a pipeline file
+      operationId: pyrsched.api.pipelines.update
+      tags:
+        - Pipelines
+      responses:
+        '204':
+          description: OK, Pipeline was updated, no return content
+        '404': 
+          description: Pipeline not found       
+        '406':
+          description: Not Acceptable, possible malicious content detected             
+      parameters:
+        - schema:
+            type: string
+          name: filename
+          in: path
+          required: true
+      requestBody:
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary          
+    delete:
+      summary: Delete a pipeline file
+      operationId: pyrsched.api.pipelines.delete
+      tags:
+        - Pipelines
+      responses:
+        '204':
+          description: OK, Pipeline was deleted, no return content
+        '404': 
+          description: Pipeline not found
+        '406':
+          description: Not Acceptable, possible malicious content detected          
+      parameters:
+        - schema:
+            type: string
+          name: filename
+          in: path
+          required: true          
+  /jobs:
+    get:
+      summary: List all jobs
+      operationId: pyrsched.api.jobs.get_all
+      tags: 
+        - "Job management"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Job'
+      description: Retrieve a list of all known Jobs
+    post:
+      summary: Create a new job
+      operationId: pyrsched.api.jobs.create
+      tags:
+        - "Job management"
+      responses:
+        '201':
+          description: Job created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'                
+          links:
+            GetJobById:
+              operationId: pyrsched.api.jobs.get
+              parameters:
+                job-id: '$response.body#/id'
+              description: >
+                The `id` value in the `Job` returned by this operation 
+                can be used as the `job-id` parameter in `GET /jobs/{job-id}`.
+      parameters:
+        - schema:
+            type: string
+          name: pipeline-name
+          in: query
+          required: true          
+        - schema:
+            type: integer
+          name: interval
+          in: query
+          required: true            
+  '/jobs/{job-identifier}':
+    parameters:
+      - schema:
+          type: string
+        name: job-identifier
+        in: path
+        required: true
+        description: >
+          The `job-identifier` is used to find a job in the list
+          of known jobs. You can use a `job-id` (uuid) or the job's `name`.        
+    get:
+      summary: Get a single job by its ID
+      tags: 
+        - "Job management"
+      operationId: pyrsched.api.jobs.get_one
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+    delete:
+      summary: Remove a job 
+      operationId: pyrsched.api.jobs.delete
+      tags:
+        - "Job management"
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+    put:
+      summary: Change a job 
+      operationId: pyrsched.api.jobs.change
+      tags:
+        - "Job management"
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found          
+  '/jobs/{job-identifier}/execution':
+    parameters:
+      - schema:
+          type: string
+        name: job-identifier
+        in: path
+        required: true
+        description: >
+          The `job-identifier` is used to find a job in the list
+          of known jobs. You can use a `job-id` (uuid) or the job's `name`.
+    get:
+      summary: Job status check
+      operationId: pyrsched.api.scheduler.status
+      tags: 
+        - "Job execution"
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Job not Found            
+    post:
+      summary: Start job
+      operationId: pyrsched.api.scheduler.start
+      tags:
+        - "Job execution"
+      responses:
+        '201':
+          description: OK, execution created.
+        '404':
+          description: Job not Found                      
+    put:
+      summary: Change job (pause it)
+      operationId: pyrsched.api.scheduler.change
+      tags:
+        - "Job execution"
+      responses:
+        '200':
+          description: OK, execution changed.
+        '404':
+          description: Job not Found                      
+    delete:
+      summary: Stop job execution
+      operationId: pyrsched.api.scheduler.stop
+      tags: 
+        - "Job execution"
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Job not Found                      
 
 
 components:
