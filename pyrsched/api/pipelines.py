@@ -1,33 +1,78 @@
+import logging
+from pathlib import Path
+
+from flask import current_app, send_file
+from werkzeug.utils import secure_filename
+
+import connexion
+
+from ..utils import empty_response
+
+logger = logging.getLogger(__name__)
+
+def _make_target_filename(filename):
+    filename = secure_filename(filename)
+    base_path = current_app.config.get("PYRSCHED_PIPELINES_BASE_PATH", current_app.instance_path)
+    return str((Path(base_path) / filename).resolve())
+
+
 def get_one(filename):
     """
     Return a specific pipeline.
     """
-    print(f'GET /pipelines/{filename}')
-    return {
-        'filename': filename,
-    }
+    logger.info(f'GET /pipelines/{filename}')
+
+    filename = _make_target_filename(filename)
+
+    try:
+        return send_file(filename, as_attachment=True, mimetype='application/x-yaml', attachment_filename='filename')
+    except FileNotFoundError:
+        return "File not found", 404
 
 
 def get_all():
     """
     Return a list of all known pipelines.
     """
-    print('GET /pipelines')
-    return [
-        {}
-    ]
+    logger.info('GET /pipelines')
+    base_path = Path(current_app.config.get("PYRSCHED_PIPELINES_BASE_PATH", current_app.instance_path))
+    return [{'filename':p.name} for p in base_path.iterdir()]
 
 
-def create(filename):
-    print(f'POST /pipelines/{filename}')
-    return {}
+def _save_file(filename, content, success_status = 201):   
+    content.save(_make_target_filename(filename))    
+    if success_status == 204:  # 204 NO CONTENT requires to send nothing, not even headers 
+        return empty_response()
+    return "OK, Pipeline was uploaded", success_status
 
 
-def update(filename):
-    print(f'PUT /pipelines/{filename}')
-    return {}
+def create(filename, body):
+    logger.info(f'POST /pipelines/{filename}')
+    if not filename == secure_filename(filename):
+        logger.warning(f"Possible malicious filename detected: '{filename}'")
+        return "Not Acceptable, possible malicious content detected", 406       
+    return _save_file(filename, body)
+
+
+def update(filename, body):
+    logger.info(f'PUT /pipelines/{filename}')
+    if not filename == secure_filename(filename):
+        logger.warning(f"Possible malicious filename detected: '{filename}'")
+        return "Not Acceptable, possible malicious content detected", 406     
+    target_file = Path(_make_target_filename(filename))
+    if not target_file.exists():
+        return "Pipeline not found", 404
+    return _save_file(filename, body, success_status=204)
 
 
 def delete(filename):
-    print(f'DELETE /pipelines/{filename}')
-    return {}
+    logger.info(f'DELETE /pipelines/{filename}')    
+    if not filename == secure_filename(filename):
+        logger.warning(f"Possible malicious filename detected: '{filename}'")
+        return "Not Acceptable, possible malicious content detected", 406 
+    target_file = Path(_make_target_filename(filename))   
+    try:
+        target_file.unlink()
+        return empty_response()
+    except FileNotFoundError:
+        return "Pipeline not found", 404
