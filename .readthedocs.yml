@@ -18,7 +18,8 @@ sphinx:
 
 # Optionally set the version of Python and requirements required to build your docs
 # TODO: generate docs/requirements.txt from pipenv at git push.
-#python:
-#  version: 3.7
-#  install:
+python:
+  version: 3.7
+  install:
+    - extra_requirements: sphinxcontrib-openapi
 #    - requirements: docs/requirements.txt
