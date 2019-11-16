@@ -11,6 +11,7 @@ Welcome to pypyr-scheduler's documentation!
    :caption: Contents:
 
    usage/installation
+   usage/configuration
 
 Indices and tables
 ==================
