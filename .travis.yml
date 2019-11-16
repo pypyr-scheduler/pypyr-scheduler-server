@@ -9,7 +9,11 @@ python:
 install:
   - pip install pipenv
   - pipenv install --dev
-  
+
 # command to run tests
 script:
   - pytest --cov=pyrsched --cov-report xml --cov-report html
+
+# put coverage on coveralls
+after_success:
+  - coveralls
