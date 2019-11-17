@@ -25,9 +25,3 @@ def create_app(config_file, **api_extra_args):
     # _app.app.after_request(after_request)
 
     return _app
-
-
-# def after_request(res):
-#     logging.info("after request")
-#     res.direct_passthrough = False
-#     return res

@@ -35,7 +35,6 @@ def get_all():
 def _save_file(filename, content, success_status=201):
     # make directory if it does not exist
     target = make_target_filename(filename)
-    print("XXXXXXXX", target, "->", target.parent, "->", target.parent.exists())
     if not target.parent.exists():
         target.parent.mkdir(parents=True)
     content.save(str(target))

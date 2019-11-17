@@ -61,8 +61,3 @@ def temp_pipeline(tmp_path):
             }
 
     return Inner()
-
-
-@pytest.fixture(scope="function", autouse=True)
-def generate_testdata(app):
-    pass
