@@ -20,7 +20,7 @@ def create_app(config_file, **api_extra_args):
         _app.app.iniconfig = FlaskIni()
         _app.app.iniconfig.read(config_file)
 
-    _app.app.scheduler = BackgroundScheduler()
+        _app.app.scheduler = BackgroundScheduler()
 
     # _app.app.after_request(after_request)
 
