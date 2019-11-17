@@ -64,9 +64,3 @@ logging = {
         }
     }
 }
-
-pipelines = {
-    # pypyr appends pipelines/ to this automatically
-    # "base_path": "/gematik/pypyr-scheduler/",
-    "base_path": "C:\Projects\pypyr-scheduler",
-}

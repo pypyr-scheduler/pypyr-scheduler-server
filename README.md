@@ -36,3 +36,9 @@ The API schema should be compliant to the [OpenAPI 3.0.0 specification](https://
 
 - <https://travis-ci.org/dzerrenner/pypyr-scheduler>
 - <https://coveralls.io/github/dzerrenner/pypyr-scheduler>
+
+## Related projects
+
+[Flask-APScheduler](https://github.com/viniciuschiele/flask-apscheduler) provides
+a similar way to run job within flask as server. It even provides a REST-API. Try this
+if you don't need the functionality of pypyr.
