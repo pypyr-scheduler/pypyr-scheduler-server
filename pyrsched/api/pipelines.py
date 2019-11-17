@@ -28,15 +28,16 @@ def get_all():
     Return a list of all known pipelines.
     """
     logger.info('GET /pipelines')
-    base_path = Path(current_app.config.get("PYRSCHED_PIPELINES_BASE_PATH", current_app.instance_path))
+    base_path = Path(current_app.iniconfig.get('pipelines', 'base_path'))
     return [{'filename': p.name} for p in base_path.iterdir()]
 
 
 def _save_file(filename, content, success_status=201):
     # make directory if it does not exist
     target = make_target_filename(filename)
+    print("XXXXXXXX", target, "->", target.parent, "->", target.parent.exists())
     if not target.parent.exists():
-        target.parent.mkdir()
+        target.parent.mkdir(parents=True)
     content.save(str(target))
     if success_status == 204:  # 204 NO CONTENT requires to send nothing, not even headers
         return empty_response()

@@ -70,9 +70,6 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Pipeline'
             '*/*':
               schema:
                 type: string
@@ -80,7 +77,7 @@ paths:
         '404':
           description: Pipeline not found  
       operationId: pyrsched.api.pipelines.get_one
-      description: "Get a single pipeline description. Use `Accept: application/json` to get pipeline information or `Accept: text/plain` to retrieve the file contents."
+      description: Download a single pipeline file.
       parameters:
         - schema:
             type: string
@@ -167,6 +164,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/Job'
       description: Retrieve a list of all known Jobs
+  '/jobs/{pipeline-name}/{interval}':
     post:
       summary: Create a new job
       operationId: pyrsched.api.jobs.create
@@ -187,16 +185,20 @@ paths:
               description: >
                 The `id` value in the `Job` returned by this operation 
                 can be used as the `job-id` parameter in `GET /jobs/{job-id}`.
+        '404':
+          description: Pipeline not found
+        '400':
+          description: Interval must be greater than 0
       parameters:
         - schema:
             type: string
           name: pipeline-name
-          in: query
+          in: path
           required: true          
         - schema:
             type: integer
           name: interval
-          in: query
+          in: path
           required: true            
   '/jobs/{job-identifier}':
     parameters:

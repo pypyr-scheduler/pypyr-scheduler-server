@@ -21,6 +21,8 @@ sphinxcontrib-openapi = {extras = ["markdown"],version = "*"}
 [packages]
 connexion = {extras = ["swagger-ui"],version = "*"}
 pyyaml = "*"
+apscheduler = "*"
+flask-ini = "*"
 
 [requires]
 python_version = "3.7"
