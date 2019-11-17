@@ -23,6 +23,7 @@ connexion = {extras = ["swagger-ui"],version = "*"}
 pyyaml = "*"
 apscheduler = "*"
 flask-ini = "*"
+pypyr = "*"
 
 [requires]
 python_version = "3.7"
