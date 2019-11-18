@@ -1,6 +1,7 @@
 .vscode
 pipelines
 pipelines_test
+logs
 *.code-workspace
 
 # Byte-compiled / optimized / DLL files

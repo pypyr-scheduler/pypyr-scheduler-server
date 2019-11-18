@@ -1,30 +1,15 @@
 import logging
 import uuid
 
+from pathlib import Path
+
 from flask import current_app
 from pypyr.pipelinerunner import main as pipeline_runner
+from apscheduler.triggers.interval import IntervalTrigger
 
 from ..utils import make_target_filename
 
 logger = logging.getLogger(__name__)
-
-
-def make_job_function(pipeline_name):
-    with current_app.app_context():
-        base_path = current_app.iniconfig.get('pipelines', 'base_path')
-    if pipeline_name.endswith('.yaml'):
-        pipeline_name = pipeline_name[:-5]
-
-    def run_pipeline():
-        pipeline_runner(
-            pipeline_name,
-            pipeline_context_input="",
-            working_dir=base_path,
-            log_level=logging.INFO,
-            log_path=f'D:\\Projects\\pypyr-scheduler\\logs\\{pipeline_name}.log'  # current_app.iniconfig.get('pipelines', 'base_path'),
-        )
-
-    return run_pipeline
 
 
 def get_one(job_identifier):
@@ -54,18 +39,31 @@ def create(pipeline_name, interval):
     if not pipeline_file.exists():
         return "Pipeline not found", 404
 
+    if pipeline_name.endswith('.yaml'):
+        pipeline_name = pipeline_name[:-5]
+
     # create pipeline on the scheduler
     scheduler = current_app.scheduler
+    base_path = current_app.iniconfig.get('pipelines', 'base_path')
+    log_path = current_app.iniconfig.get('pipelines', 'log_path')
+    log_filename = Path(log_path) / f'{pipeline_name}.log'
+
+    # TODO: add job paused (see: https://github.com/agronholm/apscheduler/issues/68)
     job = scheduler.add_job(
-        make_job_function(pipeline_name),
+        pipeline_runner,
         id=str(uuid.uuid4()),
         name=pipeline_name,
+        trigger=IntervalTrigger(seconds=interval),
+        args=[pipeline_name, ],
+        kwargs={
+            'pipeline_context_input': '',
+            'working_dir': base_path,
+            'log_level': logging.INFO,
+            'log_path': str(log_filename), 
+        }
     )
     logger.info(f'created job {job.name}')
-    # ToDo: Modify the JSONEncoder to make it able to encode Jobs ans Triggers.
-    # @see: https://connexion.readthedocs.io/en/latest/response.html#customizing-json-encoder
-    return {}
-    # return job
+    return job, 201
 
 
 def delete(job_identifier):

@@ -4,6 +4,7 @@ import connexion
 from flask_ini import FlaskIni
 from apscheduler.schedulers.background import BackgroundScheduler
 
+from .utils import JobEncoder
 
 def create_app(config_file, **api_extra_args):
     logging.basicConfig(level=logging.INFO)
@@ -19,6 +20,8 @@ def create_app(config_file, **api_extra_args):
         logging.info(f"trying to load {config_file}")
         _app.app.iniconfig = FlaskIni()
         _app.app.iniconfig.read(config_file)
+
+        _app.app.json_encoder = JobEncoder
 
         _app.app.scheduler = BackgroundScheduler()
 

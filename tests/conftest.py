@@ -32,7 +32,7 @@ def app():
         pipeline_base_path.rmdir()
 
     with _app.app.app_context():
-        _app.app.scheduler.start()
+        _app.app.scheduler.start(paused=True)
 
     yield _app.app
 
