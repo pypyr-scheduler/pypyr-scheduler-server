@@ -20,6 +20,7 @@ def app():
     path = Path(os.path.abspath(__file__)).parent
     config_file = path / ".." / "conf" / "pyrsched.test.ini"
     _app = create_app(config_file.resolve())
+    _app.app.testing = True
 
     ctx = _app.app.test_request_context()
     ctx.push()
@@ -31,13 +32,8 @@ def app():
             f.unlink()
         pipeline_base_path.rmdir()
 
-    with _app.app.app_context():
-        _app.app.scheduler.start(paused=True)
-
     yield _app.app
 
-    with _app.app.app_context():
-        _app.app.scheduler.shutdown(wait=True)
     ctx.pop()
 
 

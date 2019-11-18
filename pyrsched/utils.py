@@ -1,6 +1,6 @@
 from pathlib import Path
 from datetime import timedelta
-from types import ModuleType
+# from types import ModuleType
 
 from flask import make_response, current_app
 from werkzeug.utils import secure_filename
@@ -37,7 +37,7 @@ class JobEncoder(FlaskJSONEncoder):
             return o.__getstate__()
 
         # pytz timezones. Instead of checking the type, check if the `zone`-attribute
-        # is present. 
+        # is present.
         # Special case: UTC is a singletone, the class and object are equivalent. And
         # it's located in another package, so...
         if hasattr(o, 'zone'):
@@ -48,7 +48,8 @@ class JobEncoder(FlaskJSONEncoder):
             return str(o)
 
         # job classes have a reference to their job functions
-        if isinstance(o, ModuleType):
-            return o.__name__
+        # use this if problems with that occur.
+        # if isinstance(o, ModuleType):
+        #     return o.__name__
 
         return FlaskJSONEncoder.default(self, o)

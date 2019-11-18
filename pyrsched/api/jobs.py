@@ -24,20 +24,15 @@ def get_all():
     return {}
 
 
-def new(pipeline_id, interval):
-    print(f'POST /jobs, pipeline_id:{pipeline_id}, interval:{interval}')
-    return {}
-
-
 def create(pipeline_name, interval):
     logger.info(f'POST /jobs/{pipeline_name}/{interval}')
 
     if interval <= 0:
-        return "Interval must be greater than 0", 400
+        return 'Interval must be greater than 0', 400
 
     pipeline_file = make_target_filename(pipeline_name)
     if not pipeline_file.exists():
-        return "Pipeline not found", 404
+        return 'Pipeline not found', 404
 
     if pipeline_name.endswith('.yaml'):
         pipeline_name = pipeline_name[:-5]
@@ -59,7 +54,7 @@ def create(pipeline_name, interval):
             'pipeline_context_input': '',
             'working_dir': base_path,
             'log_level': logging.INFO,
-            'log_path': str(log_filename), 
+            'log_path': str(log_filename),
         }
     )
     logger.info(f'created job {job.name}')
