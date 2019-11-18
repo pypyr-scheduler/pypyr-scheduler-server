@@ -1,15 +1,11 @@
 from pathlib import Path
+from datetime import timedelta
+from types import ModuleType
 
 from flask import make_response, current_app
 from werkzeug.utils import secure_filename
 from connexion.apps.flask_app import FlaskJSONEncoder
-from apscheduler.job import Job
-from apscheduler.triggers.interval import IntervalTrigger
-from apscheduler.triggers.date import DateTrigger
 
-from datetime import datetime, timedelta
-from pytz.tzfile import DstTzInfo
-from types import ModuleType
 
 def empty_response():
     res = make_response('', 204)
@@ -35,20 +31,24 @@ class JobEncoder(FlaskJSONEncoder):
     `datetime.datetime` and `datetime.timedelta`.
     """
     def default(self, o):
-        if isinstance(o, (Job, IntervalTrigger, DateTrigger)):
+        # apscheduler objects tend to store its internal state in a __state__
+        # attribute, which is accessible through the __getstate__()-method.
+        if hasattr(o, '__getstate__'):
             return o.__getstate__()
 
-        if isinstance(o, DstTzInfo):
+        # pytz timezones. Instead of checking the type, check if the `zone`-attribute
+        # is present. 
+        # Special case: UTC is a singletone, the class and object are equivalent. And
+        # it's located in another package, so...
+        if hasattr(o, 'zone'):
             return o.zone
 
-        if isinstance(o, datetime):
-            return o.isoformat()
-
+        # timedelta is not serialized by connexion's serializer...
         if isinstance(o, timedelta):
             return str(o)
 
+        # job classes have a reference to their job functions
         if isinstance(o, ModuleType):
-            # if o.__name__ == "settings":
             return o.__name__
 
         return FlaskJSONEncoder.default(self, o)
