@@ -49,6 +49,7 @@ def create(pipeline_name, interval):
         id=str(uuid.uuid4()),
         name=pipeline_name,
         trigger=IntervalTrigger(seconds=interval),
+        next_run_time=None,
         args=[pipeline_name, ],
         kwargs={
             'pipeline_context_input': '',

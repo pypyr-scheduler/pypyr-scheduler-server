@@ -1,6 +1,6 @@
 from datetime import timedelta
 import pytest
-
+import time
 
 class TestJobManagement:
     endpoint = "/jobs"
@@ -19,7 +19,9 @@ class TestJobManagement:
         res = testapp.post(f"{self.endpoint}/{uploaded_filename}/{interval}", expect_errors=True)
         assert res.status_int == expected_error_code
         if interval > 0:
-            assert res.json["trigger"]["interval"] == str(timedelta(seconds=interval))
+            assert res.json['trigger']['interval'] == str(timedelta(seconds=interval))
+            assert not res.json['next_run_time'] 
+        
 
     def test_job_create_nonexistent_pipeline(self, testapp):
         # run a nonexistent pipeline
