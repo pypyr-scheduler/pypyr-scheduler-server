@@ -15,6 +15,8 @@ Welcome to pypyr-scheduler's documentation!
 
    api/api_with_pipeline.rst
 
+   devel/notes_on_wsl
+
 Indices and tables
 ==================
 

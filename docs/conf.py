@@ -21,7 +21,7 @@ sys.path.insert(0, os.path.abspath('../tests'))
 # -- Project information -----------------------------------------------------
 
 project = 'pypyr-scheduler'
-copyright = '2019, David Zerrenner'
+copyright = '2019, David Zerrenner, Ivan Rancati, Stefan Friese, Kevin Becker'
 author = 'David Zerrenner'
 
 
