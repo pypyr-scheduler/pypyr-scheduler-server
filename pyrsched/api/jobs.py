@@ -7,21 +7,40 @@ from flask import current_app
 from pypyr.pipelinerunner import main as pipeline_runner
 from apscheduler.triggers.interval import IntervalTrigger
 
-from ..utils import make_target_filename
+from ..utils import empty_response, make_target_filename
 
 logger = logging.getLogger(__name__)
 
 
+def _find_job(job_identifier):
+    """Finds a Job. 
+
+    The job_identifier is either a job-id (uuid) or the job name.
+    The list of jobs is searched twice, forst for id and if there was no job found for
+    the name. 
+    """ 
+    jobs = current_app.scheduler.get_jobs()
+    logger.info(f'_find_jobs: {jobs}')
+    for job in jobs:
+        if job.id == job_identifier:
+            return job
+    for job in jobs:
+        if job.name == job_identifier:
+            return job     
+    return None       
+    
+
 def get_one(job_identifier):
-    """
-    Use job-identifier to search in both id and name
-    """
-    return {}
+    logger.info(f'GET /jobs/{job_identifier}')
+    job = _find_job(job_identifier)
+    if not job:
+        return 'Job not found', 404
+    return job
 
 
 def get_all():
-    print('GET /jobs')
-    return {}
+    logger.info('GET /jobs')
+    return current_app.scheduler.get_jobs()
 
 
 def create(pipeline_name, interval):
@@ -38,13 +57,12 @@ def create(pipeline_name, interval):
         pipeline_name = pipeline_name[:-5]
 
     # create pipeline on the scheduler
-    scheduler = current_app.scheduler
     base_path = current_app.iniconfig.get('pipelines', 'base_path')
     log_path = current_app.iniconfig.get('pipelines', 'log_path')
     log_filename = Path(log_path) / f'{pipeline_name}.log'
 
     # TODO: add job paused (see: https://github.com/agronholm/apscheduler/issues/68)
-    job = scheduler.add_job(
+    job = current_app.scheduler.add_job(
         pipeline_runner,
         id=str(uuid.uuid4()),
         name=pipeline_name,
@@ -63,8 +81,37 @@ def create(pipeline_name, interval):
 
 
 def delete(job_identifier):
-    return {}
+    logger.info(f'DELETE /jobs/{job_identifier}')
+    job = _find_job(job_identifier)
+    if not job:
+        return 'Job not found', 404
+    current_app.scheduler.remove_job(job.id)      
+    return empty_response()
 
+def change(job_identifier, pipeline_name, interval):
+    logger.info(f'PUT /jobs/{job_identifier}/{pipeline_name}/{interval}')
+    job = _find_job(job_identifier)
+    if not job:
+        return 'Job not found', 404
 
-def change(job_identifier):
-    return {}
+    if pipeline_name.endswith('.yaml'):
+        pipeline_name = pipeline_name[:-5]
+
+    base_path = current_app.iniconfig.get('pipelines', 'base_path')
+    log_path = current_app.iniconfig.get('pipelines', 'log_path')
+    log_filename = Path(log_path) / f'{pipeline_name}.log'
+            
+    current_app.scheduler.modify_job(
+        job.id, 
+        name=pipeline_name,
+        trigger=IntervalTrigger(seconds=interval),
+        # next_run_time=None,  # do not modify job execution state
+        args=[pipeline_name, ],
+        kwargs={
+            'pipeline_context_input': '',
+            'working_dir': base_path,
+            'log_level': logging.INFO,
+            'log_path': str(log_filename),
+        }        
+    )
+    return job

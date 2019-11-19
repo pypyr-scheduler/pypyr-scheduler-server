@@ -64,8 +64,8 @@ def temp_pipeline(tmp_path):
     return Inner()
 
 
-@pytest.fixture(scope="function")
-def pipeline(path="testdata"):
+@pytest.fixture(scope='function')
+def pipeline(path='testdata'):
     class Inner:
         def __init__(self):
             self.base_path = Path(".").resolve() / "tests" / "testdata"
@@ -79,4 +79,18 @@ def pipeline(path="testdata"):
                 'name': name,
             }
 
+    return Inner()
+
+@pytest.fixture(scope='function')
+def upload_pipeline(pipeline, testapp):
+    class Inner:
+        def upload(self, local_filename, remote_filename=None):
+            if not remote_filename:
+                remote_filename = local_filename
+            pipe = pipeline.load(local_filename)
+            files = [
+                ("body", str(pipe["file"])),
+            ] 
+            return testapp.post(f"/pipelines/{remote_filename}", upload_files=files)   
+            
     return Inner()

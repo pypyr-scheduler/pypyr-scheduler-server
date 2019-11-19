@@ -211,7 +211,7 @@ paths:
           The `job-identifier` is used to find a job in the list
           of known jobs. You can use a `job-id` (uuid) or the job's `name`.        
     get:
-      summary: Get a single job by its ID
+      summary: Get a single job by its ID or name
       tags: 
         - "Job management"
       operationId: pyrsched.api.jobs.get_one
@@ -231,17 +231,36 @@ paths:
         '200':
           description: OK
         '404':
-          description: Not Found
+          description: Job not Found
+        '204':
+          description: OK, Job was deleted, no return content
+  '/jobs/{job-identifier}/{pipeline-name}/{interval}':        
     put:
       summary: Change a job 
       operationId: pyrsched.api.jobs.change
+      parameters:
+        - name: job-identifier
+          schema:
+            type: string          
+          in: path      
+          required: true
+        - name: pipeline-name
+          schema:
+            type: string          
+          in: path      
+          required: true
+        - name: interval
+          schema:
+            type: integer          
+          in: path      
+          required: true                    
       tags:
         - "Job management"
       responses:
         '200':
           description: OK
         '404':
-          description: Not Found          
+          description: Not Found                    
   '/jobs/{job-identifier}/execution':
     parameters:
       - schema:

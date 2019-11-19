@@ -37,6 +37,8 @@ def _save_file(filename, content, success_status=201):
     target = make_target_filename(filename)
     if not target.parent.exists():
         target.parent.mkdir(parents=True)
+    logger.info(f'saving file contents to {target.resolve()}')
+    # logger.debug(content)
     content.save(str(target))
     if success_status == 204:  # 204 NO CONTENT requires to send nothing, not even headers
         return empty_response()

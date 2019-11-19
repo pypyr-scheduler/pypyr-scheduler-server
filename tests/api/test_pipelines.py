@@ -3,10 +3,13 @@ from pathlib import Path
 
 
 class TestPipelines:
+    """
+    Test for the pipeline-Part of the API.
+    """
     endpoint = '/pipelines'
 
     @pytest.mark.parametrize('method', ['POST', 'PUT', 'DELETE'])
-    def test_http_method_not_allowed(self, testapp, method):
+    def test_http_method_not_allowed_on_list_endpoint(self, testapp, method):
         res = testapp.request(self.endpoint, method=method, expect_errors=True)
         assert res.status_int == 405  # method not allowed
 
@@ -17,12 +20,13 @@ class TestPipelines:
         ]
         uploaded_filename = 'test_pipeline_upload.yaml'
         res = testapp.post(f'{self.endpoint}/{uploaded_filename}', upload_files=files)
-        assert res.status_int == 201
+        assert res.status_int == 201  # created
 
         uploaded_file = (
             Path(testapp.app.iniconfig.get('pipelines', 'base_path')) / uploaded_filename
         )
         uploaded_content = uploaded_file.read_text()
+        # uploaded content is the same as the local content
         assert pipeline['content'] == uploaded_content
         try:
             uploaded_file.unlink()
@@ -46,6 +50,7 @@ class TestPipelines:
         res = testapp.post(
             f'{self.endpoint}/{filename}', upload_files=files, expect_errors=True
         )
+        # all malicious uplads respond with an error
         assert res.status_int >= 400
 
     @pytest.mark.parametrize(
@@ -65,6 +70,7 @@ class TestPipelines:
         res = testapp.put(
             f'{self.endpoint}/{filename}', upload_files=files, expect_errors=True
         )
+        # all malicious uplads respond with an error
         assert res.status_int >= 400
 
     def test_pipeline_replace_missing_target(self, testapp, temp_pipeline):
@@ -90,7 +96,7 @@ class TestPipelines:
             upload_files=files,
             expect_errors=True,
         )
-        assert res.status_int == 404
+        assert res.status_int == 404  # not found
 
     def test_pipeline_replace_with_other_file(self, testapp, temp_pipeline):
         # delete target file if it exists - just for safety
@@ -124,6 +130,7 @@ class TestPipelines:
             Path(testapp.app.iniconfig.get('pipelines', 'base_path')) / uploaded_filename
         )
         uploaded_content = uploaded_file.read_text()
+        # new uploaded content is the same as in the new local file
         assert other_pipeline['content'] == uploaded_content
 
         try:
@@ -148,7 +155,12 @@ class TestPipelines:
         assert res.status_int == 201
 
         res = testapp.delete(f'{self.endpoint}/{uploaded_filename}')
-        assert res.status_int == 204
+        assert res.status_int == 204  # no content
+
+        res = testapp.get(f'{self.endpoint}/{uploaded_filename}', expect_errors=True)
+        # file is not there anymore
+        assert res.status_int == 404
+
 
     @pytest.mark.parametrize(
         'filename',
