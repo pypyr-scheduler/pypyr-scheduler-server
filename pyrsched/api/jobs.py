@@ -88,6 +88,7 @@ def delete(job_identifier):
     current_app.scheduler.remove_job(job.id)      
     return empty_response()
 
+
 def change(job_identifier, pipeline_name, interval):
     logger.info(f'PUT /jobs/{job_identifier}/{pipeline_name}/{interval}')
     job = _find_job(job_identifier)

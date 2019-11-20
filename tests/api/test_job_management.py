@@ -6,6 +6,11 @@ import uuid
 class TestJobManagement:
     endpoint = "/jobs"
 
+    @pytest.mark.parametrize('method', ['POST', 'PUT', 'DELETE'])
+    def test_http_method_not_allowed_on_list_endpoint(self, testapp, method):
+        res = testapp.request(self.endpoint, method=method, expect_errors=True)
+        assert res.status_int == 405  # method not allowed
+
     def test_job_create(self, testapp, upload_pipeline):
         # upload a runnable pipeline
         uploaded_filename = 'test_pipeline_create.yaml'
@@ -142,6 +147,6 @@ class TestJobManagement:
         res = testapp.get(f'{self.endpoint}/{job.json["id"]}')   
         assert res.json['name'] == 'test_pipeline_change_job_name_second'
 
-    def test_job_change_name_non_existant(self, testapp, upload_pipeline):
-        # TODO
-        pass
+    def test_job_change_name_non_existant(self, testapp):
+        res = testapp.put(f'{self.endpoint}/nonexistent_job/new_name_which_is_not_evaluated/10', expect_errors=True)
+        assert res.status_int == 404
