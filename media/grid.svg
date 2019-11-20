@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     x="0" y="0" width="100%" height="100%"
+     viewBox="0 0 27 27">
+
+    <defs>
+        <!-- grid -->
+        <pattern id="grid-05" width="0.5" height="0.5" patternUnits="userSpaceOnUse">
+            <path d="M 0.5 0 L 0 0 0 0.5" fill="none" stroke="gray" stroke-width="0.05"/>
+        </pattern>
+        <pattern id="grid-10" width="1" height="1" patternUnits="userSpaceOnUse">
+            <rect width="1" height="1" fill="url(#grid-05)"/>
+            <path d="M 1 0 L 0 0 0 1" fill="none" stroke="gray" stroke-width="0.2"/>
+        </pattern>
+        <pattern id="grid-50" width="5" height="5" patternUnits="userSpaceOnUse">
+            <rect width="5" height="5" fill="url(#grid-10)"/>
+            <path d="M 5 0 L 0 0 0 5" fill="none" stroke="lightgray" stroke-width="0.2"/>
+        </pattern>  
+    </defs>
+
+    <rect id="grid" width="100%" height="100%" fill="url(#grid-50)"/>
+</svg>
