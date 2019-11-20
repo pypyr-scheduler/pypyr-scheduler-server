@@ -1,5 +1,9 @@
 # pypyr-scheduler 📓
 
+<p align="center">
+<img src="media/logo.svg" alt="pypyr-scheduler" style="width:200px;"/>
+</p>
+
 Schedule [pypyr](https://github.com/pypyr/pypyr-cli) pipelines with [apscheduler](https://github.com/agronholm/apscheduler) and control them via REST. The API interface is provided by Zalando's [connexion](https://connexion.readthedocs.io/en/latest/index.html).
 
 [![Test Status](https://travis-ci.org/dzerrenner/pypyr-scheduler.svg?branch=master)](https://travis-ci.org/dzerrenner/pypyr-scheduler)
