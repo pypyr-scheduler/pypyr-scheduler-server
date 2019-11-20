@@ -18,7 +18,17 @@ two tools you can use to take the edge off that:
 pyenv
 .....
 
-``pyenv`` is able to manage multiple python installations for one user. 
+``pyenv`` is able to manage multiple python installations for one user. To install it,
+make sure you have the necessary dependencies installed
+(see: `Prerequisites <https://github.com/pyenv/pyenv/wiki/common-build-problems#prerequisites>`_).
+
+``pyenv`` is installed in your *global* python interpreter with ``curl https://pyenv.run | bash``.
+
+You can then install some python versions like ``pyenv install 3.8.0`` for examlpe. After that,
+activate the version you wanna use ``pyenv local 3.8.0`` to activate it for the current directory.
+To continue, let's say intalling pipenv, choose the project root directory.
+
+
 
 tox
 ...
