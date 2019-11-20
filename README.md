@@ -1,8 +1,6 @@
 # pypyr-scheduler 📓
 
-<p align="center">
-<img src="media/logo.svg" alt="pypyr-scheduler" style="width:200px;"/>
-</p>
+[![Logo](media/logo-192.png)](https://github.com/dzerrenner/pypyr-scheduler)
 
 Schedule [pypyr](https://github.com/pypyr/pypyr-cli) pipelines with [apscheduler](https://github.com/agronholm/apscheduler) and control them via REST. The API interface is provided by Zalando's [connexion](https://connexion.readthedocs.io/en/latest/index.html).
 
@@ -24,6 +22,8 @@ We recommend using [pipenv](https://pipenv.kennethreitz.org), which makes it eas
     pipenv run pyrsched
 
 ## Usage
+
+*Outdated*: This section is not correct anymore.
 
 Run `python -m pyrsched start`.
 Browse to [http://localhost:8090/ui/](http://localhost:8090/ui/). New pipelines have to be present in the `pipelines` directory first before adding them. This will likely change in the future, you'll be able to upload them using the restful interface.
