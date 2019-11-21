@@ -7,32 +7,14 @@ from flask import current_app
 from pypyr.pipelinerunner import main as pipeline_runner
 from apscheduler.triggers.interval import IntervalTrigger
 
-from ..utils import empty_response, make_target_filename
+from ..utils import empty_response, make_target_filename, find_job
 
 logger = logging.getLogger(__name__)
 
 
-def _find_job(job_identifier):
-    """Finds a Job. 
-
-    The job_identifier is either a job-id (uuid) or the job name.
-    The list of jobs is searched twice, forst for id and if there was no job found for
-    the name. 
-    """ 
-    jobs = current_app.scheduler.get_jobs()
-    logger.info(f'_find_jobs: {jobs}')
-    for job in jobs:
-        if job.id == job_identifier:
-            return job
-    for job in jobs:
-        if job.name == job_identifier:
-            return job     
-    return None       
-    
-
 def get_one(job_identifier):
     logger.info(f'GET /jobs/{job_identifier}')
-    job = _find_job(job_identifier)
+    job = find_job(job_identifier)
     if not job:
         return 'Job not found', 404
     return job
@@ -82,7 +64,7 @@ def create(pipeline_name, interval):
 
 def delete(job_identifier):
     logger.info(f'DELETE /jobs/{job_identifier}')
-    job = _find_job(job_identifier)
+    job = find_job(job_identifier)
     if not job:
         return 'Job not found', 404
     current_app.scheduler.remove_job(job.id)      
@@ -91,7 +73,7 @@ def delete(job_identifier):
 
 def change(job_identifier, pipeline_name, interval):
     logger.info(f'PUT /jobs/{job_identifier}/{pipeline_name}/{interval}')
-    job = _find_job(job_identifier)
+    job = find_job(job_identifier)
     if not job:
         return 'Job not found', 404
 

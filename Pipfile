@@ -31,6 +31,8 @@ python_version = "3.6"
 
 [scripts]
 test = "pytest tests"
+pypyr-scheduler-cli = "python pyrsched/cli.py"
+psc = "python pyrsched/cli.py"
 
 [pipenv]
 allow_prereleases = true

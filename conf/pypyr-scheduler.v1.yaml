@@ -282,28 +282,22 @@ paths:
         '404':
           description: Job not Found            
     post:
-      summary: Start job
+      summary: Start job or resume paused job
       operationId: pyrsched.api.scheduler.start
       tags:
         - "Job execution"
       responses:
         '201':
           description: OK, execution created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
         '404':
-          description: Job not Found                      
-    put:
-      summary: Change job (pause it)
-      operationId: pyrsched.api.scheduler.change
-      tags:
-        - "Job execution"
-      responses:
-        '200':
-          description: OK, execution changed.
-        '404':
-          description: Job not Found                      
+          description: Job not Found                                         
     delete:
-      summary: Stop job execution
-      operationId: pyrsched.api.scheduler.stop
+      summary: Stop job execution (pause)
+      operationId: pyrsched.api.scheduler.pause
       tags: 
         - "Job execution"
       responses:

@@ -1,10 +1,13 @@
+import logging
 from pathlib import Path
 from datetime import timedelta
-# from types import ModuleType
 
 from flask import make_response, current_app
 from werkzeug.utils import secure_filename
 from connexion.apps.flask_app import FlaskJSONEncoder
+
+
+logger = logging.getLogger(__name__)
 
 
 def empty_response():
@@ -19,6 +22,24 @@ def make_target_filename(filename):
     base_path = Path(current_app.iniconfig.get('pipelines', 'base_path'))
     return (base_path / filename).resolve()
 
+
+def find_job(job_identifier):
+    """Finds a Job. 
+
+    The job_identifier is either a job-id (uuid) or the job name.
+    The list of jobs is searched twice, forst for id and if there was no job found for
+    the name. 
+    """ 
+    jobs = current_app.scheduler.get_jobs()
+    logger.info(f'found jobs: {jobs}')
+    for job in jobs:
+        if job.id == job_identifier:
+            return job
+    for job in jobs:
+        if job.name == job_identifier:
+            return job     
+    return None       
+    
 
 class JobEncoder(FlaskJSONEncoder):
     """
