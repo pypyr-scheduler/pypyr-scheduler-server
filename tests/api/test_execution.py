@@ -1,4 +1,5 @@
 import time
+import logging 
 
 import pytest
 import apscheduler
@@ -23,17 +24,19 @@ class TestJobExecution:
         assert not res.json["next_run_time"]
 
         # start the job
-        res = testapp.post(f"{self.endpoint}/{job['name']}/execution")
-        assert res.json["next_run_time"]
+        with caplog.at_level(logging.INFO):
+            res = testapp.post(f"{self.endpoint}/{job['name']}/execution")
+            assert res.json["next_run_time"]
 
-        # wait for the first job execution
-        # no obious method to get a jobs execution state, 
-        # so we assume that the job is done in max .5s
-        # if not, the assertion below will fail anyway and somone has to look here :P
-        time.sleep(1.5)
+            # wait for the first job execution
+            # no obious method to get a jobs execution state, 
+            # so we assume that the job is done in max .5s
+            # if not, the assertion below will fail anyway and somone has to look here :P
+            time.sleep(1.5)
 
-        # TODO: assertion could be too tight if a log message appears after the job execution is done
-        # test if the job was executed
+            # TODO: assertion could be too tight if a log message appears after the job execution is done
+            # test if the job was executed
+
         assert caplog.records[-1].message.endswith("executed successfully")
 
     @pytest.mark.parametrize('method', ['GET', 'POST', 'DELETE'])
