@@ -59,6 +59,10 @@ paths:
                 - filename: test_pipeline_1.yaml
                 - filename: test_pipeline_2.yaml
                 - filename: test_pipeline_3.yaml
+        '404':
+          description: >
+            No pipeline files found or directory does not exist.
+            Upload a file first.
       operationId: pyrsched.api.pipelines.get_all
       description: Get pipeline descriptions.
   '/pipelines/{filename}':
