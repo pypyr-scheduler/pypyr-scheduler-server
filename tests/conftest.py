@@ -31,6 +31,11 @@ def app():
         for f in pipeline_base_path.iterdir():
             f.unlink()
         pipeline_base_path.rmdir()
+    # log_base_path = Path(_app.app.iniconfig.get('pipelines', 'log_path'))
+    # if log_base_path.exists():
+    #     for f in log_base_path.iterdir():
+    #         f.unlink()
+    #     log_base_path.rmdir()
 
     yield _app.app
 

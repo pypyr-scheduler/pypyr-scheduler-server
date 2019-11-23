@@ -27,7 +27,9 @@ def create_app(config_file, **api_extra_args):
 
         # make sure the log path exists
         log_path = Path(_app.app.iniconfig.get('pipelines', 'log_path')).resolve()
+        logging.info(f'logpath: {log_path}')
         if not log_path.exists():
+            logging.debug('logpath does not exist. creating.')
             log_path.mkdir()
 
         _app.app.scheduler = BackgroundScheduler()
