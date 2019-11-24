@@ -25,6 +25,7 @@ apscheduler = "*"
 flask-ini = "*"
 pypyr = "*"
 pytz = "*"
+apextras = "*"
 
 [requires]
 python_version = "3.6"
