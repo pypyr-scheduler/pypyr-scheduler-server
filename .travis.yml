@@ -12,7 +12,7 @@ install:
 
 # command to run tests
 script:
-  - pytest --cov=pyrsched --cov-report xml
+  - pytest --doctest-modules --cov=pyrsched --cov-report xml
 
 # put coverage on coveralls
 after_success:

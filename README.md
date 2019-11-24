@@ -39,8 +39,8 @@ The API schema should be compliant to the [OpenAPI 3.0.0 specification](https://
 
 ## Quick links
 
-- <https://travis-ci.org/dzerrenner/pypyr-scheduler>
-- <https://coveralls.io/github/dzerrenner/pypyr-scheduler>
+- <https://travis-ci.org/pypyr-scheduler/pypyr-scheduler>
+- <https://coveralls.io/github/pypyr-scheduler/pypyr-scheduler>
 
 ## Related projects
 
