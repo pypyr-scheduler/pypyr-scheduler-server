@@ -8,12 +8,15 @@ from apextras.formatter import ThreeQuarterWidthDefaultsHelpFormatter
 from .app import create_app
 
 
-def main(args):
-    print(args)
-    path = Path(os.path.abspath(__file__)).parent
-    config_file = path / ".." / "conf" / "pyrsched.dev.ini"
-    app = create_app(config_file.resolve())
-    app.run(port=8080)
+def main(args):     
+    path = Path(os.path.abspath(__file__)).parent.parent
+    config_file = path / args.config
+    app = create_app(config_file.resolve(), args=args)
+    app.run(
+        debug = app.app.iniconfig.get('flask', 'debug').upper() == "TRUE",
+        host = app.app.iniconfig.get('flask', 'host'),
+        port = app.app.iniconfig.get('flask', 'port'),
+    )
 
 
 def loglevel_param(value):
@@ -49,7 +52,7 @@ if __name__ == "__main__":
         prog="pyrsched",
         formatter_class=ThreeQuarterWidthDefaultsHelpFormatter,
         description="pypyr-scheduler, the pypyr scheduler. All options except the configuration part can be "
-        "overridden in the configuration file.",
+        "overridden in the configuration file."
     )
 
     # config
@@ -58,7 +61,11 @@ if __name__ == "__main__":
         "-c", "--config", metavar="CONFIG", default="conf/pyrsched.ini", help="Configuration file"
     )
     config_group.add_argument(
-        "-s", "--show-config", action="store_true", default=False, help="Show configuration and exit"
+        "-s", "--show-config", action="store_true", default=False, help="Show effective configuration and exit"
+    )
+    config_group.add_argument(
+        "--json", action="store_true", default=False, help="Print config in json instead of a human readable "
+        "format. This is only used if the --show-config flag is set"
     )
 
     # log
@@ -103,6 +110,5 @@ if __name__ == "__main__":
     api_group.add_argument("--host", metavar="HOST", default="0.0.0.0", help="The host interface to bind on.")
     api_group.add_argument("--port", metavar="PORT", default=5000, help="The port to listen to.")
     api_group.add_argument("--debug", metavar="DEBUG", default=False, help="Include debugging information.")
-
-    args = parser.parse_args()
-    main(args)
+    
+    main(parser.parse_args())
