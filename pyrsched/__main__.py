@@ -76,23 +76,25 @@ if __name__ == "__main__":
         metavar="LEVEL",
         default=logging.getLevelName(logging.INFO),
         type=loglevel_param,
-        help="Main log level, either as log-level string (i.e.: 'INFO', 'debug') or integer log level.",
+        help="Main log level, either as log-level string (i.e.: 'INFO', 'debug') or integer log level",
     )
     log_group.add_argument(
         "-lp",
         "--log-path",
         metavar="LOGPATH",
         default="logs",
-        help="Log path. Relative to the program directory or absolute.",
+        help="Log path. Relative to the program directory or absolute",
     )
 
     # pipelines
-    pipeline_group = parser.add_argument_group("Pipelines", description="Control how pipelines are managed. Section [pipelines] in .ini")
+    pipeline_group = parser.add_argument_group("Pipelines", description="Control how pipelines are managed. "
+                                               "Section [pipelines] in .ini")
     pipeline_group.add_argument(
         "--disable-upload",
         default=False,
         action="store_true",
-        help="Disable the pipeline file server. This can be useful if you want to provide your own. Just set --pipeline-dir to your upload directory.",
+        help="Disable the pipeline file server. This can be useful if you want to provide your own. "
+             "Just set --pipeline-dir to your upload directory",
     )
 
     pipeline_group.add_argument(
@@ -100,15 +102,16 @@ if __name__ == "__main__":
         "--pipeline-dir",
         metavar="PIPELINE_PATH",
         default="pipelines",
-        help="Pipeline upload directory. Relative to the program directory or absolute.",
+        help="Pipeline upload directory. Relative to the program directory or absolute",
     )
 
     api_group = parser.add_argument_group(
         "API",
-        description="Control the API endpoint. These options are basically forwarded to the underlying Flask server. Section [flask] in .ini",
+        description="Control the API endpoint. These options are basically forwarded to the underlying Flask server. "
+                    "Section [flask] in .ini",
     )
-    api_group.add_argument("--host", metavar="HOST", default="0.0.0.0", help="The host interface to bind on.")
-    api_group.add_argument("--port", metavar="PORT", default=5000, help="The port to listen to.")
-    api_group.add_argument("--debug", metavar="DEBUG", default=False, help="Include debugging information.")
-    
+    api_group.add_argument("--host", metavar="HOST", default="0.0.0.0", help="The host interface to bind on")
+    api_group.add_argument("--port", metavar="PORT", default=5000, help="The port to listen to")
+    api_group.add_argument("--debug", metavar="DEBUG", default=False, help="Include debugging information")
+
     main(parser.parse_args())
