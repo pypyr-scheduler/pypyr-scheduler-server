@@ -7,7 +7,10 @@ worlds and makes it very easy to develop for both Linux and Windows.
 Mileage may vary for MacOS, but you know what you are doing.
 
 With this said: all of the following instructions or tips are 
-tailored for a WSL or Linux environment.
+tailored for a WSL or Linux environment until explicitly said.
+
+Finally, these instructions are mainly targeted to internal team members,
+but maybe there is some useful information in there for you.
 
 Managing multiple python versions
 ---------------------------------
@@ -36,6 +39,31 @@ tox
 TBD, unsing ``tox`` for tests.
 
 Managing the python environment
----------------------------
+-------------------------------
 
 We recommend ``pipenv`` to manage the installed dependencies. 
+
+WSL
+---
+
+Installing a WSL distro without Microsoft store
+...............................................
+
+There are some distros on the WSL site for manual download.
+Look on the `Microsoft WSL site <https://docs.microsoft.com/de-de/windows/wsl/install-manual>`_ for them.
+
+There is one catch: these are .appx-Archives which need to be installed
+with ``Add-AppxPackage .\app_name.appx`` in PowerShell. It seems
+that the Microsoft store handles this, but it is disabled or not even 
+installed on your machine.
+
+You'll have to rename them to .zip and unpack them in an arbitrary folder.
+In there is an .exe with the name of the distro (i.e. ``ubuntu.exe``). Run that instead.
+
+
+Powerline Fonts
+...............
+
+To use gadgets like oh-my-zsh, you'll likely need to install
+some compatible fonts on your Windows machine. 
+Here is a short instruction set on how to do that: https://medium.com/@slmeng/how-to-install-powerline-fonts-in-windows-b2eedecace58
