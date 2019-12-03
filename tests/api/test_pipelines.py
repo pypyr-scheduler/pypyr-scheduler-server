@@ -223,3 +223,9 @@ class TestPipelines:
         # teardown
         for p in [pipeline1, pipeline2, pipeline3]:
             res = testapp.delete(f'{self.endpoint}/{p["name"]}')
+
+    def test_list_pipelines_no_upload_folder(self, testapp):
+        res = testapp.get(self.endpoint, expect_errors=True)
+        assert res.status_int == 404
+        # The following seems weird, maybe other webservers would respond in other wayse
+        assert res.text == '"No pipelines found. Upload some first."\n'  
