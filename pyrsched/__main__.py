@@ -5,12 +5,13 @@ from pathlib import Path
 
 from apextras.formatter import ThreeQuarterWidthDefaultsHelpFormatter
 
-from .app import create_app
+from .app import create_app, PYRSCHED_DEFAULTS
 
 
-def main(args):     
+def main(args):  # pragma: no cover   
     path = Path(os.path.abspath(__file__)).parent.parent
-    config_file = path / args.config
+    config_file = path / PYRSCHED_DEFAULTS['config']['config']
+    # config_file = ### VALUE FROM COMMAND LINE ###
     app = create_app(config_file.resolve(), args=args)
     app.run(
         debug = app.app.iniconfig.get('flask', 'debug').upper() == "TRUE",
@@ -19,38 +20,30 @@ def main(args):
     )
 
 
-def loglevel_param(value):
-    """Try to make a valid loglevel out of the given input.
-
-    If it is an `int`, return it.
-    If not, try to convert the value using the logging module.
-    If this is also not possible, raise an `argparse.ArgumentTypeError`.
-
-    >>> import logging
-    >>> loglevel_param(10)
-    10
-    >>> loglevel_param('info')
-    20
-    >>> loglevel_param('INFO')
-    20
-    >>> loglevel_param("I'm an obscure loglevel, yo'll never find me")  # doctest: +IGNORE_EXCEPTION_DETAIL
-    Traceback (most recent call last):
-        ...
-    argparse.ArgumentTypeError: ...
-    """
-    if isinstance(value, int):
-        return value
-    try:
-        loglevel = getattr(logging, str(value).upper())
-    except AttributeError:
-        raise argparse.ArgumentTypeError(f'The value "{value}" could not be mapped to a log level.')
-    return loglevel
+def flatten_dict(in_dict):
+    out_dict = dict()
+    for section in in_dict:
+        for k, v in in_dict[section].items():
+            out_dict[k] = v
+    return out_dict
 
 
-if __name__ == "__main__":
+class FakeDefaultsHelpFormatter(argparse.HelpFormatter):
+    fake_defaults = flatten_dict(PYRSCHED_DEFAULTS)
+
+    def _get_help_string(self, action):
+        help = action.help
+        if '%(default)' not in action.help:
+            if action.dest in self.fake_defaults:
+                help += f' (default: {self.fake_defaults[action.dest]}).'
+        return help
+
+
+def create_parser():
     parser = argparse.ArgumentParser(
         prog="pyrsched",
-        formatter_class=ThreeQuarterWidthDefaultsHelpFormatter,
+        formatter_class=FakeDefaultsHelpFormatter,  # ThreeQuarterWidthDefaultsHelpFormatter,
+        argument_default=None,
         description="pypyr-scheduler, the pypyr scheduler. All options except the configuration part can be "
         "overridden in the configuration file."
     )
@@ -58,13 +51,13 @@ if __name__ == "__main__":
     # config
     config_group = parser.add_argument_group("Configuration")
     config_group.add_argument(
-        "-c", "--config", metavar="CONFIG", default="conf/pyrsched.ini", help="Configuration file"
+        "-c", "--config", metavar="CONFIG", help="Configuration file"
     )
     config_group.add_argument(
-        "-s", "--show-config", action="store_true", default=False, help="Show effective configuration and exit"
+        "-s", "--show-config", action="store_true", help="Show effective configuration and exit"
     )
     config_group.add_argument(
-        "--json", action="store_true", default=False, help="Print config in json instead of a human readable "
+        "--json", action="store_true", help="Print config in json instead of a human readable "
         "format. This is only used if the --show-config flag is set"
     )
 
@@ -74,34 +67,35 @@ if __name__ == "__main__":
         "-l",
         "--log-level",
         metavar="LEVEL",
-        default=logging.getLevelName(logging.INFO),
-        type=loglevel_param,
-        help="Main log level, either as log-level string (i.e.: 'INFO', 'debug') or integer log level",
+        type=str,
+        help="Main log level, as log-level string (i.e.: 'INFO', 'DEBUG')",
     )
     log_group.add_argument(
         "-lp",
         "--log-path",
         metavar="LOGPATH",
-        default="logs",
         help="Log path. Relative to the program directory or absolute",
+    )
+    log_group.add_argument(
+        "-lc",
+        "--log-config",
+        metavar="LOGCONFIG",
+        help="Python module which contains the log configuration",
     )
 
     # pipelines
     pipeline_group = parser.add_argument_group("Pipelines", description="Control how pipelines are managed. "
                                                "Section [pipelines] in .ini")
     pipeline_group.add_argument(
-        "--disable-upload",
-        default=False,
+        "--enable-upload",
         action="store_true",
-        help="Disable the pipeline file server. This can be useful if you want to provide your own. "
-             "Just set --pipeline-dir to your upload directory",
+        help="Activate the pipeline file server. This can be useful if you don't want to provide your own",
     )
 
     pipeline_group.add_argument(
         "-p",
         "--pipeline-dir",
         metavar="PIPELINE_PATH",
-        default="pipelines",
         help="Pipeline upload directory. Relative to the program directory or absolute",
     )
 
@@ -110,8 +104,12 @@ if __name__ == "__main__":
         description="Control the API endpoint. These options are basically forwarded to the underlying Flask server. "
                     "Section [flask] in .ini",
     )
-    api_group.add_argument("--host", metavar="HOST", default="0.0.0.0", help="The host interface to bind on")
-    api_group.add_argument("--port", metavar="PORT", default=5000, help="The port to listen to")
-    api_group.add_argument("--debug", metavar="DEBUG", default=False, help="Include debugging information")
+    api_group.add_argument("--host", metavar="HOST", help="The host interface to bind on")
+    api_group.add_argument("--port", metavar="PORT", help="The port to listen to")
+    api_group.add_argument("--debug", metavar="DEBUG", help="Include debugging information")
 
+    return parser
+
+if __name__ == "__main__":  # pragma: no cover    
+    parser = create_parser()
     main(parser.parse_args())
