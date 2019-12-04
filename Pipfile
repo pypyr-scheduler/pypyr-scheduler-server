@@ -17,6 +17,7 @@ pytest-cov = "*"
 python-coveralls = "*"
 coveralls = "*"
 sphinxcontrib-openapi = {extras = ["markdown"],version = "*"}
+uwsgi = "*"
 
 [packages]
 connexion = {extras = ["swagger-ui"],version = "*"}

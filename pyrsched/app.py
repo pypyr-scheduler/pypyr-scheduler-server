@@ -16,6 +16,7 @@ from .utils import JobEncoder
 PYRSCHED_DEFAULTS = {
     'config': {
         'config': 'conf/pyrsched.dev.ini',
+        'scheduler_config': 'conf/scheduler_config.py',
         'show_config': False,
         'json': False,
     },
@@ -60,7 +61,7 @@ def override_defaults(config, args, defaults):
             if cli_value:
                 value = cli_value
 
-            logger.info(f'{section}->{item_name}: D"{default_value}"->I"{ini_value}"->C"{cli_value}"->[{value}]')
+            logger.debug(f'{section}->{item_name}: D"{default_value}"->I"{ini_value}"->C"{cli_value}"->[{value}]')
             config.set(section, item_name, str(value))
 
 
@@ -82,7 +83,8 @@ def handle_config_output(config):
 
 
 def create_app(config_file, args=argparse.Namespace(), **api_extra_args):
-    logging.basicConfig(level=PYRSCHED_DEFAULTS['logging']['log_level'])  # effective log level ist set after config interpolation
+    loglevel = getattr(args, "log_level", None) or PYRSCHED_DEFAULTS['logging']['log_level']
+    logging.basicConfig(level=loglevel)  # effective log level ist set after config interpolation
     logger = logging.getLogger('pyrsched')
     logger.info(f'app startup: {args}')
 
@@ -117,13 +119,21 @@ def create_app(config_file, args=argparse.Namespace(), **api_extra_args):
         
     # make sure the log path exists
     log_path = Path(_app.app.iniconfig.get('pipelines', 'log_path')).resolve()
-    logging.info(f'logpath: {log_path}')
+    logging.info(f'logpath: {log_path}')    
     if not log_path.exists():
         logging.debug('logpath does not exist. creating.')
         log_path.mkdir()
 
     # create and configure scheduler
-    _app.app.scheduler = BackgroundScheduler()
+
+    config_path = Path(_app.app.iniconfig.get("config", "scheduler_config")).resolve()
+    logging.info(f'scheduler config: {config_path}')
+    logging.info(f'adding {config_path.parent} to sys.path')
+    sys.path.insert(0, str(config_path.parent))
+
+    scheduler_config = getattr(importlib.import_module(str(config_path.name).rsplit('.', maxsplit=1)[0]), "config")    
+
+    _app.app.scheduler = BackgroundScheduler(scheduler_config)
     _app.app.scheduler.start()
 
     # create api

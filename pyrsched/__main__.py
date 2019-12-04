@@ -10,8 +10,8 @@ from .app import create_app, PYRSCHED_DEFAULTS
 
 def main(args):  # pragma: no cover   
     path = Path(os.path.abspath(__file__)).parent.parent
-    config_file = path / PYRSCHED_DEFAULTS['config']['config']
-    # config_file = ### VALUE FROM COMMAND LINE ###
+    config_file = getattr(args, "config", None) or path / PYRSCHED_DEFAULTS['config']['config']
+
     app = create_app(config_file.resolve(), args=args)
     app.run(
         debug = app.app.iniconfig.get('flask', 'debug').upper() == "TRUE",
@@ -59,6 +59,9 @@ def create_parser():
     config_group.add_argument(
         "--json", action="store_true", help="Print config in json instead of a human readable "
         "format. This is only used if the --show-config flag is set"
+    )
+    config_group.add_argument(
+        "-sc", "--scheduler-config", metavar="SCHEDULERCONF", help="Scheduler configuration file"
     )
 
     # log
