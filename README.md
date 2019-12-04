@@ -24,10 +24,21 @@ We recommend using [pipenv](https://pipenv.kennethreitz.org), which makes it eas
 
 ## Usage
 
-*Outdated*: This section is not correct anymore.
+### Development / Testing 
 
-Run `python -m pyrsched start`.
+Run `python -m pyrsched`.
 Browse to [http://localhost:8090/ui/](http://localhost:8090/ui/). New pipelines have to be present in the `pipelines` directory first before adding them. This will likely change in the future, you'll be able to upload them using the restful interface.
+
+### Production deployment
+
+For example, the command line for `uwsgi` would look like follows:
+
+    uwsgi --http 127.0.0.1:3031 --wsgi-file pyrsched/wsgi.py --callable app --enable-threads
+
+The switch `--enable-threads` is necessary, if you intend to use the `apscheduler.executors.pool:ThreadPoolExecutor` (which is default).
+
+Note that the command line switches for the hostname and port number are not used if served via wsgi, these values
+are provided to your wsgi server externally (see the `--http`-switch above).
 
 ## Documentation
 
