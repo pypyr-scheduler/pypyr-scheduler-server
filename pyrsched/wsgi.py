@@ -1,3 +1,4 @@
+# pragma: no cover   
 import os
 from pathlib import Path
 from pyrsched.app import create_app, PYRSCHED_DEFAULTS

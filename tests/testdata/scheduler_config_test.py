@@ -1,7 +1,7 @@
 config = {
     'apscheduler.jobstores.default': {
-        'type': 'sqlalchemy',
-        'url': 'sqlite:///jobs.sqlite'
+        'type': 'memory',
+        # 'url': 'sqlite:///jobs.sqlite'
     },
     'apscheduler.executors.default': {
         'class': 'apscheduler.executors.pool:ThreadPoolExecutor',

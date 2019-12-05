@@ -132,8 +132,9 @@ def create_app(config_file, args=argparse.Namespace(), **api_extra_args):
     sys.path.insert(0, str(config_path.parent))
 
     scheduler_config = getattr(importlib.import_module(str(config_path.name).rsplit('.', maxsplit=1)[0]), "config")    
+    logging.info(scheduler_config)
 
-    _app.app.scheduler = BackgroundScheduler(scheduler_config)
+    _app.app.scheduler = BackgroundScheduler(scheduler_config)    
     _app.app.scheduler.start()
 
     # create api
