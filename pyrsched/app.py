@@ -4,6 +4,7 @@ import logging.config
 import argparse
 import configparser
 import importlib
+from copy import deepcopy
 from pathlib import Path
 
 import connexion
@@ -15,7 +16,7 @@ from .utils import JobEncoder
 
 PYRSCHED_DEFAULTS = {
     'config': {
-        'config': 'conf/pyrsched.dev.ini',
+        'config': 'conf/pyrsched.ini',
         'scheduler_config': 'conf/scheduler_config.py',
         'show_config': False,
         'json': False,
@@ -23,7 +24,7 @@ PYRSCHED_DEFAULTS = {
     'logging': {
         'log_level': 'DEBUG',
         'log_path': 'logs',
-        'log_config': 'pyrsched.log.config',
+        'log_config': 'conf/logging_config.py', 
     },
     'pipelines': {
         'enable_upload': False,
@@ -49,11 +50,13 @@ def override_defaults(config, args, defaults):
                 config.add_section(section)
 
             ini_value = None
+            cli_value = getattr(args, item_name, None)
             try:
                 ini_value = config.get(section, item_name)
             except configparser.NoOptionError as e:
+                logger.debug(f'{section}->{item_name} not in .ini, using default value {default_value} or value from command line ({cli_value})')
                 pass  # we'll use the default instead
-            cli_value = getattr(args, item_name, None)
+            
             
             value = default_value
             if ini_value:
@@ -86,7 +89,10 @@ def create_app(config_file, args=argparse.Namespace(), **api_extra_args):
     loglevel = getattr(args, "log_level", None) or PYRSCHED_DEFAULTS['logging']['log_level']
     logging.basicConfig(level=loglevel)  # effective log level ist set after config interpolation
     logger = logging.getLogger('pyrsched')
-    logger.info(f'app startup: {args}')
+    logger.info(f'app startup: {config_file}, {args}, {api_extra_args}')
+
+    if not Path(config_file).resolve().exists():
+        raise FileNotFoundError(f'ini file not found: {config_file}')
 
     # We have to turn off response validation for now until
     # zalando/connexion/#401 is fixed
@@ -100,39 +106,34 @@ def create_app(config_file, args=argparse.Namespace(), **api_extra_args):
         logger.info(f'trying to load {config_file}')
         _app.app.json_encoder = JobEncoder
 
-        _app.app.iniconfig = config = FlaskIni()
+        _app.app.iniconfig = FlaskIni()
         _app.app.iniconfig.read(config_file)
         
-        override_defaults(config, args, PYRSCHED_DEFAULTS)
+    override_defaults(_app.app.iniconfig, args, PYRSCHED_DEFAULTS)
 
-        logging.root.setLevel(config.get('logging', 'log_level'))
-        
-        # import logging config
-        module_name, attribute = config.get('logging', 'log_config').rsplit('.', maxsplit=1)
-
-        log_config = getattr(importlib.import_module(module_name), attribute)
-        logger.debug(f'loading config from {module_name}.{attribute}')
-        logging.config.dictConfig(log_config)
+    logging.root.setLevel(_app.app.iniconfig.get('logging', 'log_level'))
+    
+    # import logging config
+    log_config_path = _app.app.iniconfig.get("logging", "log_config")
+    imported_logging_config = import_external(log_config_path, "config")
+    logging.config.dictConfig(imported_logging_config)
 
     if _app.app.iniconfig.get("config", "show_config").lower() == "true":
         handle_config_output(_app.app.iniconfig)
         
     # make sure the log path exists
     log_path = Path(_app.app.iniconfig.get('pipelines', 'log_path')).resolve()
-    logging.info(f'logpath: {log_path}')    
+    logger.info(f'logpath: {log_path}')    
     if not log_path.exists():
         logging.debug('logpath does not exist. creating.')
         log_path.mkdir()
 
     # create and configure scheduler
-
-    config_path = Path(_app.app.iniconfig.get("config", "scheduler_config")).resolve()
-    logging.info(f'scheduler config: {config_path}')
-    logging.info(f'adding {config_path.parent} to sys.path')
-    sys.path.insert(0, str(config_path.parent))
-
-    scheduler_config = getattr(importlib.import_module(str(config_path.name).rsplit('.', maxsplit=1)[0]), "config")    
-    logging.info(scheduler_config)
+    config_path = Path(_app.app.iniconfig.get("config", "scheduler_config")).resolve()   
+    imported_scheduler_config = import_external(config_path, "config")
+    # apscheduler .pop()s values from this, so the original has to be preserved
+    scheduler_config = deepcopy(imported_scheduler_config)  
+    logger.info(scheduler_config)
 
     _app.app.scheduler = BackgroundScheduler(scheduler_config)    
     _app.app.scheduler.start()
@@ -145,3 +146,18 @@ def create_app(config_file, args=argparse.Namespace(), **api_extra_args):
     _app.add_api(spec_filename, **api_extra_args)
 
     return _app
+
+def import_external(file_name, attribute_name):
+    logger = logging.getLogger('pyrsched.import')
+    logger.info(f'importing {attribute_name} from {file_name}')
+    module_file = Path(file_name).resolve()
+    if not module_file.exists():
+        raise FileNotFoundError(f"{module_file} not found.")
+    module_path = module_file.parent
+    if not module_path in sys.path:
+        logger.info(f'{module_path} not in sys.path, adding it')
+        sys.path.insert(0, str(module_path))
+
+    imported_module = importlib.import_module(module_file.stem)
+    attribute = getattr(imported_module, attribute_name)
+    return attribute

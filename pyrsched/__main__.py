@@ -8,9 +8,12 @@ from apextras.formatter import ThreeQuarterWidthDefaultsHelpFormatter
 from .app import create_app, PYRSCHED_DEFAULTS
 
 
-def main(args):  # pragma: no cover   
-    path = Path(os.path.abspath(__file__)).parent.parent
-    config_file = getattr(args, "config", None) or path / PYRSCHED_DEFAULTS['config']['config']
+def main(args):  # pragma: no cover       
+    config_from_args = getattr(args, "config", None)
+    if config_from_args:
+        config_file = Path(config_from_args)
+    else:
+        config_file = path = Path(os.path.abspath(__file__)).parent.parent / PYRSCHED_DEFAULTS['config']['config']
 
     app = create_app(config_file.resolve(), args=args)
     app.run(
@@ -105,7 +108,7 @@ def create_parser():
     api_group = parser.add_argument_group(
         "API",
         description="Control the API endpoint. These options are basically forwarded to the underlying Flask server. "
-                    "Section [flask] in .ini",
+                    "Section [flask] in .ini. Note that these values may be overridden by a production server loke uwsgi.",
     )
     api_group.add_argument("--host", metavar="HOST", help="The host interface to bind on")
     api_group.add_argument("--port", metavar="PORT", help="The port to listen to")

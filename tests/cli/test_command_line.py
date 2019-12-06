@@ -21,7 +21,7 @@ class TestCommandline(object):
         defaults.keys(),
     )
     def test_show_config(self, capsys, config_section):
-        args = ["--show-config"]
+        args = ["--show-config", "-c", "tests/testdata/pyrsched.test.ini"]
         parser = main.create_parser()
         with pytest.raises(SystemExit) as pytest_wrapped_e:
             main.main(parser.parse_args(args))
@@ -36,7 +36,7 @@ class TestCommandline(object):
         defaults.keys(),
     )
     def test_show_config_json(self, capsys, config_section):
-        args = ["--show-config", "--json"]
+        args = ["--show-config", "--json", "-c", "tests/testdata/pyrsched.test.ini"]
         parser = main.create_parser()
         with pytest.raises(SystemExit) as pytest_wrapped_e:
             main.main(parser.parse_args(args))
@@ -61,7 +61,7 @@ class TestCommandline(object):
         # we check if the invocation line contains the script name and 
         # for specific defaults
         assert "usage: pyrsched [-h]" in captured.out
-        assert "(default: pyrsched.log.config)." in captured.out
+        assert "(default: conf/logging_config.py)." in captured.out
         assert "Include debugging information (default: False)." in captured.out
 
     def test_no_log_dir(self):
