@@ -76,3 +76,16 @@ class TestCommandline(object):
         # teardown, remove created log path
         created_path.rmdir()
 
+    def test_no_ini_file(self):
+        args = ["-c", "nonexistent_ini_file.ini"]
+        parser = main.create_parser()
+        with pytest.raises(FileNotFoundError) as pytest_wrapped_e:
+            main.main(parser.parse_args(args))
+        assert pytest_wrapped_e.type == FileNotFoundError        
+
+    def test_no_scheduler_config(self):
+        args = ["-sc", "nonexistent_config.py"]
+        parser = main.create_parser()
+        with pytest.raises(FileNotFoundError) as pytest_wrapped_e:
+            main.main(parser.parse_args(args))
+        assert pytest_wrapped_e.type == FileNotFoundError     
