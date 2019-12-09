@@ -9,15 +9,7 @@ here = path.abspath(path.dirname(__file__))
 with open(path.join(here, 'README.md'), encoding='utf-8') as f:
     LONG_DESCRIPTION = f.read()
 
-# with open(
-#         path.join(
-#             path.dirname(__file__),
-#             'tiny_petstore', '__init__.py')) as v_file:
-#     VERSION = re.compile(
-#         r".*__version__ = '(.*?)'",
-#         re.S).match(v_file.read()).group(1)
-
-VERSION = "0.0.1"
+VERSION = "1.0.3"
 
 setup(
     name=NAME,
@@ -27,7 +19,7 @@ setup(
                 "connexion.",
     long_description=LONG_DESCRIPTION,
     long_description_content_type='text/markdown',
-    url="https://github.com/dzerrenner/pypyr-scheduler",
+    url="https://github.com/pypyr-scheduler/pypyr-scheduler",
     license='MIT',
 
     author='David Zerrenner',
@@ -44,13 +36,19 @@ setup(
     keywords=["OpenAPI", "Connexion", "Pypyr", "Scheduler", "Taskrunner"],
 
     packages=find_packages(exclude=['etc', 'var', 'junk']),
-    package_data={'': ['conf/pypyr-scheduler.v1.yaml']},
+    package_data={'': ['conf/pypyr-scheduler.v1.yaml', 'conf/pypyr-scheduler.v1.without-pipelines.yaml', 'conf/pyrsched.ini', 'conf/scheduler_config.py', 'conf/logging_config.py',]},
     include_package_data=True,
 
     install_requires=[
         "connexion>=2.0.0",
         "swagger-ui-bundle>=0.0.2",
-        # "python_dateutil==2.6.0",
+        "pyyaml>=5.2",
+        "apscheduler>=3.6.3",
+        "flask>=1.1.1",
+        "flask-ini>=0.2.1",
+        "pypyr>=3.0.2",
+        "pytz>=2019.3",
+        "apextras>=0.9.0",
     ],
     setup_requires=['pytest-runner'],
     tests_require=['pytest'],

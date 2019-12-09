@@ -18,6 +18,7 @@ PYRSCHED_DEFAULTS = {
     'config': {
         'config': 'conf/pyrsched.ini',
         'scheduler_config': 'conf/scheduler_config.py',
+        'connexion_spec_dir': 'conf',
         'show_config': False,
         'json': False,
     },
@@ -99,7 +100,8 @@ def create_app(config_file, args=argparse.Namespace(), **api_extra_args):
     api_extra_args['validate_responses'] = False
 
     # create the API endpoints, either with or without pipeline upload
-    _app = connexion.FlaskApp(__name__, specification_dir='../conf/')    
+    # _app = connexion.FlaskApp(__name__, specification_dir='../conf/')    
+    _app = connexion.FlaskApp(__name__)    
 
     # load configuration and interpolate it with command line args
     with _app.app.app_context():
@@ -139,11 +141,12 @@ def create_app(config_file, args=argparse.Namespace(), **api_extra_args):
     _app.app.scheduler.start()
 
     # create api
-    spec_filename = 'pypyr-scheduler.v1.without-pipelines.yaml'
-    if _app.app.iniconfig.get("pipelines", "enable_upload"):
-        spec_filename = 'pypyr-scheduler.v1.yaml'
-    logger.info(f'loading API spec {spec_filename}')
-    _app.add_api(spec_filename, **api_extra_args)
+    spec_dir = _app.app.iniconfig.get("config", "connexion_spec_dir", fallback=None)
+    spec_file = Path(spec_dir).resolve() / 'pypyr-scheduler.v1.without-pipelines.yaml'
+    if _app.app.iniconfig.get("pipelines", "enable_upload").lower() == "true":
+        spec_file = Path(spec_dir).resolve() / 'pypyr-scheduler.v1.yaml'
+    logger.info(f'loading API spec {spec_file}')
+    _app.add_api(spec_file, **api_extra_args)
 
     return _app
 

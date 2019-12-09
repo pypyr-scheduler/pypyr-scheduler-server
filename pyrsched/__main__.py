@@ -66,6 +66,9 @@ def create_parser():
     config_group.add_argument(
         "-sc", "--scheduler-config", metavar="SCHEDULERCONF", help="Scheduler configuration file"
     )
+    config_group.add_argument(
+        "--spec-dir", metavar="SPECDIR", help="Connexion specification directory"
+    )
 
     # log
     log_group = parser.add_argument_group("Logging", description="Control logging. Section [logging] in .ini")

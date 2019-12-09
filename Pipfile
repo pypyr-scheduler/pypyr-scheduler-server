@@ -18,6 +18,9 @@ python-coveralls = "*"
 coveralls = "*"
 sphinxcontrib-openapi = {extras = ["markdown"],version = "*"}
 uwsgi = "*"
+setuptools = "*"
+wheel = "*"
+twine = "*"
 
 [packages]
 connexion = {extras = ["swagger-ui"],version = "*"}
