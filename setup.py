@@ -14,8 +14,8 @@ VERSION = "1.0.3"
 setup(
     name=NAME,
     version=VERSION,
-    description="Schedule pypyr pipelines with apscheduler and control them"
-                "via REST. The API interface is provided by Zalando's"
+    description="Schedule pypyr pipelines with apscheduler and control them "
+                "via REST. The API interface is provided by Zalando's "
                 "connexion.",
     long_description=LONG_DESCRIPTION,
     long_description_content_type='text/markdown',
@@ -35,7 +35,7 @@ setup(
 
     keywords=["OpenAPI", "Connexion", "Pypyr", "Scheduler", "Taskrunner"],
 
-    packages=find_packages(exclude=['etc', 'var', 'junk']),
+    packages=find_packages(),
     package_data={'': ['conf/pypyr-scheduler.v1.yaml', 'conf/pypyr-scheduler.v1.without-pipelines.yaml', 'conf/pyrsched.ini', 'conf/scheduler_config.py', 'conf/logging_config.py',]},
     include_package_data=True,
 
