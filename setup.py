@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 from os import path
 # import re
 
@@ -35,8 +35,8 @@ setup(
 
     keywords=["OpenAPI", "Connexion", "Pypyr", "Scheduler", "Taskrunner"],
 
-    packages=find_packages(),
-    package_data={'': ['conf/pypyr-scheduler.v1.yaml', 'conf/pypyr-scheduler.v1.without-pipelines.yaml', 'conf/pyrsched.ini', 'conf/scheduler_config.py', 'conf/logging_config.py',]},
+    packages=['pyrsched'],
+    # package_data={'': ['conf/*',]},
     include_package_data=True,
 
     install_requires=[

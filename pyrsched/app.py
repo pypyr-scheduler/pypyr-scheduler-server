@@ -131,7 +131,7 @@ def create_app(config_file, args=argparse.Namespace(), **api_extra_args):
         log_path.mkdir()
 
     # create and configure scheduler
-    config_path = Path(_app.app.iniconfig.get("config", "scheduler_config")).resolve()   
+    config_path = Path(_app.app.iniconfig.get("config", "scheduler_config"))   
     imported_scheduler_config = import_external(config_path, "config")
     # apscheduler .pop()s values from this, so the original has to be preserved
     scheduler_config = deepcopy(imported_scheduler_config)  
@@ -141,7 +141,9 @@ def create_app(config_file, args=argparse.Namespace(), **api_extra_args):
     _app.app.scheduler.start()
 
     # create api
-    spec_dir = _app.app.iniconfig.get("config", "connexion_spec_dir", fallback=None)
+    spec_dir = Path(_app.app.iniconfig.get("config", "connexion_spec_dir", fallback=None))
+    if not spec_dir.is_absolute():
+        spec_dir = Path(__file__).parent / spec_dir
     spec_file = Path(spec_dir).resolve() / 'pypyr-scheduler.v1.without-pipelines.yaml'
     if _app.app.iniconfig.get("pipelines", "enable_upload").lower() == "true":
         spec_file = Path(spec_dir).resolve() / 'pypyr-scheduler.v1.yaml'
@@ -153,7 +155,9 @@ def create_app(config_file, args=argparse.Namespace(), **api_extra_args):
 def import_external(file_name, attribute_name):
     logger = logging.getLogger('pyrsched.import')
     logger.info(f'importing {attribute_name} from {file_name}')
-    module_file = Path(file_name).resolve()
+    module_file = Path(file_name)
+    if not module_file.is_absolute():
+        module_file = Path(__file__).parent / module_file
     if not module_file.exists():
         raise FileNotFoundError(f"{module_file} not found.")
     module_path = module_file.parent

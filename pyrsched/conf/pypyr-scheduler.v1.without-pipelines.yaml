@@ -13,8 +13,8 @@ info:
     Pypyr-Scheduler API spec.
     `TODO:` More header information.
 servers:
-  - url: 'http://localhost:8080'
-    description: local-dev
+  - url: 'http://localhost:5000'
+    description: default
 paths:
   /status:
     get:

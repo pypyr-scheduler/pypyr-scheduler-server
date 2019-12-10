@@ -13,7 +13,7 @@ def main(args):  # pragma: no cover
     if config_from_args:
         config_file = Path(config_from_args)
     else:
-        config_file = path = Path(os.path.abspath(__file__)).parent.parent / PYRSCHED_DEFAULTS['config']['config']
+        config_file = path = Path(os.path.abspath(__file__)).parent / PYRSCHED_DEFAULTS['config']['config']
 
     app = create_app(config_file.resolve(), args=args)
     app.run(
