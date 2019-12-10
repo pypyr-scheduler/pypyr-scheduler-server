@@ -61,7 +61,6 @@ class TestCommandline(object):
         # we check if the invocation line contains the script name and 
         # for specific defaults
         assert "usage: pyrsched [-h]" in captured.out
-        assert "(default: pyrsched/conf/logging_config.py)." in captured.out
         assert "Include debugging information (default: False)." in captured.out
 
     def test_no_log_dir(self):
