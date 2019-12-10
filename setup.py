@@ -1,6 +1,6 @@
 from setuptools import setup
 from os import path
-# import re
+from pyrsched import VERSION
 
 NAME = "pypyr-scheduler"
 
@@ -8,8 +8,6 @@ here = path.abspath(path.dirname(__file__))
 
 with open(path.join(here, 'README.md'), encoding='utf-8') as f:
     LONG_DESCRIPTION = f.read()
-
-VERSION = "1.0.3"
 
 setup(
     name=NAME,
@@ -36,7 +34,6 @@ setup(
     keywords=["OpenAPI", "Connexion", "Pypyr", "Scheduler", "Taskrunner"],
 
     packages=['pyrsched'],
-    # package_data={'': ['conf/*',]},
     include_package_data=True,
 
     install_requires=[
