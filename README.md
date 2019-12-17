@@ -24,14 +24,17 @@ We recommend using [pipenv](https://pipenv.kennethreitz.org), which makes it eas
 
 ## Usage
 
-*Outdated*: This section is not correct anymore.
+Run `python -m pyrsched`.
+Browse to [http://localhost:5000/ui/](http://localhost:5000/ui/). Upload pipelines via the REST
+interface or provide your own fileserver for pipelines.
 
-Run `python -m pyrsched start`.
-Browse to [http://localhost:8090/ui/](http://localhost:8090/ui/). New pipelines have to be present in the `pipelines` directory first before adding them. This will likely change in the future, you'll be able to upload them using the restful interface.
+All configuration options can be defined in an .ini-file and be overridden at the command line.
+They have sensible defaults for minimal configuration hassle. For more information, see the [documentation](https://pypyr-scheduler.readthedocs.io).
 
 ## Documentation
 
-Detailed documentaion is available on [ReadThedocs](https://pypyr-scheduler.readthedocs.io). It is generated from the `docs/source` folder in this repository. Feel free to send a PR is you find any typos.
+Detailed documentaion is available on [ReadTheDocs](https://pypyr-scheduler.readthedocs.io).
+It is generated from the `docs/source` folder in this repository. Feel free to send a PR is you find any typos.
 
 ## Development
 
@@ -44,6 +47,11 @@ The API schema should be compliant to the [OpenAPI 3.0.0 specification](https://
 
 ## Related projects
 
+[pypyr](https://github.com/pypyr/pypyr-cli) is the workhorse underlying pypyr-scheduler.
+It runs pipelines defines as .yaml file and has many different pipeline steps included.
+Check it out, if you need a simple task automation for one-shot execution.
+
 [Flask-APScheduler](https://github.com/viniciuschiele/flask-apscheduler) provides
 a similar way to run job within flask as server. It even provides a REST-API. Try this
 if you don't need the functionality of pypyr.
+
