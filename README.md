@@ -30,6 +30,7 @@ interface or provide your own fileserver for pipelines.
 
 All configuration options can be defined in an .ini-file and be overridden at the command line.
 They have sensible defaults for minimal configuration hassle. For more information, see the [documentation](https://pypyr-scheduler.readthedocs.io).
+>>>>>>> 392c8bbd06ea7fff673d8fc9d356874d039db7d2
 
 ## Documentation
 

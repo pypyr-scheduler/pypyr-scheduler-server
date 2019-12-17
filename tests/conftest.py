@@ -18,7 +18,7 @@ from pyrsched.app import create_app
 @pytest.yield_fixture(scope="function")
 def app():
     path = Path(os.path.abspath(__file__)).parent
-    config_file = path / ".." / "conf" / "pyrsched.test.ini"
+    config_file = path / "testdata" / "pyrsched.test.ini"
     
     _app = create_app(config_file.resolve())
     _app.app.testing = True

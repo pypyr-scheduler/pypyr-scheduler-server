@@ -30,7 +30,7 @@ def get_all():
     logger.info('GET /pipelines')
     base_path = Path(current_app.iniconfig.get('pipelines', 'base_path'))
     if not base_path.exists():
-        return "No pipelines found. Upload some first.", 404
+        return 'No pipelines found. Upload some first.', 404
     return [{'filename': p.name} for p in base_path.iterdir()]
 
 
