@@ -21,6 +21,8 @@ uwsgi = "*"
 setuptools = "*"
 wheel = "*"
 twine = "*"
+gunicorn = "*"
+sqlalchemy = "*"
 
 [packages]
 connexion = {extras = ["swagger-ui"],version = "*"}
