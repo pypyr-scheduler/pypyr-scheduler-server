@@ -13,6 +13,10 @@ from apscheduler.schedulers.background import BackgroundScheduler
 
 from .utils import JobEncoder
 
+import rpyc 
+from time import sleep
+
+#from .api.jobs import *
 
 PYRSCHED_DEFAULTS = {
     'config': {
@@ -137,10 +141,15 @@ def create_app(config_file, args=argparse.Namespace(), **api_extra_args):
     scheduler_config = deepcopy(imported_scheduler_config)  
     logger.info(scheduler_config)
 
-    _app.app.scheduler = BackgroundScheduler(scheduler_config)    
-    _app.app.scheduler.start()
+#    _app.app.scheduler = BackgroundScheduler(scheduler_config)    
+#    _app.app.scheduler.start()
+ 
+    _app.app.scheduler = rpyc.connect('localhost', 12345)
+    #job = _app.app.scheduler.root.add_job('pyrsched:api:jobs:create', 'interval', args=['Hello World!'], seconds=2)
+    #sleep(10)
+    #_app.app.scheduler.root.remove_job(job.id)
 
-    # create api
+   # create api
     spec_dir = Path(_app.app.iniconfig.get("config", "connexion_spec_dir", fallback=None))
     if not spec_dir.is_absolute():
         spec_dir = Path(__file__).parent / spec_dir
@@ -168,3 +177,4 @@ def import_external(file_name, attribute_name):
     imported_module = importlib.import_module(module_file.stem)
     attribute = getattr(imported_module, attribute_name)
     return attribute
+

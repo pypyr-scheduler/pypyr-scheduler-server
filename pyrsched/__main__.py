@@ -6,7 +6,7 @@ from pathlib import Path
 from apextras.formatter import ThreeQuarterWidthDefaultsHelpFormatter
 
 from .app import create_app, PYRSCHED_DEFAULTS
-
+#from .server import startServer
 
 def main(args):  # pragma: no cover       
     config_from_args = getattr(args, "config", None)
@@ -14,7 +14,8 @@ def main(args):  # pragma: no cover
         config_file = Path(config_from_args)
     else:
         config_file = path = Path(os.path.abspath(__file__)).parent / PYRSCHED_DEFAULTS['config']['config']
-
+    
+    #startServer(config_file.resolve()) 
     app = create_app(config_file.resolve(), args=args)
     app.run(
         debug = app.app.iniconfig.get('flask', 'debug').upper() == "TRUE",

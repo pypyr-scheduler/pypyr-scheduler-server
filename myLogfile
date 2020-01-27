@@ -1,0 +1,30 @@
+INFO     apscheduler.scheduler:base.py:166 Scheduler started
+DEBUG    apscheduler.scheduler:base.py:940 Looking for jobs to run
+DEBUG    apscheduler.scheduler:base.py:1016 No jobs; waiting until a job is added
+INFO     pyrsched.api.pipelines:pipelines.py:51 POST /pipelines/test_pipeline_create.yaml
+INFO     pyrsched.api.pipelines:pipelines.py:42 saving file contents to /home/stfriese/pypyr-scheduler/pipelines_test/test_pipeline_create.yaml
+INFO     pyrsched.api.jobs:jobs.py:29 POST /jobs/test_pipeline_create.yaml/1
+INFO     apscheduler.scheduler:base.py:881 Added job "test_pipeline_create" to job store "default"
+INFO     pyrsched.api.jobs:jobs.py:61 created job test_pipeline_create
+DEBUG    apscheduler.scheduler:base.py:940 Looking for jobs to run
+DEBUG    apscheduler.scheduler:base.py:1016 No jobs; waiting until a job is added
+INFO     root:scheduler.py:8 GET /jobs/test_pipeline_create/execution
+INFO     root:scheduler.py:16 POST /jobs/test_pipeline_create/execution
+INFO     apscheduler.executors.default:base.py:123 Running job "test_pipeline_create (trigger: interval[0:00:01], next run at: 2020-01-16 18:42:24 CET)" (scheduled at 2020-01-16 18:42:24.023815+01:00)
+INFO     pypyr.steps.now:now.py:42 timestamp 2020-01-16T18:42:24.049438+01:00 saved to context now
+INFO     pypyr.steps.nowutc:nowutc.py:43 timestamp 2020-01-16T17:42:24.050289+00:00 saved to context nowUtc
+NOTIFY   pypyr.steps.echo:echo.py:32 now is 2020-01-16T18:42:24.049438+01:00 and utc time is 2020-01-16T17:42:24.050289+00:00
+INFO     pypyr.steps.now:now.py:42 timestamp Thursday 2020 01/16 18:42 in timezone CET offset +0100, localized to 01/16/20 saved to context now
+INFO     pypyr.steps.nowutc:nowutc.py:43 timestamp Thursday 2020 01/16 17:42 in timezone UTC offset +0000, localized to 01/16/20 saved to context nowUtc
+NOTIFY   pypyr.steps.echo:echo.py:32 now is Thursday 2020 01/16 18:42 in timezone CET offset +0100, localized to 01/16/20 and utc time is Thursday 2020 01/16 17:42 in timezone UTC offset +0000, localized to 01/16/20
+INFO     pypyr.steps.now:now.py:42 timestamp Thursday 2020 01/16 18:42 in timezone CET offset +0100, localized to 01/16/20 saved to context now
+INFO     pypyr.steps.nowutc:nowutc.py:43 timestamp Thursday 2020 01/16 17:42 in timezone UTC offset +0000, localized to 01/16/20 saved to context nowUtc
+NOTIFY   pypyr.steps.echo:echo.py:32 now is Thursday 2020 01/16 18:42 in timezone CET offset +0100, localized to 01/16/20 and utc time is Thursday 2020 01/16 17:42 in timezone UTC offset +0000, localized to 01/16/20
+INFO     apscheduler.executors.default:base.py:144 Job "test_pipeline_create (trigger: interval[0:00:01], next run at: 2020-01-16 18:42:25 CET)" executed successfully
+INFO     root:scheduler.py:8 GET /jobs/arbitrary_nonexistent_job_name/execution
+INFO     root:scheduler.py:16 POST /jobs/arbitrary_nonexistent_job_name/execution
+INFO     root:scheduler.py:25 DELETE /jobs/arbitrary_nonexistent_job_name/execution
+INFO     root:scheduler.py:16 POST /jobs/test_pipeline_create/execution
+INFO     root:scheduler.py:25 DELETE /jobs/test_pipeline_create/execution
+INFO     root:scheduler.py:8 GET /jobs/test_pipeline_create/execution
+DEBUG    root:app.py:130 logpath does not exist. creating.

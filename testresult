@@ -1,0 +1,2879 @@
+============================= test session starts ==============================
+platform linux -- Python 3.6.8, pytest-5.3.2, py-1.8.1, pluggy-0.13.1 -- /home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/bin/python3.6m
+cachedir: .pytest_cache
+rootdir: /home/stfriese/pypyr-scheduler, inifile: tox.ini, testpaths: tests
+plugins: cov-2.8.1
+collecting ... collected 58 items
+
+tests/api/test_execution.py::TestJobExecution::test_job_execution_status FAILED [  1%]
+tests/api/test_execution.py::TestJobExecution::test_job_execution_status ERROR [  1%]
+tests/api/test_execution.py::TestJobExecution::test_job_execution_non_existing[GET] FAILED [  3%]
+tests/api/test_execution.py::TestJobExecution::test_job_execution_non_existing[GET] ERROR [  3%]
+tests/api/test_execution.py::TestJobExecution::test_job_execution_non_existing[POST] FAILED [  5%]
+tests/api/test_execution.py::TestJobExecution::test_job_execution_non_existing[POST] ERROR [  5%]
+tests/api/test_execution.py::TestJobExecution::test_job_execution_non_existing[DELETE] FAILED [  6%]
+tests/api/test_execution.py::TestJobExecution::test_job_execution_non_existing[DELETE] ERROR [  6%]
+tests/api/test_execution.py::TestJobExecution::test_stop_job FAILED      [  8%]
+tests/api/test_execution.py::TestJobExecution::test_stop_job ERROR       [  8%]
+tests/api/test_job_management.py::TestJobManagement::test_http_method_not_allowed_on_list_endpoint[POST] PASSED [ 10%]
+tests/api/test_job_management.py::TestJobManagement::test_http_method_not_allowed_on_list_endpoint[PUT] PASSED [ 12%]
+tests/api/test_job_management.py::TestJobManagement::test_http_method_not_allowed_on_list_endpoint[DELETE] PASSED [ 13%]
+tests/api/test_job_management.py::TestJobManagement::test_job_create FAILED [ 15%]
+tests/api/test_job_management.py::TestJobManagement::test_job_create ERROR [ 15%]
+tests/api/test_job_management.py::TestJobManagement::test_job_create_with_illegal_interval PASSED [ 17%]
+tests/api/test_job_management.py::TestJobManagement::test_job_create_nonexistent_pipeline PASSED [ 18%]
+tests/api/test_job_management.py::TestJobManagement::test_job_delete_by_job_id FAILED [ 20%]
+tests/api/test_job_management.py::TestJobManagement::test_job_delete_by_job_id ERROR [ 20%]
+tests/api/test_job_management.py::TestJobManagement::test_job_delete_by_job_name FAILED [ 22%]
+tests/api/test_job_management.py::TestJobManagement::test_job_delete_by_job_name ERROR [ 22%]
+tests/api/test_job_management.py::TestJobManagement::test_job_delete_nonexistent FAILED [ 24%]
+tests/api/test_job_management.py::TestJobManagement::test_job_delete_nonexistent ERROR [ 24%]
+tests/api/test_job_management.py::TestJobManagement::test_job_get_one FAILED [ 25%]
+tests/api/test_job_management.py::TestJobManagement::test_job_get_one ERROR [ 25%]
+tests/api/test_job_management.py::TestJobManagement::test_job_get_all FAILED [ 27%]
+tests/api/test_job_management.py::TestJobManagement::test_job_get_all ERROR [ 27%]
+tests/api/test_job_management.py::TestJobManagement::test_job_change_interval FAILED [ 29%]
+tests/api/test_job_management.py::TestJobManagement::test_job_change_interval ERROR [ 29%]
+tests/api/test_job_management.py::TestJobManagement::test_job_change_name FAILED [ 31%]
+tests/api/test_job_management.py::TestJobManagement::test_job_change_name ERROR [ 31%]
+tests/api/test_job_management.py::TestJobManagement::test_job_change_name_non_existant FAILED [ 32%]
+tests/api/test_job_management.py::TestJobManagement::test_job_change_name_non_existant ERROR [ 32%]
+tests/api/test_pipelines.py::TestPipelines::test_http_method_not_allowed_on_list_endpoint[POST] PASSED [ 34%]
+tests/api/test_pipelines.py::TestPipelines::test_http_method_not_allowed_on_list_endpoint[PUT] PASSED [ 36%]
+tests/api/test_pipelines.py::TestPipelines::test_http_method_not_allowed_on_list_endpoint[DELETE] PASSED [ 37%]
+tests/api/test_pipelines.py::TestPipelines::test_pipeline_upload_contents_match PASSED [ 39%]
+tests/api/test_pipelines.py::TestPipelines::test_malicious_upload[/etc/passwd] PASSED [ 41%]
+tests/api/test_pipelines.py::TestPipelines::test_malicious_upload[../../bla.yaml] PASSED [ 43%]
+tests/api/test_pipelines.py::TestPipelines::test_malicious_upload[C:/Programme/test.yaml] PASSED [ 44%]
+tests/api/test_pipelines.py::TestPipelines::test_malicious_upload[%C3%A9%C3%A9%C3%A9] PASSED [ 46%]
+tests/api/test_pipelines.py::TestPipelines::test_pipeline_replace_malicious[/etc/passwd] PASSED [ 48%]
+tests/api/test_pipelines.py::TestPipelines::test_pipeline_replace_malicious[../../bla.yaml] PASSED [ 50%]
+tests/api/test_pipelines.py::TestPipelines::test_pipeline_replace_malicious[C:/Programme/test.yaml] PASSED [ 51%]
+tests/api/test_pipelines.py::TestPipelines::test_pipeline_replace_malicious[%C3%A9%C3%A9%C3%A9] PASSED [ 53%]
+tests/api/test_pipelines.py::TestPipelines::test_pipeline_replace_missing_target PASSED [ 55%]
+tests/api/test_pipelines.py::TestPipelines::test_pipeline_replace_with_other_file PASSED [ 56%]
+tests/api/test_pipelines.py::TestPipelines::test_pipeline_delete PASSED  [ 58%]
+tests/api/test_pipelines.py::TestPipelines::test_pipeline_delete_malicious_filenames[/etc/passwd] PASSED [ 60%]
+tests/api/test_pipelines.py::TestPipelines::test_pipeline_delete_malicious_filenames[../../bla.yaml] PASSED [ 62%]
+tests/api/test_pipelines.py::TestPipelines::test_pipeline_delete_malicious_filenames[C:/Programme/test.yaml] PASSED [ 63%]
+tests/api/test_pipelines.py::TestPipelines::test_pipeline_delete_malicious_filenames[%C3%A9%C3%A9%C3%A9] PASSED [ 65%]
+tests/api/test_pipelines.py::TestPipelines::test_pipeline_download PASSED [ 67%]
+tests/api/test_pipelines.py::TestPipelines::test_list_pipelines PASSED   [ 68%]
+tests/api/test_pipelines.py::TestPipelines::test_list_pipelines_no_upload_folder PASSED [ 70%]
+tests/api/test_status.py::TestJobManagement::test_http_method_not_allowed_on_status_endpoint[POST] PASSED [ 72%]
+tests/api/test_status.py::TestJobManagement::test_http_method_not_allowed_on_status_endpoint[PUT] PASSED [ 74%]
+tests/api/test_status.py::TestJobManagement::test_http_method_not_allowed_on_status_endpoint[DELETE] PASSED [ 75%]
+tests/api/test_status.py::TestJobManagement::test_status FAILED          [ 77%]
+tests/api/test_status.py::TestJobManagement::test_status ERROR           [ 77%]
+tests/cli/test_command_line.py::TestCommandline::test_parser PASSED      [ 79%]
+tests/cli/test_command_line.py::TestCommandline::test_show_config[config] PASSED [ 81%]
+tests/cli/test_command_line.py::TestCommandline::test_show_config[logging] PASSED [ 82%]
+tests/cli/test_command_line.py::TestCommandline::test_show_config[pipelines] PASSED [ 84%]
+tests/cli/test_command_line.py::TestCommandline::test_show_config[flask] PASSED [ 86%]
+tests/cli/test_command_line.py::TestCommandline::test_show_config_json[config] PASSED [ 87%]
+tests/cli/test_command_line.py::TestCommandline::test_show_config_json[logging] PASSED [ 89%]
+tests/cli/test_command_line.py::TestCommandline::test_show_config_json[pipelines] PASSED [ 91%]
+tests/cli/test_command_line.py::TestCommandline::test_show_config_json[flask] PASSED [ 93%]
+tests/cli/test_command_line.py::TestCommandline::test_show_help PASSED   [ 94%]
+tests/cli/test_command_line.py::TestCommandline::test_no_log_dir PASSED  [ 96%]
+tests/cli/test_command_line.py::TestCommandline::test_no_ini_file PASSED [ 98%]
+tests/cli/test_command_line.py::TestCommandline::test_no_scheduler_config PASSED [100%]
+
+==================================== ERRORS ====================================
+_______ ERROR at teardown of TestJobExecution.test_job_execution_status ________
+
+    @pytest.yield_fixture(scope="function")
+    def app():
+        path = Path(os.path.abspath(__file__)).parent
+        config_file = path / "testdata" / "pyrsched.test.ini"
+    
+        _app = create_app(config_file.resolve())
+        _app.app.testing = True
+    
+        ctx = _app.app.test_request_context()
+        ctx.push()
+    
+        # delete test pipeline upload directory if present
+        pipeline_base_path = Path(_app.app.iniconfig.get('pipelines', 'base_path'))
+        if pipeline_base_path.exists():
+            for f in pipeline_base_path.iterdir():
+                f.unlink()
+            pipeline_base_path.rmdir()
+        # log_base_path = Path(_app.app.iniconfig.get('pipelines', 'log_path'))
+        # if log_base_path.exists():
+        #     for f in log_base_path.iterdir():
+        #         f.unlink()
+        #     log_base_path.rmdir()
+    
+        #startServer(config_file)
+    
+        yield _app.app
+>       ctx.pop()
+
+tests/conftest.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <RequestContext 'http://localhost/' [GET] of pyrsched.app>, exc = None
+
+    def pop(self, exc=_sentinel):
+        """Pops the request context and unbinds it by doing that.  This will
+        also trigger the execution of functions registered by the
+        :meth:`~flask.Flask.teardown_request` decorator.
+    
+        .. versionchanged:: 0.9
+           Added the `exc` argument.
+        """
+        app_ctx = self._implicit_app_ctx_stack.pop()
+    
+        try:
+            clear_request = False
+            if not self._implicit_app_ctx_stack:
+                self.preserved = False
+                self._preserved_exc = None
+                if exc is _sentinel:
+                    exc = sys.exc_info()[1]
+                self.app.do_teardown_request(exc)
+    
+                # If this interpreter supports clearing the exception information
+                # we do that now.  This will only go into effect on Python 2.x,
+                # on 3.x it disappears automatically at the end of the exception
+                # stack.
+                if hasattr(sys, "exc_clear"):
+                    sys.exc_clear()
+    
+                request_close = getattr(self.request, "close", None)
+                if request_close is not None:
+                    request_close()
+                clear_request = True
+        finally:
+            rv = _request_ctx_stack.pop()
+    
+            # get rid of circular dependencies at the end of the request
+            # so that we don't require the GC to be active.
+            if clear_request:
+                rv.request.environ["werkzeug.request"] = None
+    
+            # Get rid of the app as well if necessary.
+            if app_ctx is not None:
+                app_ctx.pop(exc)
+    
+            assert rv is self, "Popped wrong request context. (%r instead of %r)" % (
+                rv,
+>               self,
+            )
+E           AssertionError: Popped wrong request context. (<RequestContext 'http://localhost/jobs/test_pipeline_create.yaml/1' [POST] of pyrsched.app> instead of <RequestContext 'http://localhost/' [GET] of pyrsched.app>)
+
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/ctx.py:442: AssertionError
+------------------------------ Captured log setup ------------------------------
+INFO     pyrsched.import:app.py:166 importing config from ../tests/testdata/logging_config_test.py
+INFO     pyrsched.import:app.py:174 /home/stfriese/pypyr-scheduler/pyrsched/../tests/testdata not in sys.path, adding it
+------------------------------ Captured log call -------------------------------
+INFO     pyrsched.api.pipelines:pipelines.py:51 POST /pipelines/test_pipeline_create.yaml
+INFO     pyrsched.api.pipelines:pipelines.py:42 saving file contents to /home/stfriese/pypyr-scheduler/pipelines_test/test_pipeline_create.yaml
+INFO     pyrsched.api.jobs:jobs.py:29 POST /jobs/test_pipeline_create.yaml/1
+__ ERROR at teardown of TestJobExecution.test_job_execution_non_existing[GET] __
+
+    @pytest.yield_fixture(scope="function")
+    def app():
+        path = Path(os.path.abspath(__file__)).parent
+        config_file = path / "testdata" / "pyrsched.test.ini"
+    
+        _app = create_app(config_file.resolve())
+        _app.app.testing = True
+    
+        ctx = _app.app.test_request_context()
+        ctx.push()
+    
+        # delete test pipeline upload directory if present
+        pipeline_base_path = Path(_app.app.iniconfig.get('pipelines', 'base_path'))
+        if pipeline_base_path.exists():
+            for f in pipeline_base_path.iterdir():
+                f.unlink()
+            pipeline_base_path.rmdir()
+        # log_base_path = Path(_app.app.iniconfig.get('pipelines', 'log_path'))
+        # if log_base_path.exists():
+        #     for f in log_base_path.iterdir():
+        #         f.unlink()
+        #     log_base_path.rmdir()
+    
+        #startServer(config_file)
+    
+        yield _app.app
+>       ctx.pop()
+
+tests/conftest.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <RequestContext 'http://localhost/' [GET] of pyrsched.app>, exc = None
+
+    def pop(self, exc=_sentinel):
+        """Pops the request context and unbinds it by doing that.  This will
+        also trigger the execution of functions registered by the
+        :meth:`~flask.Flask.teardown_request` decorator.
+    
+        .. versionchanged:: 0.9
+           Added the `exc` argument.
+        """
+        app_ctx = self._implicit_app_ctx_stack.pop()
+    
+        try:
+            clear_request = False
+            if not self._implicit_app_ctx_stack:
+                self.preserved = False
+                self._preserved_exc = None
+                if exc is _sentinel:
+                    exc = sys.exc_info()[1]
+                self.app.do_teardown_request(exc)
+    
+                # If this interpreter supports clearing the exception information
+                # we do that now.  This will only go into effect on Python 2.x,
+                # on 3.x it disappears automatically at the end of the exception
+                # stack.
+                if hasattr(sys, "exc_clear"):
+                    sys.exc_clear()
+    
+                request_close = getattr(self.request, "close", None)
+                if request_close is not None:
+                    request_close()
+                clear_request = True
+        finally:
+            rv = _request_ctx_stack.pop()
+    
+            # get rid of circular dependencies at the end of the request
+            # so that we don't require the GC to be active.
+            if clear_request:
+                rv.request.environ["werkzeug.request"] = None
+    
+            # Get rid of the app as well if necessary.
+            if app_ctx is not None:
+                app_ctx.pop(exc)
+    
+            assert rv is self, "Popped wrong request context. (%r instead of %r)" % (
+                rv,
+>               self,
+            )
+E           AssertionError: Popped wrong request context. (<RequestContext 'http://localhost/jobs/arbitrary_nonexistent_job_name/execution' [GET] of pyrsched.app> instead of <RequestContext 'http://localhost/' [GET] of pyrsched.app>)
+
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/ctx.py:442: AssertionError
+------------------------------ Captured log call -------------------------------
+INFO     root:scheduler.py:8 GET /jobs/arbitrary_nonexistent_job_name/execution
+_ ERROR at teardown of TestJobExecution.test_job_execution_non_existing[POST] __
+
+    @pytest.yield_fixture(scope="function")
+    def app():
+        path = Path(os.path.abspath(__file__)).parent
+        config_file = path / "testdata" / "pyrsched.test.ini"
+    
+        _app = create_app(config_file.resolve())
+        _app.app.testing = True
+    
+        ctx = _app.app.test_request_context()
+        ctx.push()
+    
+        # delete test pipeline upload directory if present
+        pipeline_base_path = Path(_app.app.iniconfig.get('pipelines', 'base_path'))
+        if pipeline_base_path.exists():
+            for f in pipeline_base_path.iterdir():
+                f.unlink()
+            pipeline_base_path.rmdir()
+        # log_base_path = Path(_app.app.iniconfig.get('pipelines', 'log_path'))
+        # if log_base_path.exists():
+        #     for f in log_base_path.iterdir():
+        #         f.unlink()
+        #     log_base_path.rmdir()
+    
+        #startServer(config_file)
+    
+        yield _app.app
+>       ctx.pop()
+
+tests/conftest.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <RequestContext 'http://localhost/' [GET] of pyrsched.app>, exc = None
+
+    def pop(self, exc=_sentinel):
+        """Pops the request context and unbinds it by doing that.  This will
+        also trigger the execution of functions registered by the
+        :meth:`~flask.Flask.teardown_request` decorator.
+    
+        .. versionchanged:: 0.9
+           Added the `exc` argument.
+        """
+        app_ctx = self._implicit_app_ctx_stack.pop()
+    
+        try:
+            clear_request = False
+            if not self._implicit_app_ctx_stack:
+                self.preserved = False
+                self._preserved_exc = None
+                if exc is _sentinel:
+                    exc = sys.exc_info()[1]
+                self.app.do_teardown_request(exc)
+    
+                # If this interpreter supports clearing the exception information
+                # we do that now.  This will only go into effect on Python 2.x,
+                # on 3.x it disappears automatically at the end of the exception
+                # stack.
+                if hasattr(sys, "exc_clear"):
+                    sys.exc_clear()
+    
+                request_close = getattr(self.request, "close", None)
+                if request_close is not None:
+                    request_close()
+                clear_request = True
+        finally:
+            rv = _request_ctx_stack.pop()
+    
+            # get rid of circular dependencies at the end of the request
+            # so that we don't require the GC to be active.
+            if clear_request:
+                rv.request.environ["werkzeug.request"] = None
+    
+            # Get rid of the app as well if necessary.
+            if app_ctx is not None:
+                app_ctx.pop(exc)
+    
+            assert rv is self, "Popped wrong request context. (%r instead of %r)" % (
+                rv,
+>               self,
+            )
+E           AssertionError: Popped wrong request context. (<RequestContext 'http://localhost/jobs/arbitrary_nonexistent_job_name/execution' [POST] of pyrsched.app> instead of <RequestContext 'http://localhost/' [GET] of pyrsched.app>)
+
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/ctx.py:442: AssertionError
+------------------------------ Captured log call -------------------------------
+INFO     root:scheduler.py:16 POST /jobs/arbitrary_nonexistent_job_name/execution
+_ ERROR at teardown of TestJobExecution.test_job_execution_non_existing[DELETE] _
+
+    @pytest.yield_fixture(scope="function")
+    def app():
+        path = Path(os.path.abspath(__file__)).parent
+        config_file = path / "testdata" / "pyrsched.test.ini"
+    
+        _app = create_app(config_file.resolve())
+        _app.app.testing = True
+    
+        ctx = _app.app.test_request_context()
+        ctx.push()
+    
+        # delete test pipeline upload directory if present
+        pipeline_base_path = Path(_app.app.iniconfig.get('pipelines', 'base_path'))
+        if pipeline_base_path.exists():
+            for f in pipeline_base_path.iterdir():
+                f.unlink()
+            pipeline_base_path.rmdir()
+        # log_base_path = Path(_app.app.iniconfig.get('pipelines', 'log_path'))
+        # if log_base_path.exists():
+        #     for f in log_base_path.iterdir():
+        #         f.unlink()
+        #     log_base_path.rmdir()
+    
+        #startServer(config_file)
+    
+        yield _app.app
+>       ctx.pop()
+
+tests/conftest.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <RequestContext 'http://localhost/' [GET] of pyrsched.app>, exc = None
+
+    def pop(self, exc=_sentinel):
+        """Pops the request context and unbinds it by doing that.  This will
+        also trigger the execution of functions registered by the
+        :meth:`~flask.Flask.teardown_request` decorator.
+    
+        .. versionchanged:: 0.9
+           Added the `exc` argument.
+        """
+        app_ctx = self._implicit_app_ctx_stack.pop()
+    
+        try:
+            clear_request = False
+            if not self._implicit_app_ctx_stack:
+                self.preserved = False
+                self._preserved_exc = None
+                if exc is _sentinel:
+                    exc = sys.exc_info()[1]
+                self.app.do_teardown_request(exc)
+    
+                # If this interpreter supports clearing the exception information
+                # we do that now.  This will only go into effect on Python 2.x,
+                # on 3.x it disappears automatically at the end of the exception
+                # stack.
+                if hasattr(sys, "exc_clear"):
+                    sys.exc_clear()
+    
+                request_close = getattr(self.request, "close", None)
+                if request_close is not None:
+                    request_close()
+                clear_request = True
+        finally:
+            rv = _request_ctx_stack.pop()
+    
+            # get rid of circular dependencies at the end of the request
+            # so that we don't require the GC to be active.
+            if clear_request:
+                rv.request.environ["werkzeug.request"] = None
+    
+            # Get rid of the app as well if necessary.
+            if app_ctx is not None:
+                app_ctx.pop(exc)
+    
+            assert rv is self, "Popped wrong request context. (%r instead of %r)" % (
+                rv,
+>               self,
+            )
+E           AssertionError: Popped wrong request context. (<RequestContext 'http://localhost/jobs/arbitrary_nonexistent_job_name/execution' [DELETE] of pyrsched.app> instead of <RequestContext 'http://localhost/' [GET] of pyrsched.app>)
+
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/ctx.py:442: AssertionError
+------------------------------ Captured log call -------------------------------
+INFO     root:scheduler.py:25 DELETE /jobs/arbitrary_nonexistent_job_name/execution
+_____________ ERROR at teardown of TestJobExecution.test_stop_job ______________
+
+    @pytest.yield_fixture(scope="function")
+    def app():
+        path = Path(os.path.abspath(__file__)).parent
+        config_file = path / "testdata" / "pyrsched.test.ini"
+    
+        _app = create_app(config_file.resolve())
+        _app.app.testing = True
+    
+        ctx = _app.app.test_request_context()
+        ctx.push()
+    
+        # delete test pipeline upload directory if present
+        pipeline_base_path = Path(_app.app.iniconfig.get('pipelines', 'base_path'))
+        if pipeline_base_path.exists():
+            for f in pipeline_base_path.iterdir():
+                f.unlink()
+            pipeline_base_path.rmdir()
+        # log_base_path = Path(_app.app.iniconfig.get('pipelines', 'log_path'))
+        # if log_base_path.exists():
+        #     for f in log_base_path.iterdir():
+        #         f.unlink()
+        #     log_base_path.rmdir()
+    
+        #startServer(config_file)
+    
+        yield _app.app
+>       ctx.pop()
+
+tests/conftest.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <RequestContext 'http://localhost/' [GET] of pyrsched.app>, exc = None
+
+    def pop(self, exc=_sentinel):
+        """Pops the request context and unbinds it by doing that.  This will
+        also trigger the execution of functions registered by the
+        :meth:`~flask.Flask.teardown_request` decorator.
+    
+        .. versionchanged:: 0.9
+           Added the `exc` argument.
+        """
+        app_ctx = self._implicit_app_ctx_stack.pop()
+    
+        try:
+            clear_request = False
+            if not self._implicit_app_ctx_stack:
+                self.preserved = False
+                self._preserved_exc = None
+                if exc is _sentinel:
+                    exc = sys.exc_info()[1]
+                self.app.do_teardown_request(exc)
+    
+                # If this interpreter supports clearing the exception information
+                # we do that now.  This will only go into effect on Python 2.x,
+                # on 3.x it disappears automatically at the end of the exception
+                # stack.
+                if hasattr(sys, "exc_clear"):
+                    sys.exc_clear()
+    
+                request_close = getattr(self.request, "close", None)
+                if request_close is not None:
+                    request_close()
+                clear_request = True
+        finally:
+            rv = _request_ctx_stack.pop()
+    
+            # get rid of circular dependencies at the end of the request
+            # so that we don't require the GC to be active.
+            if clear_request:
+                rv.request.environ["werkzeug.request"] = None
+    
+            # Get rid of the app as well if necessary.
+            if app_ctx is not None:
+                app_ctx.pop(exc)
+    
+            assert rv is self, "Popped wrong request context. (%r instead of %r)" % (
+                rv,
+>               self,
+            )
+E           AssertionError: Popped wrong request context. (<RequestContext 'http://localhost/jobs/test_pipeline_create.yaml/1' [POST] of pyrsched.app> instead of <RequestContext 'http://localhost/' [GET] of pyrsched.app>)
+
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/ctx.py:442: AssertionError
+____________ ERROR at teardown of TestJobManagement.test_job_create ____________
+
+    @pytest.yield_fixture(scope="function")
+    def app():
+        path = Path(os.path.abspath(__file__)).parent
+        config_file = path / "testdata" / "pyrsched.test.ini"
+    
+        _app = create_app(config_file.resolve())
+        _app.app.testing = True
+    
+        ctx = _app.app.test_request_context()
+        ctx.push()
+    
+        # delete test pipeline upload directory if present
+        pipeline_base_path = Path(_app.app.iniconfig.get('pipelines', 'base_path'))
+        if pipeline_base_path.exists():
+            for f in pipeline_base_path.iterdir():
+                f.unlink()
+            pipeline_base_path.rmdir()
+        # log_base_path = Path(_app.app.iniconfig.get('pipelines', 'log_path'))
+        # if log_base_path.exists():
+        #     for f in log_base_path.iterdir():
+        #         f.unlink()
+        #     log_base_path.rmdir()
+    
+        #startServer(config_file)
+    
+        yield _app.app
+>       ctx.pop()
+
+tests/conftest.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <RequestContext 'http://localhost/' [GET] of pyrsched.app>, exc = None
+
+    def pop(self, exc=_sentinel):
+        """Pops the request context and unbinds it by doing that.  This will
+        also trigger the execution of functions registered by the
+        :meth:`~flask.Flask.teardown_request` decorator.
+    
+        .. versionchanged:: 0.9
+           Added the `exc` argument.
+        """
+        app_ctx = self._implicit_app_ctx_stack.pop()
+    
+        try:
+            clear_request = False
+            if not self._implicit_app_ctx_stack:
+                self.preserved = False
+                self._preserved_exc = None
+                if exc is _sentinel:
+                    exc = sys.exc_info()[1]
+                self.app.do_teardown_request(exc)
+    
+                # If this interpreter supports clearing the exception information
+                # we do that now.  This will only go into effect on Python 2.x,
+                # on 3.x it disappears automatically at the end of the exception
+                # stack.
+                if hasattr(sys, "exc_clear"):
+                    sys.exc_clear()
+    
+                request_close = getattr(self.request, "close", None)
+                if request_close is not None:
+                    request_close()
+                clear_request = True
+        finally:
+            rv = _request_ctx_stack.pop()
+    
+            # get rid of circular dependencies at the end of the request
+            # so that we don't require the GC to be active.
+            if clear_request:
+                rv.request.environ["werkzeug.request"] = None
+    
+            # Get rid of the app as well if necessary.
+            if app_ctx is not None:
+                app_ctx.pop(exc)
+    
+            assert rv is self, "Popped wrong request context. (%r instead of %r)" % (
+                rv,
+>               self,
+            )
+E           AssertionError: Popped wrong request context. (<RequestContext 'http://localhost/jobs/test_pipeline_create.yaml/10' [POST] of pyrsched.app> instead of <RequestContext 'http://localhost/' [GET] of pyrsched.app>)
+
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/ctx.py:442: AssertionError
+_______ ERROR at teardown of TestJobManagement.test_job_delete_by_job_id _______
+
+    @pytest.yield_fixture(scope="function")
+    def app():
+        path = Path(os.path.abspath(__file__)).parent
+        config_file = path / "testdata" / "pyrsched.test.ini"
+    
+        _app = create_app(config_file.resolve())
+        _app.app.testing = True
+    
+        ctx = _app.app.test_request_context()
+        ctx.push()
+    
+        # delete test pipeline upload directory if present
+        pipeline_base_path = Path(_app.app.iniconfig.get('pipelines', 'base_path'))
+        if pipeline_base_path.exists():
+            for f in pipeline_base_path.iterdir():
+                f.unlink()
+            pipeline_base_path.rmdir()
+        # log_base_path = Path(_app.app.iniconfig.get('pipelines', 'log_path'))
+        # if log_base_path.exists():
+        #     for f in log_base_path.iterdir():
+        #         f.unlink()
+        #     log_base_path.rmdir()
+    
+        #startServer(config_file)
+    
+        yield _app.app
+>       ctx.pop()
+
+tests/conftest.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <RequestContext 'http://localhost/' [GET] of pyrsched.app>, exc = None
+
+    def pop(self, exc=_sentinel):
+        """Pops the request context and unbinds it by doing that.  This will
+        also trigger the execution of functions registered by the
+        :meth:`~flask.Flask.teardown_request` decorator.
+    
+        .. versionchanged:: 0.9
+           Added the `exc` argument.
+        """
+        app_ctx = self._implicit_app_ctx_stack.pop()
+    
+        try:
+            clear_request = False
+            if not self._implicit_app_ctx_stack:
+                self.preserved = False
+                self._preserved_exc = None
+                if exc is _sentinel:
+                    exc = sys.exc_info()[1]
+                self.app.do_teardown_request(exc)
+    
+                # If this interpreter supports clearing the exception information
+                # we do that now.  This will only go into effect on Python 2.x,
+                # on 3.x it disappears automatically at the end of the exception
+                # stack.
+                if hasattr(sys, "exc_clear"):
+                    sys.exc_clear()
+    
+                request_close = getattr(self.request, "close", None)
+                if request_close is not None:
+                    request_close()
+                clear_request = True
+        finally:
+            rv = _request_ctx_stack.pop()
+    
+            # get rid of circular dependencies at the end of the request
+            # so that we don't require the GC to be active.
+            if clear_request:
+                rv.request.environ["werkzeug.request"] = None
+    
+            # Get rid of the app as well if necessary.
+            if app_ctx is not None:
+                app_ctx.pop(exc)
+    
+            assert rv is self, "Popped wrong request context. (%r instead of %r)" % (
+                rv,
+>               self,
+            )
+E           AssertionError: Popped wrong request context. (<RequestContext 'http://localhost/jobs/test_pipeline_delete_job.yaml/10' [POST] of pyrsched.app> instead of <RequestContext 'http://localhost/' [GET] of pyrsched.app>)
+
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/ctx.py:442: AssertionError
+______ ERROR at teardown of TestJobManagement.test_job_delete_by_job_name ______
+
+    @pytest.yield_fixture(scope="function")
+    def app():
+        path = Path(os.path.abspath(__file__)).parent
+        config_file = path / "testdata" / "pyrsched.test.ini"
+    
+        _app = create_app(config_file.resolve())
+        _app.app.testing = True
+    
+        ctx = _app.app.test_request_context()
+        ctx.push()
+    
+        # delete test pipeline upload directory if present
+        pipeline_base_path = Path(_app.app.iniconfig.get('pipelines', 'base_path'))
+        if pipeline_base_path.exists():
+            for f in pipeline_base_path.iterdir():
+                f.unlink()
+            pipeline_base_path.rmdir()
+        # log_base_path = Path(_app.app.iniconfig.get('pipelines', 'log_path'))
+        # if log_base_path.exists():
+        #     for f in log_base_path.iterdir():
+        #         f.unlink()
+        #     log_base_path.rmdir()
+    
+        #startServer(config_file)
+    
+        yield _app.app
+>       ctx.pop()
+
+tests/conftest.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <RequestContext 'http://localhost/' [GET] of pyrsched.app>, exc = None
+
+    def pop(self, exc=_sentinel):
+        """Pops the request context and unbinds it by doing that.  This will
+        also trigger the execution of functions registered by the
+        :meth:`~flask.Flask.teardown_request` decorator.
+    
+        .. versionchanged:: 0.9
+           Added the `exc` argument.
+        """
+        app_ctx = self._implicit_app_ctx_stack.pop()
+    
+        try:
+            clear_request = False
+            if not self._implicit_app_ctx_stack:
+                self.preserved = False
+                self._preserved_exc = None
+                if exc is _sentinel:
+                    exc = sys.exc_info()[1]
+                self.app.do_teardown_request(exc)
+    
+                # If this interpreter supports clearing the exception information
+                # we do that now.  This will only go into effect on Python 2.x,
+                # on 3.x it disappears automatically at the end of the exception
+                # stack.
+                if hasattr(sys, "exc_clear"):
+                    sys.exc_clear()
+    
+                request_close = getattr(self.request, "close", None)
+                if request_close is not None:
+                    request_close()
+                clear_request = True
+        finally:
+            rv = _request_ctx_stack.pop()
+    
+            # get rid of circular dependencies at the end of the request
+            # so that we don't require the GC to be active.
+            if clear_request:
+                rv.request.environ["werkzeug.request"] = None
+    
+            # Get rid of the app as well if necessary.
+            if app_ctx is not None:
+                app_ctx.pop(exc)
+    
+            assert rv is self, "Popped wrong request context. (%r instead of %r)" % (
+                rv,
+>               self,
+            )
+E           AssertionError: Popped wrong request context. (<RequestContext 'http://localhost/jobs/test_pipeline_delete_job.yaml/10' [POST] of pyrsched.app> instead of <RequestContext 'http://localhost/' [GET] of pyrsched.app>)
+
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/ctx.py:442: AssertionError
+______ ERROR at teardown of TestJobManagement.test_job_delete_nonexistent ______
+
+    @pytest.yield_fixture(scope="function")
+    def app():
+        path = Path(os.path.abspath(__file__)).parent
+        config_file = path / "testdata" / "pyrsched.test.ini"
+    
+        _app = create_app(config_file.resolve())
+        _app.app.testing = True
+    
+        ctx = _app.app.test_request_context()
+        ctx.push()
+    
+        # delete test pipeline upload directory if present
+        pipeline_base_path = Path(_app.app.iniconfig.get('pipelines', 'base_path'))
+        if pipeline_base_path.exists():
+            for f in pipeline_base_path.iterdir():
+                f.unlink()
+            pipeline_base_path.rmdir()
+        # log_base_path = Path(_app.app.iniconfig.get('pipelines', 'log_path'))
+        # if log_base_path.exists():
+        #     for f in log_base_path.iterdir():
+        #         f.unlink()
+        #     log_base_path.rmdir()
+    
+        #startServer(config_file)
+    
+        yield _app.app
+>       ctx.pop()
+
+tests/conftest.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <RequestContext 'http://localhost/' [GET] of pyrsched.app>, exc = None
+
+    def pop(self, exc=_sentinel):
+        """Pops the request context and unbinds it by doing that.  This will
+        also trigger the execution of functions registered by the
+        :meth:`~flask.Flask.teardown_request` decorator.
+    
+        .. versionchanged:: 0.9
+           Added the `exc` argument.
+        """
+        app_ctx = self._implicit_app_ctx_stack.pop()
+    
+        try:
+            clear_request = False
+            if not self._implicit_app_ctx_stack:
+                self.preserved = False
+                self._preserved_exc = None
+                if exc is _sentinel:
+                    exc = sys.exc_info()[1]
+                self.app.do_teardown_request(exc)
+    
+                # If this interpreter supports clearing the exception information
+                # we do that now.  This will only go into effect on Python 2.x,
+                # on 3.x it disappears automatically at the end of the exception
+                # stack.
+                if hasattr(sys, "exc_clear"):
+                    sys.exc_clear()
+    
+                request_close = getattr(self.request, "close", None)
+                if request_close is not None:
+                    request_close()
+                clear_request = True
+        finally:
+            rv = _request_ctx_stack.pop()
+    
+            # get rid of circular dependencies at the end of the request
+            # so that we don't require the GC to be active.
+            if clear_request:
+                rv.request.environ["werkzeug.request"] = None
+    
+            # Get rid of the app as well if necessary.
+            if app_ctx is not None:
+                app_ctx.pop(exc)
+    
+            assert rv is self, "Popped wrong request context. (%r instead of %r)" % (
+                rv,
+>               self,
+            )
+E           AssertionError: Popped wrong request context. (<RequestContext 'http://localhost/jobs/a1d4e8f3-bf07-4da1-a88e-d4d50a4e32e0' [DELETE] of pyrsched.app> instead of <RequestContext 'http://localhost/' [GET] of pyrsched.app>)
+
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/ctx.py:442: AssertionError
+___________ ERROR at teardown of TestJobManagement.test_job_get_one ____________
+
+    @pytest.yield_fixture(scope="function")
+    def app():
+        path = Path(os.path.abspath(__file__)).parent
+        config_file = path / "testdata" / "pyrsched.test.ini"
+    
+        _app = create_app(config_file.resolve())
+        _app.app.testing = True
+    
+        ctx = _app.app.test_request_context()
+        ctx.push()
+    
+        # delete test pipeline upload directory if present
+        pipeline_base_path = Path(_app.app.iniconfig.get('pipelines', 'base_path'))
+        if pipeline_base_path.exists():
+            for f in pipeline_base_path.iterdir():
+                f.unlink()
+            pipeline_base_path.rmdir()
+        # log_base_path = Path(_app.app.iniconfig.get('pipelines', 'log_path'))
+        # if log_base_path.exists():
+        #     for f in log_base_path.iterdir():
+        #         f.unlink()
+        #     log_base_path.rmdir()
+    
+        #startServer(config_file)
+    
+        yield _app.app
+>       ctx.pop()
+
+tests/conftest.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <RequestContext 'http://localhost/' [GET] of pyrsched.app>, exc = None
+
+    def pop(self, exc=_sentinel):
+        """Pops the request context and unbinds it by doing that.  This will
+        also trigger the execution of functions registered by the
+        :meth:`~flask.Flask.teardown_request` decorator.
+    
+        .. versionchanged:: 0.9
+           Added the `exc` argument.
+        """
+        app_ctx = self._implicit_app_ctx_stack.pop()
+    
+        try:
+            clear_request = False
+            if not self._implicit_app_ctx_stack:
+                self.preserved = False
+                self._preserved_exc = None
+                if exc is _sentinel:
+                    exc = sys.exc_info()[1]
+                self.app.do_teardown_request(exc)
+    
+                # If this interpreter supports clearing the exception information
+                # we do that now.  This will only go into effect on Python 2.x,
+                # on 3.x it disappears automatically at the end of the exception
+                # stack.
+                if hasattr(sys, "exc_clear"):
+                    sys.exc_clear()
+    
+                request_close = getattr(self.request, "close", None)
+                if request_close is not None:
+                    request_close()
+                clear_request = True
+        finally:
+            rv = _request_ctx_stack.pop()
+    
+            # get rid of circular dependencies at the end of the request
+            # so that we don't require the GC to be active.
+            if clear_request:
+                rv.request.environ["werkzeug.request"] = None
+    
+            # Get rid of the app as well if necessary.
+            if app_ctx is not None:
+                app_ctx.pop(exc)
+    
+            assert rv is self, "Popped wrong request context. (%r instead of %r)" % (
+                rv,
+>               self,
+            )
+E           AssertionError: Popped wrong request context. (<RequestContext 'http://localhost/jobs/test_pipeline_delete_job.yaml/10' [POST] of pyrsched.app> instead of <RequestContext 'http://localhost/' [GET] of pyrsched.app>)
+
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/ctx.py:442: AssertionError
+___________ ERROR at teardown of TestJobManagement.test_job_get_all ____________
+
+    @pytest.yield_fixture(scope="function")
+    def app():
+        path = Path(os.path.abspath(__file__)).parent
+        config_file = path / "testdata" / "pyrsched.test.ini"
+    
+        _app = create_app(config_file.resolve())
+        _app.app.testing = True
+    
+        ctx = _app.app.test_request_context()
+        ctx.push()
+    
+        # delete test pipeline upload directory if present
+        pipeline_base_path = Path(_app.app.iniconfig.get('pipelines', 'base_path'))
+        if pipeline_base_path.exists():
+            for f in pipeline_base_path.iterdir():
+                f.unlink()
+            pipeline_base_path.rmdir()
+        # log_base_path = Path(_app.app.iniconfig.get('pipelines', 'log_path'))
+        # if log_base_path.exists():
+        #     for f in log_base_path.iterdir():
+        #         f.unlink()
+        #     log_base_path.rmdir()
+    
+        #startServer(config_file)
+    
+        yield _app.app
+>       ctx.pop()
+
+tests/conftest.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <RequestContext 'http://localhost/' [GET] of pyrsched.app>, exc = None
+
+    def pop(self, exc=_sentinel):
+        """Pops the request context and unbinds it by doing that.  This will
+        also trigger the execution of functions registered by the
+        :meth:`~flask.Flask.teardown_request` decorator.
+    
+        .. versionchanged:: 0.9
+           Added the `exc` argument.
+        """
+        app_ctx = self._implicit_app_ctx_stack.pop()
+    
+        try:
+            clear_request = False
+            if not self._implicit_app_ctx_stack:
+                self.preserved = False
+                self._preserved_exc = None
+                if exc is _sentinel:
+                    exc = sys.exc_info()[1]
+                self.app.do_teardown_request(exc)
+    
+                # If this interpreter supports clearing the exception information
+                # we do that now.  This will only go into effect on Python 2.x,
+                # on 3.x it disappears automatically at the end of the exception
+                # stack.
+                if hasattr(sys, "exc_clear"):
+                    sys.exc_clear()
+    
+                request_close = getattr(self.request, "close", None)
+                if request_close is not None:
+                    request_close()
+                clear_request = True
+        finally:
+            rv = _request_ctx_stack.pop()
+    
+            # get rid of circular dependencies at the end of the request
+            # so that we don't require the GC to be active.
+            if clear_request:
+                rv.request.environ["werkzeug.request"] = None
+    
+            # Get rid of the app as well if necessary.
+            if app_ctx is not None:
+                app_ctx.pop(exc)
+    
+            assert rv is self, "Popped wrong request context. (%r instead of %r)" % (
+                rv,
+>               self,
+            )
+E           AssertionError: Popped wrong request context. (<RequestContext 'http://localhost/jobs/test_pipeline_get_all_1.yaml/10' [POST] of pyrsched.app> instead of <RequestContext 'http://localhost/' [GET] of pyrsched.app>)
+
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/ctx.py:442: AssertionError
+_______ ERROR at teardown of TestJobManagement.test_job_change_interval ________
+
+    @pytest.yield_fixture(scope="function")
+    def app():
+        path = Path(os.path.abspath(__file__)).parent
+        config_file = path / "testdata" / "pyrsched.test.ini"
+    
+        _app = create_app(config_file.resolve())
+        _app.app.testing = True
+    
+        ctx = _app.app.test_request_context()
+        ctx.push()
+    
+        # delete test pipeline upload directory if present
+        pipeline_base_path = Path(_app.app.iniconfig.get('pipelines', 'base_path'))
+        if pipeline_base_path.exists():
+            for f in pipeline_base_path.iterdir():
+                f.unlink()
+            pipeline_base_path.rmdir()
+        # log_base_path = Path(_app.app.iniconfig.get('pipelines', 'log_path'))
+        # if log_base_path.exists():
+        #     for f in log_base_path.iterdir():
+        #         f.unlink()
+        #     log_base_path.rmdir()
+    
+        #startServer(config_file)
+    
+        yield _app.app
+>       ctx.pop()
+
+tests/conftest.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <RequestContext 'http://localhost/' [GET] of pyrsched.app>, exc = None
+
+    def pop(self, exc=_sentinel):
+        """Pops the request context and unbinds it by doing that.  This will
+        also trigger the execution of functions registered by the
+        :meth:`~flask.Flask.teardown_request` decorator.
+    
+        .. versionchanged:: 0.9
+           Added the `exc` argument.
+        """
+        app_ctx = self._implicit_app_ctx_stack.pop()
+    
+        try:
+            clear_request = False
+            if not self._implicit_app_ctx_stack:
+                self.preserved = False
+                self._preserved_exc = None
+                if exc is _sentinel:
+                    exc = sys.exc_info()[1]
+                self.app.do_teardown_request(exc)
+    
+                # If this interpreter supports clearing the exception information
+                # we do that now.  This will only go into effect on Python 2.x,
+                # on 3.x it disappears automatically at the end of the exception
+                # stack.
+                if hasattr(sys, "exc_clear"):
+                    sys.exc_clear()
+    
+                request_close = getattr(self.request, "close", None)
+                if request_close is not None:
+                    request_close()
+                clear_request = True
+        finally:
+            rv = _request_ctx_stack.pop()
+    
+            # get rid of circular dependencies at the end of the request
+            # so that we don't require the GC to be active.
+            if clear_request:
+                rv.request.environ["werkzeug.request"] = None
+    
+            # Get rid of the app as well if necessary.
+            if app_ctx is not None:
+                app_ctx.pop(exc)
+    
+            assert rv is self, "Popped wrong request context. (%r instead of %r)" % (
+                rv,
+>               self,
+            )
+E           AssertionError: Popped wrong request context. (<RequestContext 'http://localhost/jobs/test_pipeline_change_job_interval.yaml/10' [POST] of pyrsched.app> instead of <RequestContext 'http://localhost/' [GET] of pyrsched.app>)
+
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/ctx.py:442: AssertionError
+_________ ERROR at teardown of TestJobManagement.test_job_change_name __________
+
+    @pytest.yield_fixture(scope="function")
+    def app():
+        path = Path(os.path.abspath(__file__)).parent
+        config_file = path / "testdata" / "pyrsched.test.ini"
+    
+        _app = create_app(config_file.resolve())
+        _app.app.testing = True
+    
+        ctx = _app.app.test_request_context()
+        ctx.push()
+    
+        # delete test pipeline upload directory if present
+        pipeline_base_path = Path(_app.app.iniconfig.get('pipelines', 'base_path'))
+        if pipeline_base_path.exists():
+            for f in pipeline_base_path.iterdir():
+                f.unlink()
+            pipeline_base_path.rmdir()
+        # log_base_path = Path(_app.app.iniconfig.get('pipelines', 'log_path'))
+        # if log_base_path.exists():
+        #     for f in log_base_path.iterdir():
+        #         f.unlink()
+        #     log_base_path.rmdir()
+    
+        #startServer(config_file)
+    
+        yield _app.app
+>       ctx.pop()
+
+tests/conftest.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <RequestContext 'http://localhost/' [GET] of pyrsched.app>, exc = None
+
+    def pop(self, exc=_sentinel):
+        """Pops the request context and unbinds it by doing that.  This will
+        also trigger the execution of functions registered by the
+        :meth:`~flask.Flask.teardown_request` decorator.
+    
+        .. versionchanged:: 0.9
+           Added the `exc` argument.
+        """
+        app_ctx = self._implicit_app_ctx_stack.pop()
+    
+        try:
+            clear_request = False
+            if not self._implicit_app_ctx_stack:
+                self.preserved = False
+                self._preserved_exc = None
+                if exc is _sentinel:
+                    exc = sys.exc_info()[1]
+                self.app.do_teardown_request(exc)
+    
+                # If this interpreter supports clearing the exception information
+                # we do that now.  This will only go into effect on Python 2.x,
+                # on 3.x it disappears automatically at the end of the exception
+                # stack.
+                if hasattr(sys, "exc_clear"):
+                    sys.exc_clear()
+    
+                request_close = getattr(self.request, "close", None)
+                if request_close is not None:
+                    request_close()
+                clear_request = True
+        finally:
+            rv = _request_ctx_stack.pop()
+    
+            # get rid of circular dependencies at the end of the request
+            # so that we don't require the GC to be active.
+            if clear_request:
+                rv.request.environ["werkzeug.request"] = None
+    
+            # Get rid of the app as well if necessary.
+            if app_ctx is not None:
+                app_ctx.pop(exc)
+    
+            assert rv is self, "Popped wrong request context. (%r instead of %r)" % (
+                rv,
+>               self,
+            )
+E           AssertionError: Popped wrong request context. (<RequestContext 'http://localhost/jobs/test_pipeline_change_job_name_first.yaml/10' [POST] of pyrsched.app> instead of <RequestContext 'http://localhost/' [GET] of pyrsched.app>)
+
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/ctx.py:442: AssertionError
+___ ERROR at teardown of TestJobManagement.test_job_change_name_non_existant ___
+
+    @pytest.yield_fixture(scope="function")
+    def app():
+        path = Path(os.path.abspath(__file__)).parent
+        config_file = path / "testdata" / "pyrsched.test.ini"
+    
+        _app = create_app(config_file.resolve())
+        _app.app.testing = True
+    
+        ctx = _app.app.test_request_context()
+        ctx.push()
+    
+        # delete test pipeline upload directory if present
+        pipeline_base_path = Path(_app.app.iniconfig.get('pipelines', 'base_path'))
+        if pipeline_base_path.exists():
+            for f in pipeline_base_path.iterdir():
+                f.unlink()
+            pipeline_base_path.rmdir()
+        # log_base_path = Path(_app.app.iniconfig.get('pipelines', 'log_path'))
+        # if log_base_path.exists():
+        #     for f in log_base_path.iterdir():
+        #         f.unlink()
+        #     log_base_path.rmdir()
+    
+        #startServer(config_file)
+    
+        yield _app.app
+>       ctx.pop()
+
+tests/conftest.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <RequestContext 'http://localhost/' [GET] of pyrsched.app>, exc = None
+
+    def pop(self, exc=_sentinel):
+        """Pops the request context and unbinds it by doing that.  This will
+        also trigger the execution of functions registered by the
+        :meth:`~flask.Flask.teardown_request` decorator.
+    
+        .. versionchanged:: 0.9
+           Added the `exc` argument.
+        """
+        app_ctx = self._implicit_app_ctx_stack.pop()
+    
+        try:
+            clear_request = False
+            if not self._implicit_app_ctx_stack:
+                self.preserved = False
+                self._preserved_exc = None
+                if exc is _sentinel:
+                    exc = sys.exc_info()[1]
+                self.app.do_teardown_request(exc)
+    
+                # If this interpreter supports clearing the exception information
+                # we do that now.  This will only go into effect on Python 2.x,
+                # on 3.x it disappears automatically at the end of the exception
+                # stack.
+                if hasattr(sys, "exc_clear"):
+                    sys.exc_clear()
+    
+                request_close = getattr(self.request, "close", None)
+                if request_close is not None:
+                    request_close()
+                clear_request = True
+        finally:
+            rv = _request_ctx_stack.pop()
+    
+            # get rid of circular dependencies at the end of the request
+            # so that we don't require the GC to be active.
+            if clear_request:
+                rv.request.environ["werkzeug.request"] = None
+    
+            # Get rid of the app as well if necessary.
+            if app_ctx is not None:
+                app_ctx.pop(exc)
+    
+            assert rv is self, "Popped wrong request context. (%r instead of %r)" % (
+                rv,
+>               self,
+            )
+E           AssertionError: Popped wrong request context. (<RequestContext 'http://localhost/jobs/nonexistent_job/new_name_which_is_not_evaluated/10' [PUT] of pyrsched.app> instead of <RequestContext 'http://localhost/' [GET] of pyrsched.app>)
+
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/ctx.py:442: AssertionError
+______________ ERROR at teardown of TestJobManagement.test_status ______________
+
+    @pytest.yield_fixture(scope="function")
+    def app():
+        path = Path(os.path.abspath(__file__)).parent
+        config_file = path / "testdata" / "pyrsched.test.ini"
+    
+        _app = create_app(config_file.resolve())
+        _app.app.testing = True
+    
+        ctx = _app.app.test_request_context()
+        ctx.push()
+    
+        # delete test pipeline upload directory if present
+        pipeline_base_path = Path(_app.app.iniconfig.get('pipelines', 'base_path'))
+        if pipeline_base_path.exists():
+            for f in pipeline_base_path.iterdir():
+                f.unlink()
+            pipeline_base_path.rmdir()
+        # log_base_path = Path(_app.app.iniconfig.get('pipelines', 'log_path'))
+        # if log_base_path.exists():
+        #     for f in log_base_path.iterdir():
+        #         f.unlink()
+        #     log_base_path.rmdir()
+    
+        #startServer(config_file)
+    
+        yield _app.app
+>       ctx.pop()
+
+tests/conftest.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <RequestContext 'http://localhost/' [GET] of pyrsched.app>, exc = None
+
+    def pop(self, exc=_sentinel):
+        """Pops the request context and unbinds it by doing that.  This will
+        also trigger the execution of functions registered by the
+        :meth:`~flask.Flask.teardown_request` decorator.
+    
+        .. versionchanged:: 0.9
+           Added the `exc` argument.
+        """
+        app_ctx = self._implicit_app_ctx_stack.pop()
+    
+        try:
+            clear_request = False
+            if not self._implicit_app_ctx_stack:
+                self.preserved = False
+                self._preserved_exc = None
+                if exc is _sentinel:
+                    exc = sys.exc_info()[1]
+                self.app.do_teardown_request(exc)
+    
+                # If this interpreter supports clearing the exception information
+                # we do that now.  This will only go into effect on Python 2.x,
+                # on 3.x it disappears automatically at the end of the exception
+                # stack.
+                if hasattr(sys, "exc_clear"):
+                    sys.exc_clear()
+    
+                request_close = getattr(self.request, "close", None)
+                if request_close is not None:
+                    request_close()
+                clear_request = True
+        finally:
+            rv = _request_ctx_stack.pop()
+    
+            # get rid of circular dependencies at the end of the request
+            # so that we don't require the GC to be active.
+            if clear_request:
+                rv.request.environ["werkzeug.request"] = None
+    
+            # Get rid of the app as well if necessary.
+            if app_ctx is not None:
+                app_ctx.pop(exc)
+    
+            assert rv is self, "Popped wrong request context. (%r instead of %r)" % (
+                rv,
+>               self,
+            )
+E           AssertionError: Popped wrong request context. (<RequestContext 'http://localhost/status' [GET] of pyrsched.app> instead of <RequestContext 'http://localhost/' [GET] of pyrsched.app>)
+
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/ctx.py:442: AssertionError
+=================================== FAILURES ===================================
+__________________ TestJobExecution.test_job_execution_status __________________
+
+self = <test_execution.TestJobExecution object at 0x7f94d24ecb00>
+testapp = <webtest.app.TestApp object at 0x7f94d24ec550>
+upload_pipeline = <conftest.upload_pipeline.<locals>.Inner object at 0x7f94d21ae198>
+caplog = <_pytest.logging.LogCaptureFixture object at 0x7f94d21ae2e8>
+
+    def test_job_execution_status(self, testapp, upload_pipeline, caplog):
+        # upload a runnable pipeline
+        uploaded_filename = 'test_pipeline_create.yaml'
+        upload_pipeline.upload('pipeline_now.yaml', uploaded_filename)
+        # run it
+        interval = 1
+>       res = testapp.post(f"{self.endpoint}/{uploaded_filename}/{interval}")
+
+tests/api/test_execution.py:18: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:382: in post
+    content_type=content_type)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:758: in _gen_request
+    expect_errors=expect_errors)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:628: in do_request
+    res = req.get_response(app, catch_exc_info=True)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webob/request.py:1310: in send
+    application, catch_exc_info=True)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webob/request.py:1278: in call_application
+    app_iter = application(self.environ, start_response)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/lint.py:201: in lint_app
+    iterator = application(environ, start_response_wrapper)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2463: in __call__
+    return self.wsgi_app(environ, start_response)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2449: in wsgi_app
+    response = self.handle_exception(e)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1866: in handle_exception
+    reraise(exc_type, exc_value, tb)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/_compat.py:39: in reraise
+    raise value
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2446: in wsgi_app
+    response = self.full_dispatch_request()
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1951: in full_dispatch_request
+    rv = self.handle_user_exception(e)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1820: in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/_compat.py:39: in reraise
+    raise value
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1949: in full_dispatch_request
+    rv = self.dispatch_request()
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1935: in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/decorator.py:73: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/uri_parsing.py:132: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/validation.py:339: in wrapper
+    return function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/decorator.py:44: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/parameter.py:126: in wrapper
+    return function(**kwargs)
+pyrsched/api/jobs.py:59: in create
+    'log_path': str(log_filename),
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/netref.py:247: in __call__
+    return syncreq(_self, consts.HANDLE_CALL, args, kwargs)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/netref.py:76: in syncreq
+    return conn.sync_request(handler, proxy, *args)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py:464: in sync_request
+    return self.async_request(handler, *args, timeout=timeout).value
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <AsyncResult object (ready) at 0x7f94d2a0c570>
+
+    @property
+    def value(self):
+        """Returns the result of the operation. If the result has not yet
+        arrived, accessing this property will wait for it. If the result does
+        not arrive before the expiry time elapses, :class:`AsyncResultTimeout`
+        is raised. If the returned result is an exception, it will be raised
+        here. Otherwise, the result is returned directly.
+        """
+        self.wait()
+        if self._is_exc:
+>           raise self._obj
+E           _get_exception_class.<locals>.Derived: cannot access '__class__'
+E           
+E           ========= Remote Traceback (2) =========
+E           Traceback (most recent call last):
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 323, in _dispatch_request
+E               res = self._HANDLERS[handler](self, *args)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 585, in _handle_call
+E               return obj(*args, **dict(kwargs))
+E             File "/home/stfriese/pypyr-scheduler/pyrsched/server.py", line 26, in exposed_add_job
+E               return scheduler.add_job(func, *args, **kwargs)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/apscheduler/schedulers/base.py", line 420, in add_job
+E               'trigger': self._create_trigger(trigger, trigger_args),
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/apscheduler/schedulers/base.py", line 909, in _create_trigger
+E               if isinstance(trigger, BaseTrigger):
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/abc.py", line 183, in __instancecheck__
+E               subclass = instance.__class__
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/netref.py", line 166, in __getattr__
+E               return syncreq(self, consts.HANDLE_GETATTR, name)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/netref.py", line 76, in syncreq
+E               return conn.sync_request(handler, proxy, *args)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 464, in sync_request
+E               return self.async_request(handler, *args, timeout=timeout).value
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/async_.py", line 102, in value
+E               raise self._obj
+E           _get_exception_class.<locals>.Derived: cannot access '__class__'
+E           
+E           ========= Remote Traceback (1) =========
+E           Traceback (most recent call last):
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 323, in _dispatch_request
+E               res = self._HANDLERS[handler](self, *args)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 601, in _handle_getattr
+E               return self._access_attr(obj, name, (), "_rpyc_getattr", "allow_getattr", getattr)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 528, in _access_attr
+E               name = self._check_attr(obj, name, param)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 513, in _check_attr
+E               raise AttributeError("cannot access %r" % (name,))
+E           AttributeError: cannot access '__class__'
+
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/async_.py:102: AttributeError
+------------------------------ Captured log setup ------------------------------
+INFO     pyrsched.import:app.py:166 importing config from ../tests/testdata/logging_config_test.py
+INFO     pyrsched.import:app.py:174 /home/stfriese/pypyr-scheduler/pyrsched/../tests/testdata not in sys.path, adding it
+------------------------------ Captured log call -------------------------------
+INFO     pyrsched.api.pipelines:pipelines.py:51 POST /pipelines/test_pipeline_create.yaml
+INFO     pyrsched.api.pipelines:pipelines.py:42 saving file contents to /home/stfriese/pypyr-scheduler/pipelines_test/test_pipeline_create.yaml
+INFO     pyrsched.api.jobs:jobs.py:29 POST /jobs/test_pipeline_create.yaml/1
+____________ TestJobExecution.test_job_execution_non_existing[GET] _____________
+
+self = <test_execution.TestJobExecution object at 0x7f94d1f8f160>
+testapp = <webtest.app.TestApp object at 0x7f94d21c65c0>, method = 'GET'
+
+    @pytest.mark.parametrize('method', ['GET', 'POST', 'DELETE'])
+    def test_job_execution_non_existing(self, testapp, method):
+>       res = testapp.request(f"{self.endpoint}/arbitrary_nonexistent_job_name/execution", method=method, expect_errors=True)
+
+tests/api/test_execution.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:589: in request
+    expect_errors=expect_errors,
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:628: in do_request
+    res = req.get_response(app, catch_exc_info=True)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webob/request.py:1310: in send
+    application, catch_exc_info=True)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webob/request.py:1278: in call_application
+    app_iter = application(self.environ, start_response)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/lint.py:201: in lint_app
+    iterator = application(environ, start_response_wrapper)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2463: in __call__
+    return self.wsgi_app(environ, start_response)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2449: in wsgi_app
+    response = self.handle_exception(e)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1866: in handle_exception
+    reraise(exc_type, exc_value, tb)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/_compat.py:39: in reraise
+    raise value
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2446: in wsgi_app
+    response = self.full_dispatch_request()
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1951: in full_dispatch_request
+    rv = self.handle_user_exception(e)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1820: in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/_compat.py:39: in reraise
+    raise value
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1949: in full_dispatch_request
+    rv = self.dispatch_request()
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1935: in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/decorator.py:73: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/uri_parsing.py:132: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/validation.py:339: in wrapper
+    return function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/decorator.py:44: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/parameter.py:126: in wrapper
+    return function(**kwargs)
+pyrsched/api/scheduler.py:9: in status
+    job = find_job(job_identifier)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+job_identifier = 'arbitrary_nonexistent_job_name'
+
+    def find_job(job_identifier):
+        """Finds a Job.
+    
+        The job_identifier is either a job-id (uuid) or the job name.
+        The list of jobs is searched twice, forst for id and if there was no job found for
+        the name.
+        """
+>       jobs = current_app.scheduler.get_jobs()
+E       AttributeError: 'Connection' object has no attribute 'get_jobs'
+
+pyrsched/utils.py:33: AttributeError
+------------------------------ Captured log call -------------------------------
+INFO     root:scheduler.py:8 GET /jobs/arbitrary_nonexistent_job_name/execution
+____________ TestJobExecution.test_job_execution_non_existing[POST] ____________
+
+self = <test_execution.TestJobExecution object at 0x7f94d208e208>
+testapp = <webtest.app.TestApp object at 0x7f94d1d53ba8>, method = 'POST'
+
+    @pytest.mark.parametrize('method', ['GET', 'POST', 'DELETE'])
+    def test_job_execution_non_existing(self, testapp, method):
+>       res = testapp.request(f"{self.endpoint}/arbitrary_nonexistent_job_name/execution", method=method, expect_errors=True)
+
+tests/api/test_execution.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:589: in request
+    expect_errors=expect_errors,
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:628: in do_request
+    res = req.get_response(app, catch_exc_info=True)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webob/request.py:1310: in send
+    application, catch_exc_info=True)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webob/request.py:1278: in call_application
+    app_iter = application(self.environ, start_response)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/lint.py:201: in lint_app
+    iterator = application(environ, start_response_wrapper)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2463: in __call__
+    return self.wsgi_app(environ, start_response)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2449: in wsgi_app
+    response = self.handle_exception(e)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1866: in handle_exception
+    reraise(exc_type, exc_value, tb)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/_compat.py:39: in reraise
+    raise value
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2446: in wsgi_app
+    response = self.full_dispatch_request()
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1951: in full_dispatch_request
+    rv = self.handle_user_exception(e)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1820: in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/_compat.py:39: in reraise
+    raise value
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1949: in full_dispatch_request
+    rv = self.dispatch_request()
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1935: in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/decorator.py:73: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/uri_parsing.py:132: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/validation.py:339: in wrapper
+    return function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/decorator.py:44: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/parameter.py:126: in wrapper
+    return function(**kwargs)
+pyrsched/api/scheduler.py:17: in start
+    job = find_job(job_identifier)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+job_identifier = 'arbitrary_nonexistent_job_name'
+
+    def find_job(job_identifier):
+        """Finds a Job.
+    
+        The job_identifier is either a job-id (uuid) or the job name.
+        The list of jobs is searched twice, forst for id and if there was no job found for
+        the name.
+        """
+>       jobs = current_app.scheduler.get_jobs()
+E       AttributeError: 'Connection' object has no attribute 'get_jobs'
+
+pyrsched/utils.py:33: AttributeError
+------------------------------ Captured log call -------------------------------
+INFO     root:scheduler.py:16 POST /jobs/arbitrary_nonexistent_job_name/execution
+___________ TestJobExecution.test_job_execution_non_existing[DELETE] ___________
+
+self = <test_execution.TestJobExecution object at 0x7f94d202cda0>
+testapp = <webtest.app.TestApp object at 0x7f94d218e198>, method = 'DELETE'
+
+    @pytest.mark.parametrize('method', ['GET', 'POST', 'DELETE'])
+    def test_job_execution_non_existing(self, testapp, method):
+>       res = testapp.request(f"{self.endpoint}/arbitrary_nonexistent_job_name/execution", method=method, expect_errors=True)
+
+tests/api/test_execution.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:589: in request
+    expect_errors=expect_errors,
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:628: in do_request
+    res = req.get_response(app, catch_exc_info=True)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webob/request.py:1310: in send
+    application, catch_exc_info=True)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webob/request.py:1278: in call_application
+    app_iter = application(self.environ, start_response)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/lint.py:201: in lint_app
+    iterator = application(environ, start_response_wrapper)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2463: in __call__
+    return self.wsgi_app(environ, start_response)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2449: in wsgi_app
+    response = self.handle_exception(e)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1866: in handle_exception
+    reraise(exc_type, exc_value, tb)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/_compat.py:39: in reraise
+    raise value
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2446: in wsgi_app
+    response = self.full_dispatch_request()
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1951: in full_dispatch_request
+    rv = self.handle_user_exception(e)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1820: in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/_compat.py:39: in reraise
+    raise value
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1949: in full_dispatch_request
+    rv = self.dispatch_request()
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1935: in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/decorator.py:73: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/uri_parsing.py:132: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/validation.py:339: in wrapper
+    return function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/decorator.py:44: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/parameter.py:126: in wrapper
+    return function(**kwargs)
+pyrsched/api/scheduler.py:26: in pause
+    job = find_job(job_identifier)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+job_identifier = 'arbitrary_nonexistent_job_name'
+
+    def find_job(job_identifier):
+        """Finds a Job.
+    
+        The job_identifier is either a job-id (uuid) or the job name.
+        The list of jobs is searched twice, forst for id and if there was no job found for
+        the name.
+        """
+>       jobs = current_app.scheduler.get_jobs()
+E       AttributeError: 'Connection' object has no attribute 'get_jobs'
+
+pyrsched/utils.py:33: AttributeError
+------------------------------ Captured log call -------------------------------
+INFO     root:scheduler.py:25 DELETE /jobs/arbitrary_nonexistent_job_name/execution
+________________________ TestJobExecution.test_stop_job ________________________
+
+self = <test_execution.TestJobExecution object at 0x7f94d217b860>
+testapp = <webtest.app.TestApp object at 0x7f94d217b5f8>
+upload_pipeline = <conftest.upload_pipeline.<locals>.Inner object at 0x7f94d215f668>
+
+    def test_stop_job(self, testapp, upload_pipeline):
+        # upload a runnable pipeline
+        uploaded_filename = 'test_pipeline_create.yaml'
+        upload_pipeline.upload('pipeline_now.yaml', uploaded_filename)
+        # run it
+        interval = 1
+>       res = testapp.post(f"{self.endpoint}/{uploaded_filename}/{interval}")
+
+tests/api/test_execution.py:53: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:382: in post
+    content_type=content_type)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:758: in _gen_request
+    expect_errors=expect_errors)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:628: in do_request
+    res = req.get_response(app, catch_exc_info=True)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webob/request.py:1310: in send
+    application, catch_exc_info=True)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webob/request.py:1278: in call_application
+    app_iter = application(self.environ, start_response)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/lint.py:201: in lint_app
+    iterator = application(environ, start_response_wrapper)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2463: in __call__
+    return self.wsgi_app(environ, start_response)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2449: in wsgi_app
+    response = self.handle_exception(e)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1866: in handle_exception
+    reraise(exc_type, exc_value, tb)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/_compat.py:39: in reraise
+    raise value
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2446: in wsgi_app
+    response = self.full_dispatch_request()
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1951: in full_dispatch_request
+    rv = self.handle_user_exception(e)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1820: in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/_compat.py:39: in reraise
+    raise value
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1949: in full_dispatch_request
+    rv = self.dispatch_request()
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1935: in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/decorator.py:73: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/uri_parsing.py:132: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/validation.py:339: in wrapper
+    return function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/decorator.py:44: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/parameter.py:126: in wrapper
+    return function(**kwargs)
+pyrsched/api/jobs.py:59: in create
+    'log_path': str(log_filename),
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/netref.py:247: in __call__
+    return syncreq(_self, consts.HANDLE_CALL, args, kwargs)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/netref.py:76: in syncreq
+    return conn.sync_request(handler, proxy, *args)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py:464: in sync_request
+    return self.async_request(handler, *args, timeout=timeout).value
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <AsyncResult object (ready) at 0x7f94d1bf7410>
+
+    @property
+    def value(self):
+        """Returns the result of the operation. If the result has not yet
+        arrived, accessing this property will wait for it. If the result does
+        not arrive before the expiry time elapses, :class:`AsyncResultTimeout`
+        is raised. If the returned result is an exception, it will be raised
+        here. Otherwise, the result is returned directly.
+        """
+        self.wait()
+        if self._is_exc:
+>           raise self._obj
+E           _get_exception_class.<locals>.Derived: cannot access '__class__'
+E           
+E           ========= Remote Traceback (2) =========
+E           Traceback (most recent call last):
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 323, in _dispatch_request
+E               res = self._HANDLERS[handler](self, *args)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 585, in _handle_call
+E               return obj(*args, **dict(kwargs))
+E             File "/home/stfriese/pypyr-scheduler/pyrsched/server.py", line 26, in exposed_add_job
+E               return scheduler.add_job(func, *args, **kwargs)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/apscheduler/schedulers/base.py", line 420, in add_job
+E               'trigger': self._create_trigger(trigger, trigger_args),
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/apscheduler/schedulers/base.py", line 909, in _create_trigger
+E               if isinstance(trigger, BaseTrigger):
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/abc.py", line 183, in __instancecheck__
+E               subclass = instance.__class__
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/netref.py", line 166, in __getattr__
+E               return syncreq(self, consts.HANDLE_GETATTR, name)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/netref.py", line 76, in syncreq
+E               return conn.sync_request(handler, proxy, *args)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 464, in sync_request
+E               return self.async_request(handler, *args, timeout=timeout).value
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/async_.py", line 102, in value
+E               raise self._obj
+E           _get_exception_class.<locals>.Derived: cannot access '__class__'
+E           
+E           ========= Remote Traceback (1) =========
+E           Traceback (most recent call last):
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 323, in _dispatch_request
+E               res = self._HANDLERS[handler](self, *args)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 601, in _handle_getattr
+E               return self._access_attr(obj, name, (), "_rpyc_getattr", "allow_getattr", getattr)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 528, in _access_attr
+E               name = self._check_attr(obj, name, param)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 513, in _check_attr
+E               raise AttributeError("cannot access %r" % (name,))
+E           AttributeError: cannot access '__class__'
+
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/async_.py:102: AttributeError
+______________________ TestJobManagement.test_job_create _______________________
+
+self = <test_job_management.TestJobManagement object at 0x7f94d208e0f0>
+testapp = <webtest.app.TestApp object at 0x7f94d208ee80>
+upload_pipeline = <conftest.upload_pipeline.<locals>.Inner object at 0x7f94d202c390>
+
+    def test_job_create(self, testapp, upload_pipeline):
+        # upload a runnable pipeline
+        uploaded_filename = 'test_pipeline_create.yaml'
+        upload_pipeline.upload('pipeline_now.yaml', uploaded_filename)
+        # run it
+        interval = 10
+>       res = testapp.post(f"{self.endpoint}/{uploaded_filename}/{interval}")
+
+tests/api/test_job_management.py:20: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:382: in post
+    content_type=content_type)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:758: in _gen_request
+    expect_errors=expect_errors)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:628: in do_request
+    res = req.get_response(app, catch_exc_info=True)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webob/request.py:1310: in send
+    application, catch_exc_info=True)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webob/request.py:1278: in call_application
+    app_iter = application(self.environ, start_response)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/lint.py:201: in lint_app
+    iterator = application(environ, start_response_wrapper)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2463: in __call__
+    return self.wsgi_app(environ, start_response)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2449: in wsgi_app
+    response = self.handle_exception(e)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1866: in handle_exception
+    reraise(exc_type, exc_value, tb)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/_compat.py:39: in reraise
+    raise value
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2446: in wsgi_app
+    response = self.full_dispatch_request()
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1951: in full_dispatch_request
+    rv = self.handle_user_exception(e)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1820: in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/_compat.py:39: in reraise
+    raise value
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1949: in full_dispatch_request
+    rv = self.dispatch_request()
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1935: in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/decorator.py:73: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/uri_parsing.py:132: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/validation.py:339: in wrapper
+    return function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/decorator.py:44: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/parameter.py:126: in wrapper
+    return function(**kwargs)
+pyrsched/api/jobs.py:59: in create
+    'log_path': str(log_filename),
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/netref.py:247: in __call__
+    return syncreq(_self, consts.HANDLE_CALL, args, kwargs)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/netref.py:76: in syncreq
+    return conn.sync_request(handler, proxy, *args)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py:464: in sync_request
+    return self.async_request(handler, *args, timeout=timeout).value
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <AsyncResult object (ready) at 0x7f94d1caad58>
+
+    @property
+    def value(self):
+        """Returns the result of the operation. If the result has not yet
+        arrived, accessing this property will wait for it. If the result does
+        not arrive before the expiry time elapses, :class:`AsyncResultTimeout`
+        is raised. If the returned result is an exception, it will be raised
+        here. Otherwise, the result is returned directly.
+        """
+        self.wait()
+        if self._is_exc:
+>           raise self._obj
+E           _get_exception_class.<locals>.Derived: cannot access '__class__'
+E           
+E           ========= Remote Traceback (2) =========
+E           Traceback (most recent call last):
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 323, in _dispatch_request
+E               res = self._HANDLERS[handler](self, *args)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 585, in _handle_call
+E               return obj(*args, **dict(kwargs))
+E             File "/home/stfriese/pypyr-scheduler/pyrsched/server.py", line 26, in exposed_add_job
+E               return scheduler.add_job(func, *args, **kwargs)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/apscheduler/schedulers/base.py", line 420, in add_job
+E               'trigger': self._create_trigger(trigger, trigger_args),
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/apscheduler/schedulers/base.py", line 909, in _create_trigger
+E               if isinstance(trigger, BaseTrigger):
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/abc.py", line 183, in __instancecheck__
+E               subclass = instance.__class__
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/netref.py", line 166, in __getattr__
+E               return syncreq(self, consts.HANDLE_GETATTR, name)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/netref.py", line 76, in syncreq
+E               return conn.sync_request(handler, proxy, *args)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 464, in sync_request
+E               return self.async_request(handler, *args, timeout=timeout).value
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/async_.py", line 102, in value
+E               raise self._obj
+E           _get_exception_class.<locals>.Derived: cannot access '__class__'
+E           
+E           ========= Remote Traceback (1) =========
+E           Traceback (most recent call last):
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 323, in _dispatch_request
+E               res = self._HANDLERS[handler](self, *args)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 601, in _handle_getattr
+E               return self._access_attr(obj, name, (), "_rpyc_getattr", "allow_getattr", getattr)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 528, in _access_attr
+E               name = self._check_attr(obj, name, param)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 513, in _check_attr
+E               raise AttributeError("cannot access %r" % (name,))
+E           AttributeError: cannot access '__class__'
+
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/async_.py:102: AttributeError
+_________________ TestJobManagement.test_job_delete_by_job_id __________________
+
+self = <test_job_management.TestJobManagement object at 0x7f94d1f47550>
+testapp = <webtest.app.TestApp object at 0x7f94d1bf1240>
+upload_pipeline = <conftest.upload_pipeline.<locals>.Inner object at 0x7f94d1bf1550>
+
+    def test_job_delete_by_job_id(self, testapp, upload_pipeline):
+        # upload a pipeline
+        uploaded_filename = 'test_pipeline_delete_job.yaml'
+        upload_pipeline.upload('pipeline_now.yaml', uploaded_filename)
+    
+        # create a job for it
+        interval = 10
+>       job = testapp.post(f'{self.endpoint}/{uploaded_filename}/{interval}')
+
+tests/api/test_job_management.py:49: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:382: in post
+    content_type=content_type)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:758: in _gen_request
+    expect_errors=expect_errors)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:628: in do_request
+    res = req.get_response(app, catch_exc_info=True)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webob/request.py:1310: in send
+    application, catch_exc_info=True)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webob/request.py:1278: in call_application
+    app_iter = application(self.environ, start_response)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/lint.py:201: in lint_app
+    iterator = application(environ, start_response_wrapper)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2463: in __call__
+    return self.wsgi_app(environ, start_response)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2449: in wsgi_app
+    response = self.handle_exception(e)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1866: in handle_exception
+    reraise(exc_type, exc_value, tb)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/_compat.py:39: in reraise
+    raise value
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2446: in wsgi_app
+    response = self.full_dispatch_request()
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1951: in full_dispatch_request
+    rv = self.handle_user_exception(e)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1820: in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/_compat.py:39: in reraise
+    raise value
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1949: in full_dispatch_request
+    rv = self.dispatch_request()
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1935: in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/decorator.py:73: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/uri_parsing.py:132: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/validation.py:339: in wrapper
+    return function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/decorator.py:44: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/parameter.py:126: in wrapper
+    return function(**kwargs)
+pyrsched/api/jobs.py:59: in create
+    'log_path': str(log_filename),
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/netref.py:247: in __call__
+    return syncreq(_self, consts.HANDLE_CALL, args, kwargs)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/netref.py:76: in syncreq
+    return conn.sync_request(handler, proxy, *args)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py:464: in sync_request
+    return self.async_request(handler, *args, timeout=timeout).value
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <AsyncResult object (ready) at 0x7f94d2057308>
+
+    @property
+    def value(self):
+        """Returns the result of the operation. If the result has not yet
+        arrived, accessing this property will wait for it. If the result does
+        not arrive before the expiry time elapses, :class:`AsyncResultTimeout`
+        is raised. If the returned result is an exception, it will be raised
+        here. Otherwise, the result is returned directly.
+        """
+        self.wait()
+        if self._is_exc:
+>           raise self._obj
+E           _get_exception_class.<locals>.Derived: cannot access '__class__'
+E           
+E           ========= Remote Traceback (2) =========
+E           Traceback (most recent call last):
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 323, in _dispatch_request
+E               res = self._HANDLERS[handler](self, *args)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 585, in _handle_call
+E               return obj(*args, **dict(kwargs))
+E             File "/home/stfriese/pypyr-scheduler/pyrsched/server.py", line 26, in exposed_add_job
+E               return scheduler.add_job(func, *args, **kwargs)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/apscheduler/schedulers/base.py", line 420, in add_job
+E               'trigger': self._create_trigger(trigger, trigger_args),
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/apscheduler/schedulers/base.py", line 909, in _create_trigger
+E               if isinstance(trigger, BaseTrigger):
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/abc.py", line 183, in __instancecheck__
+E               subclass = instance.__class__
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/netref.py", line 166, in __getattr__
+E               return syncreq(self, consts.HANDLE_GETATTR, name)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/netref.py", line 76, in syncreq
+E               return conn.sync_request(handler, proxy, *args)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 464, in sync_request
+E               return self.async_request(handler, *args, timeout=timeout).value
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/async_.py", line 102, in value
+E               raise self._obj
+E           _get_exception_class.<locals>.Derived: cannot access '__class__'
+E           
+E           ========= Remote Traceback (1) =========
+E           Traceback (most recent call last):
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 323, in _dispatch_request
+E               res = self._HANDLERS[handler](self, *args)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 601, in _handle_getattr
+E               return self._access_attr(obj, name, (), "_rpyc_getattr", "allow_getattr", getattr)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 528, in _access_attr
+E               name = self._check_attr(obj, name, param)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 513, in _check_attr
+E               raise AttributeError("cannot access %r" % (name,))
+E           AttributeError: cannot access '__class__'
+
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/async_.py:102: AttributeError
+________________ TestJobManagement.test_job_delete_by_job_name _________________
+
+self = <test_job_management.TestJobManagement object at 0x7f94d1b2d630>
+testapp = <webtest.app.TestApp object at 0x7f94d1b2d390>
+upload_pipeline = <conftest.upload_pipeline.<locals>.Inner object at 0x7f94d21724a8>
+
+    def test_job_delete_by_job_name(self, testapp, upload_pipeline):
+        # upload a pipeline
+        uploaded_filename = 'test_pipeline_delete_job.yaml'
+        upload_pipeline.upload('pipeline_now.yaml', uploaded_filename)
+    
+        # create a job for it
+>       job = testapp.post(f'{self.endpoint}/{uploaded_filename}/10')
+
+tests/api/test_job_management.py:66: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:382: in post
+    content_type=content_type)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:758: in _gen_request
+    expect_errors=expect_errors)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:628: in do_request
+    res = req.get_response(app, catch_exc_info=True)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webob/request.py:1310: in send
+    application, catch_exc_info=True)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webob/request.py:1278: in call_application
+    app_iter = application(self.environ, start_response)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/lint.py:201: in lint_app
+    iterator = application(environ, start_response_wrapper)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2463: in __call__
+    return self.wsgi_app(environ, start_response)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2449: in wsgi_app
+    response = self.handle_exception(e)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1866: in handle_exception
+    reraise(exc_type, exc_value, tb)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/_compat.py:39: in reraise
+    raise value
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2446: in wsgi_app
+    response = self.full_dispatch_request()
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1951: in full_dispatch_request
+    rv = self.handle_user_exception(e)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1820: in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/_compat.py:39: in reraise
+    raise value
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1949: in full_dispatch_request
+    rv = self.dispatch_request()
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1935: in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/decorator.py:73: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/uri_parsing.py:132: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/validation.py:339: in wrapper
+    return function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/decorator.py:44: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/parameter.py:126: in wrapper
+    return function(**kwargs)
+pyrsched/api/jobs.py:59: in create
+    'log_path': str(log_filename),
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/netref.py:247: in __call__
+    return syncreq(_self, consts.HANDLE_CALL, args, kwargs)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/netref.py:76: in syncreq
+    return conn.sync_request(handler, proxy, *args)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py:464: in sync_request
+    return self.async_request(handler, *args, timeout=timeout).value
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <AsyncResult object (ready) at 0x7f94d1fee990>
+
+    @property
+    def value(self):
+        """Returns the result of the operation. If the result has not yet
+        arrived, accessing this property will wait for it. If the result does
+        not arrive before the expiry time elapses, :class:`AsyncResultTimeout`
+        is raised. If the returned result is an exception, it will be raised
+        here. Otherwise, the result is returned directly.
+        """
+        self.wait()
+        if self._is_exc:
+>           raise self._obj
+E           _get_exception_class.<locals>.Derived: cannot access '__class__'
+E           
+E           ========= Remote Traceback (2) =========
+E           Traceback (most recent call last):
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 323, in _dispatch_request
+E               res = self._HANDLERS[handler](self, *args)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 585, in _handle_call
+E               return obj(*args, **dict(kwargs))
+E             File "/home/stfriese/pypyr-scheduler/pyrsched/server.py", line 26, in exposed_add_job
+E               return scheduler.add_job(func, *args, **kwargs)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/apscheduler/schedulers/base.py", line 420, in add_job
+E               'trigger': self._create_trigger(trigger, trigger_args),
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/apscheduler/schedulers/base.py", line 909, in _create_trigger
+E               if isinstance(trigger, BaseTrigger):
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/abc.py", line 183, in __instancecheck__
+E               subclass = instance.__class__
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/netref.py", line 166, in __getattr__
+E               return syncreq(self, consts.HANDLE_GETATTR, name)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/netref.py", line 76, in syncreq
+E               return conn.sync_request(handler, proxy, *args)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 464, in sync_request
+E               return self.async_request(handler, *args, timeout=timeout).value
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/async_.py", line 102, in value
+E               raise self._obj
+E           _get_exception_class.<locals>.Derived: cannot access '__class__'
+E           
+E           ========= Remote Traceback (1) =========
+E           Traceback (most recent call last):
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 323, in _dispatch_request
+E               res = self._HANDLERS[handler](self, *args)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 601, in _handle_getattr
+E               return self._access_attr(obj, name, (), "_rpyc_getattr", "allow_getattr", getattr)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 528, in _access_attr
+E               name = self._check_attr(obj, name, param)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 513, in _check_attr
+E               raise AttributeError("cannot access %r" % (name,))
+E           AttributeError: cannot access '__class__'
+
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/async_.py:102: AttributeError
+________________ TestJobManagement.test_job_delete_nonexistent _________________
+
+self = <test_job_management.TestJobManagement object at 0x7f94d1fc9710>
+testapp = <webtest.app.TestApp object at 0x7f94d1fc9a20>
+
+    def test_job_delete_nonexistent(self, testapp):
+        # delete a nonexistent job
+>       res = testapp.delete(f'{self.endpoint}/{uuid.uuid4()}', expect_errors=True)
+
+tests/api/test_job_management.py:80: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:434: in delete
+    content_type=content_type)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:758: in _gen_request
+    expect_errors=expect_errors)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:628: in do_request
+    res = req.get_response(app, catch_exc_info=True)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webob/request.py:1310: in send
+    application, catch_exc_info=True)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webob/request.py:1278: in call_application
+    app_iter = application(self.environ, start_response)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/lint.py:201: in lint_app
+    iterator = application(environ, start_response_wrapper)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2463: in __call__
+    return self.wsgi_app(environ, start_response)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2449: in wsgi_app
+    response = self.handle_exception(e)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1866: in handle_exception
+    reraise(exc_type, exc_value, tb)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/_compat.py:39: in reraise
+    raise value
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2446: in wsgi_app
+    response = self.full_dispatch_request()
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1951: in full_dispatch_request
+    rv = self.handle_user_exception(e)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1820: in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/_compat.py:39: in reraise
+    raise value
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1949: in full_dispatch_request
+    rv = self.dispatch_request()
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1935: in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/decorator.py:73: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/uri_parsing.py:132: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/validation.py:339: in wrapper
+    return function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/decorator.py:44: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/parameter.py:126: in wrapper
+    return function(**kwargs)
+pyrsched/api/jobs.py:68: in delete
+    job = find_job(job_identifier)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+job_identifier = 'a1d4e8f3-bf07-4da1-a88e-d4d50a4e32e0'
+
+    def find_job(job_identifier):
+        """Finds a Job.
+    
+        The job_identifier is either a job-id (uuid) or the job name.
+        The list of jobs is searched twice, forst for id and if there was no job found for
+        the name.
+        """
+>       jobs = current_app.scheduler.get_jobs()
+E       AttributeError: 'Connection' object has no attribute 'get_jobs'
+
+pyrsched/utils.py:33: AttributeError
+______________________ TestJobManagement.test_job_get_one ______________________
+
+self = <test_job_management.TestJobManagement object at 0x7f94d1db1fd0>
+testapp = <webtest.app.TestApp object at 0x7f94d1db1dd8>
+upload_pipeline = <conftest.upload_pipeline.<locals>.Inner object at 0x7f94d20055f8>
+
+    def test_job_get_one(self, testapp, upload_pipeline):
+        # upload a pipeline
+        uploaded_filename = 'test_pipeline_delete_job.yaml'
+        upload_pipeline.upload('pipeline_now.yaml', uploaded_filename)
+    
+        # create a job for it
+>       job = testapp.post(f'{self.endpoint}/{uploaded_filename}/10')
+
+tests/api/test_job_management.py:89: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:382: in post
+    content_type=content_type)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:758: in _gen_request
+    expect_errors=expect_errors)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:628: in do_request
+    res = req.get_response(app, catch_exc_info=True)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webob/request.py:1310: in send
+    application, catch_exc_info=True)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webob/request.py:1278: in call_application
+    app_iter = application(self.environ, start_response)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/lint.py:201: in lint_app
+    iterator = application(environ, start_response_wrapper)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2463: in __call__
+    return self.wsgi_app(environ, start_response)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2449: in wsgi_app
+    response = self.handle_exception(e)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1866: in handle_exception
+    reraise(exc_type, exc_value, tb)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/_compat.py:39: in reraise
+    raise value
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2446: in wsgi_app
+    response = self.full_dispatch_request()
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1951: in full_dispatch_request
+    rv = self.handle_user_exception(e)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1820: in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/_compat.py:39: in reraise
+    raise value
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1949: in full_dispatch_request
+    rv = self.dispatch_request()
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1935: in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/decorator.py:73: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/uri_parsing.py:132: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/validation.py:339: in wrapper
+    return function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/decorator.py:44: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/parameter.py:126: in wrapper
+    return function(**kwargs)
+pyrsched/api/jobs.py:59: in create
+    'log_path': str(log_filename),
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/netref.py:247: in __call__
+    return syncreq(_self, consts.HANDLE_CALL, args, kwargs)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/netref.py:76: in syncreq
+    return conn.sync_request(handler, proxy, *args)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py:464: in sync_request
+    return self.async_request(handler, *args, timeout=timeout).value
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <AsyncResult object (ready) at 0x7f94d1aec468>
+
+    @property
+    def value(self):
+        """Returns the result of the operation. If the result has not yet
+        arrived, accessing this property will wait for it. If the result does
+        not arrive before the expiry time elapses, :class:`AsyncResultTimeout`
+        is raised. If the returned result is an exception, it will be raised
+        here. Otherwise, the result is returned directly.
+        """
+        self.wait()
+        if self._is_exc:
+>           raise self._obj
+E           _get_exception_class.<locals>.Derived: cannot access '__class__'
+E           
+E           ========= Remote Traceback (2) =========
+E           Traceback (most recent call last):
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 323, in _dispatch_request
+E               res = self._HANDLERS[handler](self, *args)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 585, in _handle_call
+E               return obj(*args, **dict(kwargs))
+E             File "/home/stfriese/pypyr-scheduler/pyrsched/server.py", line 26, in exposed_add_job
+E               return scheduler.add_job(func, *args, **kwargs)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/apscheduler/schedulers/base.py", line 420, in add_job
+E               'trigger': self._create_trigger(trigger, trigger_args),
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/apscheduler/schedulers/base.py", line 909, in _create_trigger
+E               if isinstance(trigger, BaseTrigger):
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/abc.py", line 183, in __instancecheck__
+E               subclass = instance.__class__
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/netref.py", line 166, in __getattr__
+E               return syncreq(self, consts.HANDLE_GETATTR, name)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/netref.py", line 76, in syncreq
+E               return conn.sync_request(handler, proxy, *args)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 464, in sync_request
+E               return self.async_request(handler, *args, timeout=timeout).value
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/async_.py", line 102, in value
+E               raise self._obj
+E           _get_exception_class.<locals>.Derived: cannot access '__class__'
+E           
+E           ========= Remote Traceback (1) =========
+E           Traceback (most recent call last):
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 323, in _dispatch_request
+E               res = self._HANDLERS[handler](self, *args)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 601, in _handle_getattr
+E               return self._access_attr(obj, name, (), "_rpyc_getattr", "allow_getattr", getattr)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 528, in _access_attr
+E               name = self._check_attr(obj, name, param)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 513, in _check_attr
+E               raise AttributeError("cannot access %r" % (name,))
+E           AttributeError: cannot access '__class__'
+
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/async_.py:102: AttributeError
+______________________ TestJobManagement.test_job_get_all ______________________
+
+self = <test_job_management.TestJobManagement object at 0x7f94d1a1ed30>
+testapp = <webtest.app.TestApp object at 0x7f94d1a1e978>
+upload_pipeline = <conftest.upload_pipeline.<locals>.Inner object at 0x7f94d1bd4e80>
+
+    def test_job_get_all(self, testapp, upload_pipeline):
+        # upload some pipelines and create jobs
+        uploaded_ids = []
+        for uploaded_filename in [
+            'test_pipeline_get_all_1.yaml',
+            'test_pipeline_get_all_2.yaml',
+            'test_pipeline_get_all_3.yaml',
+        ]:
+            # use the same local pipeline, it's contents are not relevant here
+            upload_pipeline.upload('pipeline_now.yaml', uploaded_filename)
+>           job = testapp.post(f'{self.endpoint}/{uploaded_filename}/10')
+
+tests/api/test_job_management.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:382: in post
+    content_type=content_type)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:758: in _gen_request
+    expect_errors=expect_errors)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:628: in do_request
+    res = req.get_response(app, catch_exc_info=True)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webob/request.py:1310: in send
+    application, catch_exc_info=True)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webob/request.py:1278: in call_application
+    app_iter = application(self.environ, start_response)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/lint.py:201: in lint_app
+    iterator = application(environ, start_response_wrapper)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2463: in __call__
+    return self.wsgi_app(environ, start_response)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2449: in wsgi_app
+    response = self.handle_exception(e)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1866: in handle_exception
+    reraise(exc_type, exc_value, tb)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/_compat.py:39: in reraise
+    raise value
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2446: in wsgi_app
+    response = self.full_dispatch_request()
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1951: in full_dispatch_request
+    rv = self.handle_user_exception(e)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1820: in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/_compat.py:39: in reraise
+    raise value
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1949: in full_dispatch_request
+    rv = self.dispatch_request()
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1935: in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/decorator.py:73: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/uri_parsing.py:132: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/validation.py:339: in wrapper
+    return function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/decorator.py:44: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/parameter.py:126: in wrapper
+    return function(**kwargs)
+pyrsched/api/jobs.py:59: in create
+    'log_path': str(log_filename),
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/netref.py:247: in __call__
+    return syncreq(_self, consts.HANDLE_CALL, args, kwargs)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/netref.py:76: in syncreq
+    return conn.sync_request(handler, proxy, *args)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py:464: in sync_request
+    return self.async_request(handler, *args, timeout=timeout).value
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <AsyncResult object (ready) at 0x7f94d1af8360>
+
+    @property
+    def value(self):
+        """Returns the result of the operation. If the result has not yet
+        arrived, accessing this property will wait for it. If the result does
+        not arrive before the expiry time elapses, :class:`AsyncResultTimeout`
+        is raised. If the returned result is an exception, it will be raised
+        here. Otherwise, the result is returned directly.
+        """
+        self.wait()
+        if self._is_exc:
+>           raise self._obj
+E           _get_exception_class.<locals>.Derived: cannot access '__class__'
+E           
+E           ========= Remote Traceback (2) =========
+E           Traceback (most recent call last):
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 323, in _dispatch_request
+E               res = self._HANDLERS[handler](self, *args)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 585, in _handle_call
+E               return obj(*args, **dict(kwargs))
+E             File "/home/stfriese/pypyr-scheduler/pyrsched/server.py", line 26, in exposed_add_job
+E               return scheduler.add_job(func, *args, **kwargs)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/apscheduler/schedulers/base.py", line 420, in add_job
+E               'trigger': self._create_trigger(trigger, trigger_args),
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/apscheduler/schedulers/base.py", line 909, in _create_trigger
+E               if isinstance(trigger, BaseTrigger):
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/abc.py", line 183, in __instancecheck__
+E               subclass = instance.__class__
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/netref.py", line 166, in __getattr__
+E               return syncreq(self, consts.HANDLE_GETATTR, name)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/netref.py", line 76, in syncreq
+E               return conn.sync_request(handler, proxy, *args)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 464, in sync_request
+E               return self.async_request(handler, *args, timeout=timeout).value
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/async_.py", line 102, in value
+E               raise self._obj
+E           _get_exception_class.<locals>.Derived: cannot access '__class__'
+E           
+E           ========= Remote Traceback (1) =========
+E           Traceback (most recent call last):
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 323, in _dispatch_request
+E               res = self._HANDLERS[handler](self, *args)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 601, in _handle_getattr
+E               return self._access_attr(obj, name, (), "_rpyc_getattr", "allow_getattr", getattr)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 528, in _access_attr
+E               name = self._check_attr(obj, name, param)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 513, in _check_attr
+E               raise AttributeError("cannot access %r" % (name,))
+E           AttributeError: cannot access '__class__'
+
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/async_.py:102: AttributeError
+__________________ TestJobManagement.test_job_change_interval __________________
+
+self = <test_job_management.TestJobManagement object at 0x7f94d1c10710>
+testapp = <webtest.app.TestApp object at 0x7f94d1c103c8>
+upload_pipeline = <conftest.upload_pipeline.<locals>.Inner object at 0x7f94d1c490b8>
+
+    def test_job_change_interval(self, testapp, upload_pipeline):
+        # upload two pipelines (to switch between them)
+        uploaded_filename = 'test_pipeline_change_job_interval.yaml'
+        upload_pipeline.upload('pipeline_now.yaml', uploaded_filename)
+    
+        # create a job for it
+>       job = testapp.post(f'{self.endpoint}/{uploaded_filename}/10')
+
+tests/api/test_job_management.py:123: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:382: in post
+    content_type=content_type)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:758: in _gen_request
+    expect_errors=expect_errors)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:628: in do_request
+    res = req.get_response(app, catch_exc_info=True)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webob/request.py:1310: in send
+    application, catch_exc_info=True)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webob/request.py:1278: in call_application
+    app_iter = application(self.environ, start_response)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/lint.py:201: in lint_app
+    iterator = application(environ, start_response_wrapper)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2463: in __call__
+    return self.wsgi_app(environ, start_response)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2449: in wsgi_app
+    response = self.handle_exception(e)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1866: in handle_exception
+    reraise(exc_type, exc_value, tb)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/_compat.py:39: in reraise
+    raise value
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2446: in wsgi_app
+    response = self.full_dispatch_request()
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1951: in full_dispatch_request
+    rv = self.handle_user_exception(e)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1820: in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/_compat.py:39: in reraise
+    raise value
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1949: in full_dispatch_request
+    rv = self.dispatch_request()
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1935: in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/decorator.py:73: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/uri_parsing.py:132: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/validation.py:339: in wrapper
+    return function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/decorator.py:44: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/parameter.py:126: in wrapper
+    return function(**kwargs)
+pyrsched/api/jobs.py:59: in create
+    'log_path': str(log_filename),
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/netref.py:247: in __call__
+    return syncreq(_self, consts.HANDLE_CALL, args, kwargs)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/netref.py:76: in syncreq
+    return conn.sync_request(handler, proxy, *args)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py:464: in sync_request
+    return self.async_request(handler, *args, timeout=timeout).value
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <AsyncResult object (ready) at 0x7f94d18f1200>
+
+    @property
+    def value(self):
+        """Returns the result of the operation. If the result has not yet
+        arrived, accessing this property will wait for it. If the result does
+        not arrive before the expiry time elapses, :class:`AsyncResultTimeout`
+        is raised. If the returned result is an exception, it will be raised
+        here. Otherwise, the result is returned directly.
+        """
+        self.wait()
+        if self._is_exc:
+>           raise self._obj
+E           _get_exception_class.<locals>.Derived: cannot access '__class__'
+E           
+E           ========= Remote Traceback (2) =========
+E           Traceback (most recent call last):
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 323, in _dispatch_request
+E               res = self._HANDLERS[handler](self, *args)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 585, in _handle_call
+E               return obj(*args, **dict(kwargs))
+E             File "/home/stfriese/pypyr-scheduler/pyrsched/server.py", line 26, in exposed_add_job
+E               return scheduler.add_job(func, *args, **kwargs)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/apscheduler/schedulers/base.py", line 420, in add_job
+E               'trigger': self._create_trigger(trigger, trigger_args),
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/apscheduler/schedulers/base.py", line 909, in _create_trigger
+E               if isinstance(trigger, BaseTrigger):
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/abc.py", line 183, in __instancecheck__
+E               subclass = instance.__class__
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/netref.py", line 166, in __getattr__
+E               return syncreq(self, consts.HANDLE_GETATTR, name)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/netref.py", line 76, in syncreq
+E               return conn.sync_request(handler, proxy, *args)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 464, in sync_request
+E               return self.async_request(handler, *args, timeout=timeout).value
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/async_.py", line 102, in value
+E               raise self._obj
+E           _get_exception_class.<locals>.Derived: cannot access '__class__'
+E           
+E           ========= Remote Traceback (1) =========
+E           Traceback (most recent call last):
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 323, in _dispatch_request
+E               res = self._HANDLERS[handler](self, *args)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 601, in _handle_getattr
+E               return self._access_attr(obj, name, (), "_rpyc_getattr", "allow_getattr", getattr)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 528, in _access_attr
+E               name = self._check_attr(obj, name, param)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 513, in _check_attr
+E               raise AttributeError("cannot access %r" % (name,))
+E           AttributeError: cannot access '__class__'
+
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/async_.py:102: AttributeError
+____________________ TestJobManagement.test_job_change_name ____________________
+
+self = <test_job_management.TestJobManagement object at 0x7f94d17e32b0>
+testapp = <webtest.app.TestApp object at 0x7f94d1b8ce10>
+upload_pipeline = <conftest.upload_pipeline.<locals>.Inner object at 0x7f94d1b8c160>
+
+    def test_job_change_name(self, testapp, upload_pipeline):
+        # upload two pipelines (to switch between them)
+        uploaded_filename_first = 'test_pipeline_change_job_name_first.yaml'
+        upload_pipeline.upload('pipeline_now.yaml', uploaded_filename_first)
+        uploaded_filename_second = 'test_pipeline_change_job_name_second.yaml'
+        upload_pipeline.upload('pipeline_now.yaml', uploaded_filename_second)
+    
+        # create a job for the first one
+>       job = testapp.post(f'{self.endpoint}/{uploaded_filename_first}/10')
+
+tests/api/test_job_management.py:140: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:382: in post
+    content_type=content_type)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:758: in _gen_request
+    expect_errors=expect_errors)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:628: in do_request
+    res = req.get_response(app, catch_exc_info=True)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webob/request.py:1310: in send
+    application, catch_exc_info=True)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webob/request.py:1278: in call_application
+    app_iter = application(self.environ, start_response)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/lint.py:201: in lint_app
+    iterator = application(environ, start_response_wrapper)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2463: in __call__
+    return self.wsgi_app(environ, start_response)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2449: in wsgi_app
+    response = self.handle_exception(e)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1866: in handle_exception
+    reraise(exc_type, exc_value, tb)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/_compat.py:39: in reraise
+    raise value
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2446: in wsgi_app
+    response = self.full_dispatch_request()
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1951: in full_dispatch_request
+    rv = self.handle_user_exception(e)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1820: in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/_compat.py:39: in reraise
+    raise value
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1949: in full_dispatch_request
+    rv = self.dispatch_request()
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1935: in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/decorator.py:73: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/uri_parsing.py:132: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/validation.py:339: in wrapper
+    return function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/decorator.py:44: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/parameter.py:126: in wrapper
+    return function(**kwargs)
+pyrsched/api/jobs.py:59: in create
+    'log_path': str(log_filename),
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/netref.py:247: in __call__
+    return syncreq(_self, consts.HANDLE_CALL, args, kwargs)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/netref.py:76: in syncreq
+    return conn.sync_request(handler, proxy, *args)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py:464: in sync_request
+    return self.async_request(handler, *args, timeout=timeout).value
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <AsyncResult object (ready) at 0x7f94d1ad9bf8>
+
+    @property
+    def value(self):
+        """Returns the result of the operation. If the result has not yet
+        arrived, accessing this property will wait for it. If the result does
+        not arrive before the expiry time elapses, :class:`AsyncResultTimeout`
+        is raised. If the returned result is an exception, it will be raised
+        here. Otherwise, the result is returned directly.
+        """
+        self.wait()
+        if self._is_exc:
+>           raise self._obj
+E           _get_exception_class.<locals>.Derived: cannot access '__class__'
+E           
+E           ========= Remote Traceback (2) =========
+E           Traceback (most recent call last):
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 323, in _dispatch_request
+E               res = self._HANDLERS[handler](self, *args)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 585, in _handle_call
+E               return obj(*args, **dict(kwargs))
+E             File "/home/stfriese/pypyr-scheduler/pyrsched/server.py", line 26, in exposed_add_job
+E               return scheduler.add_job(func, *args, **kwargs)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/apscheduler/schedulers/base.py", line 420, in add_job
+E               'trigger': self._create_trigger(trigger, trigger_args),
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/apscheduler/schedulers/base.py", line 909, in _create_trigger
+E               if isinstance(trigger, BaseTrigger):
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/abc.py", line 183, in __instancecheck__
+E               subclass = instance.__class__
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/netref.py", line 166, in __getattr__
+E               return syncreq(self, consts.HANDLE_GETATTR, name)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/netref.py", line 76, in syncreq
+E               return conn.sync_request(handler, proxy, *args)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 464, in sync_request
+E               return self.async_request(handler, *args, timeout=timeout).value
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/async_.py", line 102, in value
+E               raise self._obj
+E           _get_exception_class.<locals>.Derived: cannot access '__class__'
+E           
+E           ========= Remote Traceback (1) =========
+E           Traceback (most recent call last):
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 323, in _dispatch_request
+E               res = self._HANDLERS[handler](self, *args)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 601, in _handle_getattr
+E               return self._access_attr(obj, name, (), "_rpyc_getattr", "allow_getattr", getattr)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 528, in _access_attr
+E               name = self._check_attr(obj, name, param)
+E             File "/home/stfriese/.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/protocol.py", line 513, in _check_attr
+E               raise AttributeError("cannot access %r" % (name,))
+E           AttributeError: cannot access '__class__'
+
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/rpyc/core/async_.py:102: AttributeError
+_____________ TestJobManagement.test_job_change_name_non_existant ______________
+
+self = <test_job_management.TestJobManagement object at 0x7f94d1889a58>
+testapp = <webtest.app.TestApp object at 0x7f94d1889128>
+
+    def test_job_change_name_non_existant(self, testapp):
+>       res = testapp.put(f'{self.endpoint}/nonexistent_job/new_name_which_is_not_evaluated/10', expect_errors=True)
+
+tests/api/test_job_management.py:151: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:399: in put
+    content_type=content_type,
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:758: in _gen_request
+    expect_errors=expect_errors)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:628: in do_request
+    res = req.get_response(app, catch_exc_info=True)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webob/request.py:1310: in send
+    application, catch_exc_info=True)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webob/request.py:1278: in call_application
+    app_iter = application(self.environ, start_response)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/lint.py:201: in lint_app
+    iterator = application(environ, start_response_wrapper)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2463: in __call__
+    return self.wsgi_app(environ, start_response)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2449: in wsgi_app
+    response = self.handle_exception(e)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1866: in handle_exception
+    reraise(exc_type, exc_value, tb)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/_compat.py:39: in reraise
+    raise value
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2446: in wsgi_app
+    response = self.full_dispatch_request()
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1951: in full_dispatch_request
+    rv = self.handle_user_exception(e)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1820: in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/_compat.py:39: in reraise
+    raise value
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1949: in full_dispatch_request
+    rv = self.dispatch_request()
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1935: in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/decorator.py:73: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/uri_parsing.py:132: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/validation.py:339: in wrapper
+    return function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/decorator.py:44: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/parameter.py:126: in wrapper
+    return function(**kwargs)
+pyrsched/api/jobs.py:77: in change
+    job = find_job(job_identifier)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+job_identifier = 'nonexistent_job'
+
+    def find_job(job_identifier):
+        """Finds a Job.
+    
+        The job_identifier is either a job-id (uuid) or the job name.
+        The list of jobs is searched twice, forst for id and if there was no job found for
+        the name.
+        """
+>       jobs = current_app.scheduler.get_jobs()
+E       AttributeError: 'Connection' object has no attribute 'get_jobs'
+
+pyrsched/utils.py:33: AttributeError
+________________________ TestJobManagement.test_status _________________________
+
+self = <test_status.TestJobManagement object at 0x7f94d1733828>
+testapp = <webtest.app.TestApp object at 0x7f94d1b4f828>
+
+    def test_status(self, testapp):
+>       res = testapp.get(self.endpoint)
+
+tests/api/test_status.py:12: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:335: in get
+    expect_errors=expect_errors)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/app.py:628: in do_request
+    res = req.get_response(app, catch_exc_info=True)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webob/request.py:1310: in send
+    application, catch_exc_info=True)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webob/request.py:1278: in call_application
+    app_iter = application(self.environ, start_response)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/webtest/lint.py:201: in lint_app
+    iterator = application(environ, start_response_wrapper)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2463: in __call__
+    return self.wsgi_app(environ, start_response)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2449: in wsgi_app
+    response = self.handle_exception(e)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1866: in handle_exception
+    reraise(exc_type, exc_value, tb)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/_compat.py:39: in reraise
+    raise value
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:2446: in wsgi_app
+    response = self.full_dispatch_request()
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1951: in full_dispatch_request
+    rv = self.handle_user_exception(e)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1820: in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/_compat.py:39: in reraise
+    raise value
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1949: in full_dispatch_request
+    rv = self.dispatch_request()
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/flask/app.py:1935: in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/decorator.py:73: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/uri_parsing.py:132: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/decorator.py:44: in wrapper
+    response = function(request)
+../.local/share/virtualenvs/pypyr-scheduler-PMuiVrtt/lib/python3.6/site-packages/connexion/decorators/parameter.py:126: in wrapper
+    return function(**kwargs)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def get():
+        logger.info('GET /status')
+        return {
+>           'is_running': current_app.scheduler.state != apscheduler.schedulers.base.STATE_STOPPED,
+        }
+E       AttributeError: 'Connection' object has no attribute 'state'
+
+pyrsched/api/status.py:12: AttributeError
+
+----------- coverage: platform linux, python 3.6.8-final-0 -----------
+Name                                Stmts   Miss  Cover   Missing
+-----------------------------------------------------------------
+pyrsched/__init__.py                    1      0   100%
+pyrsched/__main__.py                   40      0   100%
+pyrsched/api/__init__.py                0      0   100%
+pyrsched/api/jobs.py                   51     22    57%   16-20, 24-25, 62-63, 69-72, 78-101
+pyrsched/api/pipelines.py              54      0   100%
+pyrsched/api/scheduler.py              23     11    52%   10-12, 18-21, 27-30
+pyrsched/api/status.py                  7      0   100%
+pyrsched/app.py                       104      0   100%
+pyrsched/conf/logging_config.py         1      0   100%
+pyrsched/conf/scheduler_config.py       1      0   100%
+pyrsched/server.py                     43     27    37%   19, 26, 29, 32, 35, 38, 41, 44, 47, 50-59, 62-71
+pyrsched/utils.py                      35     15    57%   34-41, 57-76
+-----------------------------------------------------------------
+TOTAL                                 360     75    79%
+Coverage XML written to file coverage.xml
+
+================== 15 failed, 43 passed, 15 errors in 18.82s ===================

@@ -111,3 +111,6 @@ venv.bak/
 # mypy
 .mypy_cache/
 .coveralls.yml
+
+#BKP
+*_BKP

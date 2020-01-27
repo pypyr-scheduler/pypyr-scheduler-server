@@ -46,6 +46,7 @@ setup(
         "pypyr>=3.0.2",
         "pytz>=2019.3",
         "apextras>=0.9.0",
+	"rpyc>=4.1.2",
     ],
     setup_requires=['pytest-runner'],
     tests_require=['pytest'],

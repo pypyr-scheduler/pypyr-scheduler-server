@@ -12,8 +12,9 @@ import pytest
 import webtest as wt
 import yaml
 
-from pyrsched.app import create_app
 
+from pyrsched.app import create_app
+#from pyrsched.server import startServer
 
 @pytest.yield_fixture(scope="function")
 def app():
@@ -22,7 +23,8 @@ def app():
     
     _app = create_app(config_file.resolve())
     _app.app.testing = True
-
+    
+    #startServer(config_file.resolve())
     ctx = _app.app.test_request_context()
     ctx.push()
 
@@ -38,10 +40,9 @@ def app():
     #         f.unlink()
     #     log_base_path.rmdir()
 
+
     yield _app.app
-
     ctx.pop()
-
 
 @pytest.fixture(scope="function")
 def testapp(app):
@@ -100,3 +101,4 @@ def upload_pipeline(pipeline, testapp):
             return testapp.post(f"/pipelines/{remote_filename}", upload_files=files)   
             
     return Inner()
+

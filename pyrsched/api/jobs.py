@@ -22,8 +22,8 @@ def get_one(job_identifier):
 
 def get_all():
     logger.info('GET /jobs')
-    return current_app.scheduler.get_jobs()
-
+    #return current_app.scheduler.get_jobs()
+    return current_app.scheduler.root.get_jobs()
 
 def create(pipeline_name, interval):
     logger.info(f'POST /jobs/{pipeline_name}/{interval}')
@@ -44,7 +44,8 @@ def create(pipeline_name, interval):
     log_filename = Path(log_path) / f'{pipeline_name}.log'
 
     # TODO: add job paused (see: https://github.com/agronholm/apscheduler/issues/68)
-    job = current_app.scheduler.add_job(
+#    job = current_app.scheduler.add_job(
+    job = current_app.scheduler.root.add_job(
         pipeline_runner,
         id=str(uuid.uuid4()),
         name=pipeline_name,

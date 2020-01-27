@@ -30,6 +30,7 @@ flask-ini = "*"
 pypyr = "*"
 pytz = "*"
 apextras = "*"
+rpyc = "*"
 
 [requires]
 python_version = "3.6"
