@@ -21,6 +21,7 @@ uwsgi = "*"
 setuptools = "*"
 wheel = "*"
 twine = "*"
+coloredlogs = "*"
 
 [packages]
 connexion = {extras = ["swagger-ui"],version = "*"}
@@ -37,8 +38,8 @@ python_version = "3.6"
 
 [scripts]
 test = "pytest tests"
-pypyr-scheduler-cli = "python pyrsched/cli.py"
-psc = "python pyrsched/cli.py"
+api = "python -m pyrsched"
+server = "python -m pyrsched.server"
 
 [pipenv]
 allow_prereleases = true

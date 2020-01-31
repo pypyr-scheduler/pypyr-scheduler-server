@@ -41,7 +41,9 @@ def _save_file(filename, content, success_status=201):
         target.parent.mkdir(parents=True)
     logger.info(f'saving file contents to {target.resolve()}')
     # logger.debug(content)
-    content.save(str(target))
+    # content.save(str(target))
+    with open(target, 'bw') as outfile:
+        outfile.write(content)
     if success_status == 204:  # 204 NO CONTENT requires to send nothing, not even headers
         return empty_response()
     return 'OK, Pipeline was uploaded', success_status

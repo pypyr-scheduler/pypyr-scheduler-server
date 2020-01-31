@@ -131,20 +131,26 @@ def create_app(config_file, args=argparse.Namespace(), **api_extra_args):
     log_path = Path(_app.app.iniconfig.get('pipelines', 'log_path')).resolve()
     logger.info(f'logpath: {log_path}')    
     if not log_path.exists():
-        logging.debug('logpath does not exist. creating.')
+        logger.debug('logpath does not exist. creating.')
         log_path.mkdir()
 
     # create and configure scheduler
-    config_path = Path(_app.app.iniconfig.get("config", "scheduler_config"))   
-    imported_scheduler_config = import_external(config_path, "config")
+    # config_path = Path(_app.app.iniconfig.get("config", "scheduler_config"))   
+    # imported_scheduler_config = import_external(config_path, "config")
     # apscheduler .pop()s values from this, so the original has to be preserved
-    scheduler_config = deepcopy(imported_scheduler_config)  
-    logger.info(scheduler_config)
+    # scheduler_config = deepcopy(imported_scheduler_config)  
+    # logger.info(scheduler_config)
 
 #    _app.app.scheduler = BackgroundScheduler(scheduler_config)    
 #    _app.app.scheduler.start()
- 
-    _app.app.scheduler = rpyc.connect('localhost', 12345)
+
+    try:    
+        logger.info("connecting to scheduler server...")
+        _app.app.scheduler = rpyc.connect('localhost', 12345)
+    except ConnectionRefusedError as ce:
+        logger.info("could not connect to scheduler server, is it running?")
+        sys.exit(-1)
+        
     #job = _app.app.scheduler.root.add_job('pyrsched:api:jobs:create', 'interval', args=['Hello World!'], seconds=2)
     #sleep(10)
     #_app.app.scheduler.root.remove_job(job.id)

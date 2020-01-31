@@ -24,14 +24,6 @@ We recommend using [pipenv](https://pipenv.kennethreitz.org), which makes it eas
 
 ## Usage
 
-<<<<<<< HEAD
-Run `python -m pyrsched`.
-Browse to [http://localhost:5000/ui/](http://localhost:5000/ui/). Upload pipelines via the REST
-interface or provide your own fileserver for pipelines.
-
-All configuration options can be defined in an .ini-file and be overridden at the command line.
-They have sensible defaults for minimal configuration hassle. For more information, see the [documentation](https://pypyr-scheduler.readthedocs.io).
-=======
 ### Development / Testing 
 
 Run `python -m pyrsched`.
@@ -48,7 +40,6 @@ The switch `--enable-threads` is necessary, if you intend to use the `apschedule
 
 Note that the command line switches for the hostname and port number are not used if served via wsgi, these values
 are provided to your wsgi server externally (see the `--http`-switch above).
->>>>>>> 392c8bbd06ea7fff673d8fc9d356874d039db7d2
 
 ## Documentation
 

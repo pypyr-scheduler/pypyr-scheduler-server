@@ -5,9 +5,17 @@ from flask import current_app
 
 logger = logging.getLogger(__name__)
 
-
 def get():
     logger.info('GET /status')
-    return {
-        'is_running': current_app.scheduler.state != apscheduler.schedulers.base.STATE_STOPPED,
+    state = {
+        'is_running': False,
+        'message': None,
     }
+    try:
+        connstate = current_app.scheduler.root.state()
+        state['is_running'] = connstate != apscheduler.schedulers.base.STATE_STOPPED
+        state['message'] = 'connected'
+    except Exception:
+        state['is_running'] = False
+        state['message'] = 'no connection to server'
+    return state

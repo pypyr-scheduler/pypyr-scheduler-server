@@ -8,8 +8,8 @@ and run it with ``python -m server``.
 """
 
 import rpyc
+import logging
 from rpyc.utils.server import ThreadedServer
-
 
 from apscheduler.schedulers.background import BackgroundScheduler
 
@@ -21,7 +21,12 @@ from pypyr.pipelinerunner import main as pipeline_runner
 
  
 class SchedulerService(rpyc.Service):
+    def __init__(self):
+        self.logger = logging.getLogger(__name__)
+        super().__init__()
+
     def exposed_add_job(self, func, *args, **kwargs):
+        self.logger.info(f"add_job({func}, {args}, {kwargs})")
         return scheduler.add_job(func, *args, **kwargs)
  
     def exposed_modify_job(self, job_id, jobstore=None, **changes):
@@ -45,6 +50,10 @@ class SchedulerService(rpyc.Service):
     def exposed_get_jobs(self, jobstore=None):
         return scheduler.get_jobs(jobstore)
 
+    def exposed_state(self):
+        self.logger.info("state")
+        return scheduler.state
+
 #def startServer():
 #    #with open('debugoutput', 'w') as myFile:
 #    #    myFile.write(str(config_file))
@@ -62,8 +71,7 @@ class SchedulerService(rpyc.Service):
 if __name__ == '__main__': 
     scheduler = BackgroundScheduler()
     scheduler.start()
-    protocol_config = {'allow_public_attrs': True}
-    server = ThreadedServer(SchedulerService, port=12345, protocol_config=protocol_config)
+    server = ThreadedServer(SchedulerService, port=12345, protocol_config={'allow_all_attrs': True})
     try:
         server.start()
     except (KeyboardInterrupt, SystemExit):

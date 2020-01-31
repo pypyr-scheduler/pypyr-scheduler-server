@@ -6,21 +6,32 @@ from pathlib import Path
 from apextras.formatter import ThreeQuarterWidthDefaultsHelpFormatter
 
 from .app import create_app, PYRSCHED_DEFAULTS
-#from .server import startServer
 
-def main(args):  # pragma: no cover       
+# from .server import startServer
+
+
+def main(args):  # pragma: no cover
+    try:
+        import coloredlogs
+        coloredlogs.install()
+    except ImportError:
+        pass
+
     config_from_args = getattr(args, "config", None)
     if config_from_args:
         config_file = Path(config_from_args)
     else:
-        config_file = path = Path(os.path.abspath(__file__)).parent / PYRSCHED_DEFAULTS['config']['config']
-    
-    #startServer(config_file.resolve()) 
+        config_file = path = (
+            Path(os.path.abspath(__file__)).parent
+            / PYRSCHED_DEFAULTS["config"]["config"]
+        )
+
+    # startServer(config_file.resolve())
     app = create_app(config_file.resolve(), args=args)
     app.run(
-        debug = app.app.iniconfig.get('flask', 'debug').upper() == "TRUE",
-        host = app.app.iniconfig.get('flask', 'host'),
-        port = app.app.iniconfig.get('flask', 'port'),
+        debug=app.app.iniconfig.get("flask", "debug").upper() == "TRUE",
+        host=app.app.iniconfig.get("flask", "host"),
+        port=app.app.iniconfig.get("flask", "port"),
     )
 
 
@@ -37,9 +48,9 @@ class FakeDefaultsHelpFormatter(argparse.HelpFormatter):
 
     def _get_help_string(self, action):
         help = action.help
-        if '%(default)' not in action.help:
+        if "%(default)" not in action.help:
             if action.dest in self.fake_defaults:
-                help += f' (default: {self.fake_defaults[action.dest]}).'
+                help += f" (default: {self.fake_defaults[action.dest]})."
         return help
 
 
@@ -49,7 +60,7 @@ def create_parser():
         formatter_class=FakeDefaultsHelpFormatter,  # ThreeQuarterWidthDefaultsHelpFormatter,
         argument_default=None,
         description="pypyr-scheduler, the pypyr scheduler. All options except the configuration part can be "
-        "overridden in the configuration file."
+        "overridden in the configuration file.",
     )
 
     # config
@@ -58,21 +69,31 @@ def create_parser():
         "-c", "--config", metavar="CONFIG", help="Configuration file"
     )
     config_group.add_argument(
-        "-s", "--show-config", action="store_true", help="Show effective configuration and exit"
+        "-s",
+        "--show-config",
+        action="store_true",
+        help="Show effective configuration and exit",
     )
     config_group.add_argument(
-        "--json", action="store_true", help="Print config in json instead of a human readable "
-        "format. This is only used if the --show-config flag is set"
+        "--json",
+        action="store_true",
+        help="Print config in json instead of a human readable "
+        "format. This is only used if the --show-config flag is set",
     )
     config_group.add_argument(
-        "-sc", "--scheduler-config", metavar="SCHEDULERCONF", help="Scheduler configuration file"
+        "-sc",
+        "--scheduler-config",
+        metavar="SCHEDULERCONF",
+        help="Scheduler configuration file",
     )
     config_group.add_argument(
         "--spec-dir", metavar="SPECDIR", help="Connexion specification directory"
     )
 
     # log
-    log_group = parser.add_argument_group("Logging", description="Control logging. Section [logging] in .ini")
+    log_group = parser.add_argument_group(
+        "Logging", description="Control logging. Section [logging] in .ini"
+    )
     log_group.add_argument(
         "-l",
         "--log-level",
@@ -94,8 +115,10 @@ def create_parser():
     )
 
     # pipelines
-    pipeline_group = parser.add_argument_group("Pipelines", description="Control how pipelines are managed. "
-                                               "Section [pipelines] in .ini")
+    pipeline_group = parser.add_argument_group(
+        "Pipelines",
+        description="Control how pipelines are managed. " "Section [pipelines] in .ini",
+    )
     pipeline_group.add_argument(
         "--enable-upload",
         action="store_true",
@@ -112,14 +135,19 @@ def create_parser():
     api_group = parser.add_argument_group(
         "API",
         description="Control the API endpoint. These options are basically forwarded to the underlying Flask server. "
-                    "Section [flask] in .ini. Note that these values may be overridden by a production server loke uwsgi.",
+        "Section [flask] in .ini. Note that these values may be overridden by a production server loke uwsgi.",
     )
-    api_group.add_argument("--host", metavar="HOST", help="The host interface to bind on")
+    api_group.add_argument(
+        "--host", metavar="HOST", help="The host interface to bind on"
+    )
     api_group.add_argument("--port", metavar="PORT", help="The port to listen to")
-    api_group.add_argument("--debug", metavar="DEBUG", help="Include debugging information")
+    api_group.add_argument(
+        "--debug", metavar="DEBUG", help="Include debugging information"
+    )
 
     return parser
 
-if __name__ == "__main__":  # pragma: no cover    
+
+if __name__ == "__main__":  # pragma: no cover
     parser = create_parser()
     main(parser.parse_args())
