@@ -1,6 +1,6 @@
-config = {
+log_config = {
     'version': 1,    
-    'disable_existing_loggers': True,
+    'disable_existing_loggers': False,
     'formatters': { 
         'standard': { 
             'format': '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
@@ -15,25 +15,27 @@ config = {
         },
     },
     'loggers': { 
-        '': {  # root logger
-            'handlers': ['default'],
-            'level': 'INFO',
-            'propagate': False
-        },
+        # never ever touch the root logger until youn know exactly the implications
+        # (here pypyr uses it to manage per-pipeline logs)
+        # '': {  # root logger
+        #     'handlers': ['default'],
+        #     'level': 'INFO',
+        #     'propagate': False
+        # },
         'pyrsched': { 
             'handlers': ['default'],
             'level': 'DEBUG',
             'propagate': False
         },
-        '__main__': {  # if __name__ == '__main__'
+        'apscheduler': {
             'handlers': ['default'],
             'level': 'DEBUG',
-            'propagate': False
+            'propagate': False            
         },
-        'connexion': {
-            'handlers': ['default'],
-            'level': 'WARNING',
-            'propagate': False
-        }
+        # 'pypyr': {
+        #     'handlers': ['default'],
+        #     'level': 'DEBUG',
+        #     'propagate': False            
+        # },
     } 
 }

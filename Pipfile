@@ -24,21 +24,17 @@ twine = "*"
 coloredlogs = "*"
 
 [packages]
-connexion = {extras = ["swagger-ui"],version = "*"}
-pyyaml = "*"
 apscheduler = "*"
-flask-ini = "*"
 pypyr = "*"
 pytz = "*"
-apextras = "*"
 rpyc = "*"
+psutil = "*"
 
 [requires]
-python_version = "3.6"
+python_version = "3.8"
 
 [scripts]
 test = "pytest tests"
-api = "python -m pyrsched"
 server = "python -m pyrsched.server"
 
 [pipenv]
