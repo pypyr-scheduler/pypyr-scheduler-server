@@ -13,6 +13,7 @@ import uuid
 
 import rpyc
 import psutil
+import click
 
 from dataclasses import dataclass, field, asdict
 from pathlib import Path
@@ -25,21 +26,37 @@ from apscheduler.jobstores.base import JobLookupError
 from pypyr.pipelinerunner import main as pipeline_runner
 
 from .utils import import_external
+from . import logger
 
 NEW_JOB_MAX_INSTANCES = 1
 
 class ServerWrapper(object):
-    def __init__(self):
-        self._logger = logging.getLogger("pyrsched-server.ServerWrapper")
-        self._scheduler = BackgroundScheduler()   
+    def __init__(self, conf_dir):
+        self._conf_dir = conf_dir
+        self._logger = logger.getChild("ServerWrapper")
+        self._scheduler = None
+        self._configure_scheduler()
+
         self._server = ThreadedServer(
             SchedulerService(scheduler=self._scheduler), 
             port=12345, 
             protocol_config={
-                'allow_public_attrs': True,
+                'allow_all_attrs': True,
             }, 
             logger=logger
         )
+
+    def _configure_scheduler(self):
+        config_path = Path(self._conf_dir) / "scheduler_config.py"
+        self._logger.debug(f"loading scheduler config from {config_path}")
+        imported_scheduler_config = import_external(config_path.resolve(), "apscheduler")
+
+        # apscheduler .pop()s values from this, so the original has to be preserved
+        scheduler_config = deepcopy(imported_scheduler_config)  
+
+        self._logger.debug("config loaded, creating scheduler")
+        self._scheduler = BackgroundScheduler(scheduler_config)   
+
 
     def shutdown(self):
         self._server.close()
@@ -58,6 +75,13 @@ class SchedulerService(rpyc.Service):
     def _marshal_job(self, job):
         """ make a data structure which is able to be submitted over the RPC line"""
         marshalled_job = job.__getstate__()
+        marshalled_job["next_run_time"] = marshalled_job["next_run_time"].isoformat() if marshalled_job["next_run_time"] else None
+        trigger = job.trigger.__getstate__()
+        marshalled_job["trigger"] = {
+            "interval": trigger["interval"].total_seconds(),
+            "start_date": trigger["start_date"].isoformat() if trigger["start_date"] else None,
+            "timezone": str(trigger["timezone"]),
+        }
         return marshalled_job
 
     def exposed_add_job(self, pipeline_name, interval=60):
@@ -89,8 +113,14 @@ class SchedulerService(rpyc.Service):
     def exposed_reschedule_job(self, job_id, jobstore=None, trigger=None, **trigger_args):
         return self._scheduler.reschedule_job(job_id, jobstore, trigger, **trigger_args)
 
-    def exposed_pause_job(self, job_id, jobstore=None):
-        return self._scheduler.pause_job(job_id, jobstore)
+    def exposed_pause_job(self, job_id):
+        self._logger.info(f"pause_job({job_id})")
+        try:
+            job = self._scheduler.pause_job(job_id)
+        except JobLookupError as jle:
+            self._logger.exception(jle, exc_info=False)
+            return None
+        return self._marshal_job(job)
 
     def exposed_start_job(self, job_id):
         """ Start a job. 
@@ -122,12 +152,12 @@ class SchedulerService(rpyc.Service):
         return self._marshal_job(job)
 
     def exposed_list_jobs(self):
-        self._logger.info(f"CALL: list_jobs")
+        self._logger.info(f"list_jobs()")
         job_list = self._scheduler.get_jobs()
         return [self._marshal_job(job) for job in job_list]
 
     def exposed_state(self):
-        self._logger.debug("CALL: state")
+        self._logger.debug("state()")
         job_list = self._scheduler.get_jobs()
         state_obj = {
             "run_state": self._scheduler.state,
@@ -138,32 +168,11 @@ class SchedulerService(rpyc.Service):
         }
         return state_obj
 
-if __name__ == '__main__': 
-    imported_logging_config = import_external(Path("../../conf/logging_config.py"), "log_config")
-    logging.config.dictConfig(imported_logging_config)
-    logger = logging.getLogger("pyrsched.server")
-
-    # patch the set_logging_config method to ust the logging formatter used in our config
-    # look for the handler named "default" in the handler list. There is no dict lookup though.
-    default_handler = next((handler for handler in logging.getLogger("pyrsched").handlers if handler.get_name() == "default"), None)
-
-    if default_handler:
-        import pypyr.log.logger 
-        # we won't restore the old function, no need to save it.
-        # old_set_logging_config = pypyr.log.logger.set_logging_config
-
-        def new_set_logging_config(log_level, handlers):
-            pass
-            logging.basicConfig(
-                format=default_handler.formatter._fmt,
-                # datefmt='%Y-%m-%d %H:%M:%S',
-                level=log_level,
-                handlers=handlers)
-        pypyr.log.logger.set_logging_config = new_set_logging_config
-    # done patching, pypyr now uses our own log format
-
+@click.command()
+@click.option("-c", "--conf", "conf_dir", default="conf", help="config directory")
+def cli(conf_dir):
     logger.info("starting scheduler")
-    server = ServerWrapper()
+    server = ServerWrapper(conf_dir)
     try:
         server.start()
     except (KeyboardInterrupt, SystemExit):
@@ -173,51 +182,11 @@ if __name__ == '__main__':
         server.shutdown()
         logger.info("scheduler shutdown complete.")
 
+if __name__ == '__main__': 
+    cli(prog_name='pyrsched-server')
 
 
 
-# def main(args):  # pragma: no cover
-#     try:
-#         import coloredlogs
-#         coloredlogs.install()
-#     except ImportError:
-#         pass
-
-#     config_from_args = getattr(args, "config", None)
-#     if config_from_args:
-#         config_file = Path(config_from_args)
-#     else:
-#         config_file = path = (
-#             Path(os.path.abspath(__file__)).parent
-#             / PYRSCHED_DEFAULTS["config"]["config"]
-#         )
-
-#     # startServer(config_file.resolve())
-#     app = create_app(config_file.resolve(), args=args)
-#     app.run(
-#         debug=app.app.iniconfig.get("flask", "debug").upper() == "TRUE",
-#         host=app.app.iniconfig.get("flask", "host"),
-#         port=app.app.iniconfig.get("flask", "port"),
-#     )
-
-
-# def flatten_dict(in_dict):
-#     out_dict = dict()
-#     for section in in_dict:
-#         for k, v in in_dict[section].items():
-#             out_dict[k] = v
-#     return out_dict
-
-
-# class FakeDefaultsHelpFormatter(argparse.HelpFormatter):
-#     fake_defaults = flatten_dict(PYRSCHED_DEFAULTS)
-
-#     def _get_help_string(self, action):
-#         help = action.help
-#         if "%(default)" not in action.help:
-#             if action.dest in self.fake_defaults:
-#                 help += f" (default: {self.fake_defaults[action.dest]})."
-#         return help
 
 
 # def create_parser():
@@ -312,8 +281,3 @@ if __name__ == '__main__':
 #     )
 
 #     return parser
-
-
-# if __name__ == "__main__":  # pragma: no cover
-#     parser = create_parser()
-#     main(parser.parse_args())

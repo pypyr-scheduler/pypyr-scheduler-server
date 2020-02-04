@@ -1,4 +1,4 @@
-config = {
+apscheduler = {
     'apscheduler.jobstores.default': {
         'type': 'memory',
         # 'url': 'sqlite:///jobs.sqlite'
