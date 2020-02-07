@@ -1,3 +1,5 @@
+import logging
+
 apscheduler = {
     'apscheduler.jobstores.default': {
         'type': 'memory',
@@ -15,4 +17,35 @@ apscheduler = {
 pypyr = {
     'pipelines.base_path': 'pipelines',
     'pipelines.log_path': 'logs',
+    'pipelines.log_level': logging.INFO,
+}
+
+log_config = {
+    'version': 1,    
+    'disable_existing_loggers': False,
+    'formatters': { 
+        'standard': { 
+            'format': '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
+        },
+    },
+    'handlers': { 
+        'default': { 
+            'level': 'DEBUG',
+            'formatter': 'standard',
+            'class': 'logging.StreamHandler',
+            'stream': 'ext://sys.stdout',  # Default is stderr
+        },
+    },
+    'loggers': { 
+        'pyrsched': { 
+            'handlers': ['default'],
+            'level': 'DEBUG',
+            'propagate': False
+        },
+        'apscheduler': {
+            'handlers': ['default'],
+            'level': 'DEBUG',
+            'propagate': False            
+        },
+    } 
 }

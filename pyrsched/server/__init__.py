@@ -5,6 +5,7 @@ from pathlib import Path
 
 from .utils import import_external
 
+
 def _monkeypatch_pypyr_logging(derive_from: str, handler_name: str):
     """ Patch the set_logging_config method to use a the logging formatter used in a specified logger.
 
@@ -36,19 +37,15 @@ def _monkeypatch_pypyr_logging(derive_from: str, handler_name: str):
         # we won't restore the old function, no need to save it.
         # old_set_logging_config = pypyr.log.logger.set_logging_config
 
-        def new_set_logging_config(log_level, handlers):
-            pass
+        def new_set_logging_config(log_level, handlers):            
             logging.basicConfig(
                 format=default_handler.formatter._fmt,
                 # datefmt='%Y-%m-%d %H:%M:%S',
                 level=log_level,
                 handlers=handlers)
         pypyr.log.logger.set_logging_config = new_set_logging_config
-
     # done patching, pypyr now uses our own log format
 
-imported_logging_config = import_external(Path("../../conf/logging_config.py"), "log_config")
-logging.config.dictConfig(imported_logging_config)
 logger = logging.getLogger("pyrsched.server")
 
-_monkeypatch_pypyr_logging("pyrsched", "default")
+_monkeypatch_pypyr_logging("pyrsched", "default")  
