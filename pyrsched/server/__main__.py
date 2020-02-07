@@ -182,6 +182,7 @@ class SchedulerService(object):
 
     def exposed_remove_job(self, job_id, jobstore=None):
         self._scheduler.remove_job(job_id, jobstore)
+        return self.__marshal_job(job_id)
     
     def get_job(self, job_id):
         self._logger.info(f"get_job({job_id})")
