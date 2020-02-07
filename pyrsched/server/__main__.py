@@ -57,9 +57,9 @@ class ServerWrapper(object):
         return server
 
     def _configure_logging(self):
-        self._logger.debug(f"loading logging config from {self._config_file}")
         imported_logging_config = import_external(self._config_file.resolve(), "log_config")
         logging.config.dictConfig(imported_logging_config)
+        self._logger.debug(f"loaded logging config from {self._config_file}")
 
     def _make_scheduler(self):
         self._logger.debug(f"loading scheduler config from {self._config_file}")
@@ -222,100 +222,3 @@ def cli(conf_dir):
 
 if __name__ == '__main__': 
     cli(prog_name='pyrsched-server')
-
-
-
-
-
-# def create_parser():
-#     parser = argparse.ArgumentParser(
-#         prog="pyrsched",
-#         formatter_class=FakeDefaultsHelpFormatter,  # ThreeQuarterWidthDefaultsHelpFormatter,
-#         argument_default=None,
-#         description="pypyr-scheduler, the pypyr scheduler. All options except the configuration part can be "
-#         "overridden in the configuration file.",
-#     )
-
-#     # config
-#     config_group = parser.add_argument_group("Configuration")
-#     config_group.add_argument(
-#         "-c", "--config", metavar="CONFIG", help="Configuration file"
-#     )
-#     config_group.add_argument(
-#         "-s",
-#         "--show-config",
-#         action="store_true",
-#         help="Show effective configuration and exit",
-#     )
-#     config_group.add_argument(
-#         "--json",
-#         action="store_true",
-#         help="Print config in json instead of a human readable "
-#         "format. This is only used if the --show-config flag is set",
-#     )
-#     config_group.add_argument(
-#         "-sc",
-#         "--scheduler-config",
-#         metavar="SCHEDULERCONF",
-#         help="Scheduler configuration file",
-#     )
-#     config_group.add_argument(
-#         "--spec-dir", metavar="SPECDIR", help="Connexion specification directory"
-#     )
-
-#     # log
-#     log_group = parser.add_argument_group(
-#         "Logging", description="Control logging. Section [logging] in .ini"
-#     )
-#     log_group.add_argument(
-#         "-l",
-#         "--log-level",
-#         metavar="LEVEL",
-#         type=str,
-#         help="Main log level, as log-level string (i.e.: 'INFO', 'DEBUG')",
-#     )
-#     log_group.add_argument(
-#         "-lp",
-#         "--log-path",
-#         metavar="LOGPATH",
-#         help="Log path. Relative to the program directory or absolute",
-#     )
-#     log_group.add_argument(
-#         "-lc",
-#         "--log-config",
-#         metavar="LOGCONFIG",
-#         help="Python module which contains the log configuration",
-#     )
-
-#     # pipelines
-#     pipeline_group = parser.add_argument_group(
-#         "Pipelines",
-#         description="Control how pipelines are managed. " "Section [pipelines] in .ini",
-#     )
-#     pipeline_group.add_argument(
-#         "--enable-upload",
-#         action="store_true",
-#         help="Activate the pipeline file server. This can be useful if you don't want to provide your own",
-#     )
-
-#     pipeline_group.add_argument(
-#         "-p",
-#         "--pipeline-dir",
-#         metavar="PIPELINE_PATH",
-#         help="Pipeline upload directory. Relative to the program directory or absolute",
-#     )
-
-#     api_group = parser.add_argument_group(
-#         "API",
-#         description="Control the API endpoint. These options are basically forwarded to the underlying Flask server. "
-#         "Section [flask] in .ini. Note that these values may be overridden by a production server loke uwsgi.",
-#     )
-#     api_group.add_argument(
-#         "--host", metavar="HOST", help="The host interface to bind on"
-#     )
-#     api_group.add_argument("--port", metavar="PORT", help="The port to listen to")
-#     api_group.add_argument(
-#         "--debug", metavar="DEBUG", help="Include debugging information"
-#     )
-
-#     return parser
