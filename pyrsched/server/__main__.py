@@ -2,6 +2,7 @@ import logging
 import logging.config
 import uuid
 import os
+import threading
 
 import psutil
 import click
@@ -101,14 +102,17 @@ class PipelineLoggingContext:
     def __init__(self, logger, handler=None):
         self.logger = logger
         self.handler = handler
+        self.lock = threading.Lock()
 
     def __enter__(self):
         if self.handler:
+            self.lock.acquire()
             self.logger.addHandler(self.handler)
 
     def __exit__(self, et, ev, tb):
         if self.handler:
             self.logger.removeHandler(self.handler)
+            self.lock.release()
 
 
 def job_function(pipeline_name, log_path, log_level, log_format):
