@@ -7,6 +7,7 @@ apscheduler = {
     },
     'apscheduler.executors.default': {
         'class': 'apscheduler.executors.pool:ThreadPoolExecutor',
+        # 'class': 'apscheduler.executors.pool:ProcessPoolExecutor',
         'max_workers': '20'
     },
     'apscheduler.job_defaults.coalesce': 'false',
@@ -18,6 +19,7 @@ pypyr = {
     'pipelines.base_path': 'pipelines',
     'pipelines.log_path': 'logs',
     'pipelines.log_level': logging.INFO,
+    'server_port': 12345,
 }
 
 log_config = {
@@ -28,22 +30,29 @@ log_config = {
             'format': '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
         },
     },
+    # 'filters': {
+    #     'nopypyr': {
+    #         '()': 'ext://pyrsched.server.utils.ExcludeLogFilter',
+    #         'exclude': 'pypyr',
+    #     }
+    # },
     'handlers': { 
         'default': { 
             'level': 'DEBUG',
             'formatter': 'standard',
+            # 'filters': ['nopypyr', ],
             'class': 'logging.StreamHandler',
             'stream': 'ext://sys.stdout',  # Default is stderr
-        },
+        },        
     },
     'loggers': { 
         'pyrsched': { 
-            'handlers': ['default'],
+            'handlers': ['default', ],
             'level': 'DEBUG',
             'propagate': False
         },
         'apscheduler': {
-            'handlers': ['default'],
+            'handlers': ['default', ],
             'level': 'DEBUG',
             'propagate': False            
         },

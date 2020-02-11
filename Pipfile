@@ -6,30 +6,23 @@ verify_ssl = true
 [dev-packages]
 flake8 = "*"
 pytest = "*"
-webtest = "*"
 pytest-runner = "*"
-swagger-tester = "*"
 black = "*"
 sphinx = "*"
-sphinxcontrib-httpexample = "*"
 sphinx-rtd-theme = "*"
 pytest-cov = "*"
 python-coveralls = "*"
 coveralls = "*"
-sphinxcontrib-openapi = {extras = ["markdown"],version = "*"}
-uwsgi = "*"
 setuptools = "*"
 wheel = "*"
 twine = "*"
-coloredlogs = "*"
 
 [packages]
 apscheduler = "*"
-pypyr = "*"
 pytz = "*"
-rpyc = "*"
 psutil = "*"
 click = "*"
+pypyr = "*"
 
 [requires]
 python_version = "3.8"

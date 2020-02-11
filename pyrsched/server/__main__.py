@@ -16,7 +16,7 @@ from apscheduler.triggers.interval import IntervalTrigger
 from apscheduler.jobstores.base import JobLookupError
 from pypyr.pipelinerunner import main as pipeline_runner
 
-from .utils import import_external
+from .utils import import_external, import_external_attribute
 from . import logger
 
 
@@ -27,10 +27,11 @@ class ServerWrapper(object):
         self._conf_dir = conf_dir        
         self._config_file = Path(self._conf_dir) / "scheduler_config.py"
         self._logger = logger.getChild("ServerWrapper")
-        self._configure_logging()
-        self._scheduler = self._make_scheduler()
-        self._service = self._make_service_class() 
-        self._server = self._make_shared_memory_server()
+
+        self._config = import_external(self._config_file)
+        logging.config.dictConfig(self._config.log_config)
+
+        self._monkeypatch_pypyr_logging()
 
     def _check_authkey(self):
         # generate an authkey if it was not provided via environment
@@ -43,60 +44,87 @@ class ServerWrapper(object):
         self._logger.warning(authkey)
         return authkey
 
-    def _make_shared_memory_server(self):        
-        class SchedulerManager(BaseManager): pass        
-        SchedulerManager.register("scheduler", callable=lambda: self._service)
-
-        authkey = self._check_authkey()
-        manager = SchedulerManager(address=("", 12345), authkey=str(authkey).encode("utf-8"))
-        try:
-            server = manager.get_server()
-        except OSError as ose:
-            self._logger.exception(ose)
-            return None
-        return server
-
-    def _configure_logging(self):
-        imported_logging_config = import_external(self._config_file.resolve(), "log_config")
-        logging.config.dictConfig(imported_logging_config)
-        self._logger.debug(f"loaded logging config from {self._config_file}")
-
-    def _make_scheduler(self):
-        self._logger.debug(f"loading scheduler config from {self._config_file}")
-        imported_scheduler_config = import_external(self._config_file.resolve(), "apscheduler")
-
-        # apscheduler .pop()s values from this, so the original has to be preserved
-        scheduler_config = deepcopy(imported_scheduler_config)  
-
-        self._logger.debug("config loaded, creating scheduler")
-        return BackgroundScheduler(scheduler_config)   
-
-    def _make_service_class(self):
-        self._logger.debug(f"loading pypyr config from {self._config_file}")
-        self._pypyr_config = import_external(self._config_file.resolve(), "pypyr")  
-        if self._logger.level <= logging.DEBUG:
-            for k,v in self._pypyr_config.items():
-                self._logger.debug(f"{k}: {v}")        
-        service = SchedulerService(scheduler=self._scheduler, pypyr_config=self._pypyr_config, logger=self._logger)
-        return service
-
     def shutdown(self):
         # self._server.shutdown()
-        self._scheduler.shutdown()
+        try:
+            self._scheduler.shutdown()
+        except:
+            pass
 
     def start(self):
-        if self._server:
-            self._scheduler.start() 
-            self._server.serve_forever()
-        else:
-            raise ConnectionError("Could not start server instance.")
+        if self._logger.level <= logging.DEBUG:
+            self._logger.debug("Starting server with config:")
+            for k,v in self._config.pypyr.items():
+                self._logger.debug(f"{k}: {v}")    
+              
+        try:
+            scheduler_config = deepcopy(self._config.apscheduler)  
+
+            scheduler = BackgroundScheduler(scheduler_config)   
+
+            class SchedulerManager(BaseManager): pass  
+            authkey = self._check_authkey()
+            service = SchedulerService(scheduler=scheduler, config=self._config, logger=self._logger)          
+            SchedulerManager.register("scheduler", callable=lambda: service)
+
+            manager = SchedulerManager(address=("", self._config.pypyr.get("server_port", 12345)), authkey=str(authkey).encode("utf-8"))
+            server = manager.get_server()
+
+            scheduler.start() 
+            server.serve_forever()
+
+        except OSError as ose:
+            self._logger.error(ose.strerror)
+
+    def _monkeypatch_pypyr_logging(self):
+        import pypyr.log.logger 
+        # look for the handler named "default" in the handler list. There is no dict lookup though.
+        def new_set_root_logger(root_log_level, log_path=None):
+            handlers = []
+            if log_path:
+                file_handler = logging.FileHandler(log_path)
+                handlers.append(file_handler)
+
+            pypyr.log.logger.set_logging_config(root_log_level, handlers=handlers)
+            pypyr.log.logger.set_up_notify_log_level()
+
+            root_logger = logging.getLogger("pypyr")
+            root_logger.debug(
+                "Root logger %s configured with level %s",
+                root_logger.name, root_log_level)
+
+        pypyr.log.logger.set_root_logger = new_set_root_logger
+        # done patching, pypyr now uses our own log format
+
+
+class PipelineLoggingContext:
+    def __init__(self, logger, handler=None):
+        self.logger = logger
+        self.handler = handler
+
+    def __enter__(self):
+        if self.handler:
+            self.logger.addHandler(self.handler)
+
+    def __exit__(self, et, ev, tb):
+        if self.handler:
+            self.logger.removeHandler(self.handler)
+
+
+def job_function(pipeline_name, log_path, log_level, log_format):
+    logger = logging.getLogger("pypyr")    
+    log_filename = Path(log_path) / f'{pipeline_name}.log'
+    pipeline_handler = logging.FileHandler(log_filename)
+    pipeline_handler.setFormatter(logging.Formatter(fmt=log_format))
+    
+    with PipelineLoggingContext(logger, handler=pipeline_handler):
+        pipeline_runner(pipeline_name, pipeline_context_input='', working_dir=Path("."), log_level=log_level, log_path=None)
 
 class SchedulerService(object):
-    def __init__(self, scheduler=None, pypyr_config=None, logger=None, ):
-        self._logger = logger or logging.getLogger("pyrsched.RPCService")
-        self._pypyr_config = pypyr_config        
+    def __init__(self, scheduler=None, config=None, logger=None):
+        self._logger = logger.getChild("service") or logging.getLogger("pyrsched.service")
+        self._config = config        
         self._scheduler = scheduler        
-
 
     def _marshal_job(self, job):
         """ make a data structure which is able to be submitted over the RPC line"""
@@ -114,13 +142,17 @@ class SchedulerService(object):
         
         return marshalled_job
 
+
     def add_job(self, pipeline_name, interval=60):
         self._logger.info(f"add_job({pipeline_name}, {interval})")
 
         # ToDo: lookup if a job with the same name already exists and handle duplicate job names (suffix?)
-        log_filename = Path("./logs") / f'{pipeline_name}.log'
+
+        formatters = self._config.log_config.get("formatters", {"standard": {"format": "%(asctime)s [%(levelname)s] %(name)s: %(message)s"}})
+        log_format = formatters["standard"]["format"]
+
         job = self._scheduler.add_job(
-            pipeline_runner,
+            job_function,
             id=str(uuid.uuid4()),
             name=pipeline_name,
             trigger=IntervalTrigger(seconds=interval),
@@ -128,17 +160,13 @@ class SchedulerService(object):
             args=[pipeline_name, ],
             max_instances=NEW_JOB_MAX_INSTANCES,
             kwargs={
-                'pipeline_context_input': '',
-                'working_dir': Path("."), # base_path,
-                'log_level': self._pypyr_config.get("pipelines.log_level", logging.INFO),
-                'log_path': str(log_filename),
+                "log_path": Path(self._config.pypyr.get("pipelines.log_path", Path("logs"))),
+                "log_format": log_format,  
+                "log_level": self._config.pypyr.get("pipelines.log_level", logging.WARNING),
             }
         )
 
         return job.id
- 
-    def exposed_modify_job(self, job_id, jobstore=None, **changes):
-        return self._scheduler.modify_job(job_id, jobstore, **changes)
 
     def reschedule_job(self, job_id, interval=60):
         self._logger.info(f"reschedule_job({job_id})")
@@ -180,9 +208,9 @@ class SchedulerService(object):
             return None
         return self._marshal_job(job)
 
-    def exposed_remove_job(self, job_id, jobstore=None):
-        self._scheduler.remove_job(job_id, jobstore)
-        return self.__marshal_job(job_id)
+    def remove_job(self, job_id):
+        self._scheduler.remove_job(job_id)
+        return None  # self._marshal_job(job_id)
     
     def get_job(self, job_id):
         self._logger.info(f"get_job({job_id})")
@@ -208,8 +236,8 @@ class SchedulerService(object):
 
 @click.command()
 @click.option("-c", "--conf", "conf_dir", default="conf", help="config directory")
-def cli(conf_dir):
-    logger.info("starting scheduler")
+def cli(conf_dir):    
+    click.echo(f"Starting scheduler. Config: {Path(conf_dir).resolve()}")
     server = ServerWrapper(conf_dir)
     try:
         server.start()
