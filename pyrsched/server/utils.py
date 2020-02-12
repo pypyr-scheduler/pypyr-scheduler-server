@@ -1,6 +1,8 @@
 import logging
 import sys
 import importlib
+import threading 
+
 from pathlib import Path
 
 from . import logger as pyrsched_logger
@@ -35,19 +37,24 @@ def import_external(file_name):
     return imported_module
 
 
-# class ExcludeLogFilter(logging.Filter):
-#     def __init__(self, exclude=None):
-#         if not isinstance(exclude, list):
-#             exclude=[exclude]
-#         self._exclude = exclude
-#         print(self._exclude)
+class PipelineLoggingContext:
+    def __init__(self, logger, loglevel=None, handler=None):
+        self.logger = logger
+        self.handler = handler
+        self.loglevel = loglevel
+        self.lock = threading.Lock()
 
-#     def filter(self, record: logging.LogRecord):
-#         suppress_record = False
-#         for exclude_name in self._exclude:
-#             print(record.name)
-#             if record.name.startswith(exclude_name):
-#                 suppress_record = True
-#                 print(f"found {exclude_name}")
-#                 break
-#         return not suppress_record
+    def __enter__(self):
+        self.lock.acquire()
+        if self.loglevel is not None:
+            self._old_level = self.logger.level
+            self.logger.setLevel(self.loglevel)
+        if self.handler:
+            self.logger.addHandler(self.handler)
+
+    def __exit__(self, et, ev, tb):
+        self.lock.release()
+        if self.loglevel is not None:
+            self.logger.setLevel(self._old_level)
+        if self.handler:
+            self.logger.removeHandler(self.handler)
