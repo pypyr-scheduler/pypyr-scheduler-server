@@ -22,13 +22,13 @@ apscheduler = "*"
 pytz = "*"
 psutil = "*"
 click = "*"
-pypyr = "*"
+pypyr = ">=3.1"
 
 [requires]
 python_version = "3.8"
 
 [scripts]
-test = "pytest tests"
+tests = "pytest tests"
 server = "python -m pyrsched.server"
 
 [pipenv]

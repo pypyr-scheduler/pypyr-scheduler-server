@@ -1,52 +1,16 @@
-"""
-derived from:
-https://github.com/hirose31/connexion-tiny-petstore/blob/master/tests/conftest.py
-"""
 import os
 import sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from pathlib import Path
+from types import SimpleNamespace
+
+from apscheduler.schedulers.background import BackgroundScheduler
+from pyrsched.server.service import SchedulerService
 
 import pytest
-import webtest as wt
 import yaml
 
-
-from pyrsched.app import create_app
-#from pyrsched.server import startServer
-
-@pytest.yield_fixture(scope="function")
-def app():
-    path = Path(os.path.abspath(__file__)).parent
-    config_file = path / "testdata" / "pyrsched.test.ini"
-    
-    _app = create_app(config_file.resolve())
-    _app.app.testing = True
-    
-    #startServer(config_file.resolve())
-    ctx = _app.app.test_request_context()
-    ctx.push()
-
-    # delete test pipeline upload directory if present
-    pipeline_base_path = Path(_app.app.iniconfig.get('pipelines', 'base_path'))
-    if pipeline_base_path.exists():
-        for f in pipeline_base_path.iterdir():
-            f.unlink()
-        pipeline_base_path.rmdir()
-    # log_base_path = Path(_app.app.iniconfig.get('pipelines', 'log_path'))
-    # if log_base_path.exists():
-    #     for f in log_base_path.iterdir():
-    #         f.unlink()
-    #     log_base_path.rmdir()
-
-
-    yield _app.app
-    ctx.pop()
-
-@pytest.fixture(scope="function")
-def testapp(app):
-    return wt.TestApp(app)
 
 
 @pytest.fixture(scope="function")
@@ -102,3 +66,47 @@ def upload_pipeline(pipeline, testapp):
             
     return Inner()
 
+@pytest.fixture(scope="function")
+def apscheduler_config():
+    return {
+        'apscheduler.jobstores.default': {
+            'type': 'memory',
+        },
+        'apscheduler.executors.default': {
+            'class': 'apscheduler.executors.pool:ThreadPoolExecutor',
+            'max_workers': '1'
+        },
+        'apscheduler.job_defaults.coalesce': 'false',
+        'apscheduler.job_defaults.max_instances': '1',
+        'apscheduler.timezone': 'Europe/Berlin',
+    }
+
+@pytest.fixture(scope="function")
+def pypyr_config():
+    return {
+        'pipelines.base_path': 'pipelines',
+        'pipelines.log_path': 'logs',
+        'pipelines.log_level': 20,  ## logging.INFO,
+        'server_port': 12345,
+    }
+
+@pytest.fixture(scope="function")
+def logging_config():
+    return {
+        'version': 1, 
+    }
+
+@pytest.fixture(scope="function")
+def test_config(apscheduler_config, pypyr_config, logging_config):
+    c = SimpleNamespace(
+        apscheduler=apscheduler_config,
+        pypyr=pypyr_config,
+        log_config=logging_config
+    )
+    return c
+
+@pytest.fixture(scope="function")
+def scheduler_service(test_config):    
+    scheduler = BackgroundScheduler(test_config.apscheduler)
+    service = SchedulerService(scheduler=scheduler, config=test_config, logger=None)
+    return service
