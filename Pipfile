@@ -24,7 +24,6 @@ sqlalchemy = "*"
 
 [packages]
 apscheduler = "*"
-pypyr = "==3.0.3"
 pytz = "*"
 psutil = "*"
 click = "*"
