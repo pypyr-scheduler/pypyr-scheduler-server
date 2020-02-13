@@ -19,6 +19,8 @@ coveralls = "*"
 setuptools = "*"
 wheel = "*"
 twine = "*"
+gunicorn = "*"
+sqlalchemy = "*"
 
 [packages]
 apscheduler = "*"
