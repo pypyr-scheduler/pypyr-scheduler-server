@@ -10,9 +10,12 @@ pytest-runner = "*"
 black = "*"
 sphinx = "*"
 sphinx-rtd-theme = "*"
+
+coverage = "==4.5.4"
 pytest-cov = "*"
 python-coveralls = "*"
 coveralls = "*"
+
 setuptools = "*"
 wheel = "*"
 twine = "*"
