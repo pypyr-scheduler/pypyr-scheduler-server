@@ -1,8 +1,8 @@
 from setuptools import setup
 from os import path
-from pyrsched import VERSION
 
 NAME = "pypyr-scheduler"
+VERSION = "2.0.0"
 
 here = path.abspath(path.dirname(__file__))
 
@@ -12,12 +12,10 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 setup(
     name=NAME,
     version=VERSION,
-    description="Schedule pypyr pipelines with apscheduler and control them "
-                "via REST. The API interface is provided by Zalando's "
-                "connexion.",
+    description="Schedule pypyr pipelines with apscheduler",
     long_description=LONG_DESCRIPTION,
     long_description_content_type='text/markdown',
-    url="https://github.com/pypyr-scheduler/pypyr-scheduler",
+    url="https://github.com/pypyr-scheduler/pypyr-scheduler-server",
     license='MIT',
 
     author='David Zerrenner',
@@ -31,21 +29,17 @@ setup(
                  "Programming Language :: Python :: 3.7",
     ],
 
-    keywords=["OpenAPI", "Connexion", "Pypyr", "Scheduler", "Taskrunner"],
+    keywords=["Pypyr", "Scheduler", "Taskrunner"],
 
     packages=['pyrsched'],
     include_package_data=True,
 
     install_requires=[
-        "connexion>=2.0.0",
-        "swagger-ui-bundle>=0.0.2",
-        "pyyaml>=5.2",
-        "apscheduler>=3.6.3",
-        "flask>=1.1.1",
-        "flask-ini>=0.2.1",
-        "pypyr>=3.0.2",
-        "pytz>=2019.3",
-        "apextras>=0.9.0",
+        "apscheduler",
+        "pytz",
+        "psutil",
+        "click",
+        "pypyr",
     ],
     setup_requires=['pytest-runner'],
     tests_require=['pytest'],

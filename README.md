@@ -20,35 +20,25 @@ We recommend using [pipenv](https://pipenv.kennethreitz.org), which makes it eas
 
     pip install --user pipenv  # only needed once per python install
     pipenv install
-    pipenv run pyrsched
+    pipenv run server
 
 ## Usage
 
-<<<<<<< HEAD
-Run `python -m pyrsched`.
-Browse to [http://localhost:5000/ui/](http://localhost:5000/ui/). Upload pipelines via the REST
-interface or provide your own fileserver for pipelines.
+`pypyr-scheduler` needs a shared secret between the server and the client.
+It reads it from the environment variable `PYRSCHED_SECRET`.
+If the server does not see a secret it generates it and writes it to its
+logfile for later use. If there is a secret set in the environment, it is used.
 
-All configuration options can be defined in an .ini-file and be overridden at the command line.
-They have sensible defaults for minimal configuration hassle. For more information, see the [documentation](https://pypyr-scheduler.readthedocs.io).
-=======
+A client needs the same shared secret.
+
 ### Development / Testing 
 
-Run `python -m pyrsched`.
-Browse to [http://localhost:5000/ui/](http://localhost:5000/ui/). This uses the builtin webserver from Flask, which
-is not recommended for production use.
+Run `pipenv run server`. Now you can connect to the server with a suitable client. 
+Currently available are `pypyr-scheduler-cli` and `pypyr-scheduler-rpc-client` with the first one depending on the latter.
 
 ### Production deployment
 
-For example, the command line for `uwsgi` would look like follows:
 
-    uwsgi --http 127.0.0.1:3031 -w pyrsched.wsgi --enable-threads
-
-The switch `--enable-threads` is necessary, if you intend to use the `apscheduler.executors.pool:ThreadPoolExecutor` (which is default).
-
-Note that the command line switches for the hostname and port number are not used if served via wsgi, these values
-are provided to your wsgi server externally (see the `--http`-switch above).
->>>>>>> 392c8bbd06ea7fff673d8fc9d356874d039db7d2
 
 ## Documentation
 
@@ -57,7 +47,6 @@ It is generated from the `docs/source` folder in this repository. Feel free to s
 
 ## Development
 
-The API schema should be compliant to the [OpenAPI 3.0.0 specification](https://swagger.io/docs/specification/).
 
 ## Quick links
 

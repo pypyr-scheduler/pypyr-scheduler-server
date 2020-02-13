@@ -6,18 +6,16 @@ verify_ssl = true
 [dev-packages]
 flake8 = "*"
 pytest = "*"
-webtest = "*"
 pytest-runner = "*"
-swagger-tester = "*"
 black = "*"
 sphinx = "*"
-sphinxcontrib-httpexample = "*"
 sphinx-rtd-theme = "*"
+
+coverage = "==4.5.4"
 pytest-cov = "*"
 python-coveralls = "*"
 coveralls = "*"
-sphinxcontrib-openapi = {extras = ["markdown"],version = "*"}
-uwsgi = "*"
+
 setuptools = "*"
 wheel = "*"
 twine = "*"
@@ -25,21 +23,18 @@ gunicorn = "*"
 sqlalchemy = "*"
 
 [packages]
-connexion = {extras = ["swagger-ui"],version = "*"}
-pyyaml = "*"
 apscheduler = "*"
-flask-ini = "*"
-pypyr = "*"
 pytz = "*"
-apextras = "*"
+psutil = "*"
+click = "*"
+pypyr = ">=3.1"
 
 [requires]
-python_version = "3.6"
+python_version = "3.8"
 
 [scripts]
-test = "pytest tests"
-pypyr-scheduler-cli = "python pyrsched/cli.py"
-psc = "python pyrsched/cli.py"
+tests = "pytest tests"
+server = "python -m pyrsched.server"
 
 [pipenv]
 allow_prereleases = true
