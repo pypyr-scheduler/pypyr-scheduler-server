@@ -5,9 +5,6 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 from pathlib import Path
 from types import SimpleNamespace
 
-from apscheduler.schedulers.background import BackgroundScheduler
-from pyrsched.server.service import SchedulerService
-
 import pytest
 import yaml
 
@@ -106,7 +103,15 @@ def test_config(apscheduler_config, pypyr_config, logging_config):
     return c
 
 @pytest.fixture(scope="function")
-def scheduler_service(test_config):    
+def scheduler_service(test_config):     
+    from apscheduler.schedulers.background import BackgroundScheduler
+    from pyrsched.server.service import SchedulerService   
+
     scheduler = BackgroundScheduler(test_config.apscheduler)
     service = SchedulerService(scheduler=scheduler, config=test_config, logger=None)
     return service
+
+@pytest.fixture(scope="function")
+def scheduler_server():
+    from pyrsched.server.server import ServerWrapper
+    return ServerWrapper(Path("tests/testdata/"))
