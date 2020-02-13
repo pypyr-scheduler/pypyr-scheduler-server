@@ -1,5 +1,8 @@
-import pytest
 import logging
+from pathlib import Path
+
+import pytest
+
 
 """
 These tests invoke the scheduler service class directly (i.e. bypassing any ipc stuff).
@@ -8,6 +11,11 @@ These tests invoke the scheduler service class directly (i.e. bypassing any ipc 
 class TestJobExecution:
     def test_job_function(self, caplog):
         from pyrsched.server.service import job_function
+
+        # create log dir (on TravisCI, there is no directory configured)
+        # /home/travis/build/pypyr-scheduler/pypyr-scheduler-server/logs/helloworld.log
+        log_path = Path("./logs")
+        log_path.mkdir(parents=True, exist_ok=True)
 
         # this runs one pipeline with custom configuration. 
         # Its function is checked by its log messages 
