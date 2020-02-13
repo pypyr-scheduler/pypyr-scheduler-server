@@ -23,7 +23,7 @@ def check_search_path(module_file):
         logger.info(f'{module_path} not in sys.path, adding it')
         sys.path.insert(0, str(module_path))
 
-def import_external_attribute(file_name, attribute_name):
+def import_external_attribute(file_name, attribute_name):  # pragma: no cover; this is not used
     imported_module = import_external(file_name)
     logger.info(f'importing {attribute_name} from {imported_module}')
     attribute = getattr(imported_module, attribute_name)

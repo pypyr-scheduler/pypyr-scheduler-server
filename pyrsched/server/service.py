@@ -12,7 +12,7 @@ from .utils import PipelineLoggingContext
 
 NEW_JOB_MAX_INSTANCES = 1
 
-def job_function(pipeline_name, log_path, log_level, log_format):
+def job_function(pipeline_name, log_path, log_level, log_format, pipeline_path):
     logger = logging.getLogger("pypyr")
     log_filename = Path(log_path) / f"{pipeline_name}.log"
 
@@ -22,7 +22,7 @@ def job_function(pipeline_name, log_path, log_level, log_format):
 
     with PipelineLoggingContext(logger, loglevel=log_level, handler=pipeline_handler):
         pipeline_runner(
-            pipeline_name, pipeline_context_input="", working_dir=Path("."),
+            pipeline_name, pipeline_context_input="", working_dir=Path(pipeline_path),
         )
 
 
@@ -73,6 +73,9 @@ class SchedulerService(object):
         log_path = str(
             Path(self._config.pypyr.get("pipelines.log_path", Path("logs"))).resolve()
         )
+        pipeline_path = str(
+            Path(self._config.pypyr.get("pipelines.base_path", Path("pipelines"))).resolve()
+        )
 
         job = self._scheduler.add_job(
             job_function,
@@ -90,6 +93,7 @@ class SchedulerService(object):
                 "log_level": self._config.pypyr.get(
                     "pipelines.log_level", logging.WARNING
                 ),
+                "pipeline_path": pipeline_path
             },
         )
 
@@ -136,13 +140,16 @@ class SchedulerService(object):
         return self._marshal_job(job)
 
     def remove_job(self, job_id):
-        self._scheduler.remove_job(job_id)
-        return None  # self._marshal_job(job_id)
+        self._logger.info(f"remove_job({job_id})")
+        try:
+            self._scheduler.remove_job(job_id)
+        finally:
+            return None  # self._marshal_job(job_id)
 
     def get_job(self, job_id):
         self._logger.info(f"get_job({job_id})")
         job = self._scheduler.get_job(job_id)
-        return self._marshal_job(job)
+        return self._marshal_job(job) if job is not None else None
 
     def list_jobs(self):
         self._logger.info(f"list_jobs()")
