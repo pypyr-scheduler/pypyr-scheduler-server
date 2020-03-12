@@ -1,4 +1,3 @@
-# pypyr-scheduler 📓
 
 [![Logo](media/logo-192.png)](https://github.com/dzerrenner/pypyr-scheduler)
 
