@@ -32,8 +32,13 @@ Alternatively, you can also use ``pip`` to install the package.
 Configuration
 -------------
 
-There is one configuration file (default location: ``conf/scheduler_config.py``) which controls
-the scheduler, pypyr and logging. In the configuration file, there are there
+There is one configuration file which controls the scheduler, pypyr and logging. 
+The name of the file has to be ``scheduler_config.py``, its directory is passed via the
+command line switch ``-c`` or ``--conf``. An example configuration file containing
+the default config is packaged in the source and the wheel distribution. Alternatively
+you can refer the file from `github <https://github.com/pypyr-scheduler/pypyr-scheduler-server/blob/master/conf/scheduler_config.py>`_.
+
+In the configuration file, there are there
 python dictionaries defined, one for each of the sections above.
 
 ``apscheduler`` is a apschedulers configuration and is passed as-is to it

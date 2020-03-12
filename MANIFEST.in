@@ -1,2 +1,2 @@
 include LICENSE *.md *.txt *.rst
-recursive-include pyrsched/conf *
+recursive-include conf *

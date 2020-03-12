@@ -1,8 +1,9 @@
-from setuptools import setup
+from setuptools import (setup, find_namespace_packages)
 from os import path
+from pkg_resources import parse_version
 
 NAME = "pypyr-scheduler"
-VERSION = "2.0.0"
+VERSION = str(parse_version("2.0.0"))
 
 here = path.abspath(path.dirname(__file__))
 
@@ -31,8 +32,12 @@ setup(
 
     keywords=["Pypyr", "Scheduler", "Taskrunner"],
 
-    packages=['pyrsched'],
+    packages=find_namespace_packages(include=['pyrsched.*', ]),
+    namespace_packages=['pyrsched'],
     include_package_data=True,
+    data_files=[
+        ('conf', ['conf/scheduler_config.py',]),
+    ],
 
     install_requires=[
         "apscheduler",
