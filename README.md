@@ -4,10 +4,10 @@
 
 Schedule [pypyr](https://github.com/pypyr/pypyr-cli) pipelines with [apscheduler](https://github.com/agronholm/apscheduler) and control them via REST. The API interface is provided by [connexion](https://connexion.readthedocs.io/en/latest/index.html).
 
-![Travis (.org)](https://img.shields.io/travis/pypyr-scheduler/pypyr-scheduler)
-![Coveralls github](https://img.shields.io/coveralls/github/pypyr-scheduler/pypyr-scheduler)
-![Read the Docs](https://img.shields.io/readthedocs/pypyr-scheduler)
-![GitHub](https://img.shields.io/github/license/pypyr-scheduler/pypyr-scheduler)
+![Travis (.org)](https://img.shields.io/travis/pypyr-scheduler/pypyr-scheduler-server)
+![Coveralls github](https://img.shields.io/coveralls/github/pypyr-scheduler/pypyr-scheduler-server)
+![Read the Docs](https://img.shields.io/readthedocs/pypyr-scheduler-server)
+![GitHub](https://img.shields.io/github/license/pypyr-scheduler/pypyr-scheduler-server)
 
 ## Documentation status
 
@@ -38,7 +38,7 @@ Currently available are `pypyr-scheduler-cli` and `pypyr-scheduler-rpc-client` w
 
 ### Production deployment
 
-
+TBD.
 
 ## Documentation
 
@@ -47,6 +47,7 @@ It is generated from the `docs/source` folder in this repository. Feel free to s
 
 ## Development
 
+Run tests with `pipen run tests`.
 
 ## Quick links
 

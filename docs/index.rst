@@ -6,16 +6,25 @@
 Welcome to pypyr-scheduler's documentation!
 ===========================================
 
+Pypyr-Scheduler is a periodic task runner. It runs a set of
+pypyr-pipelines periodically. Each pipeline can have its own
+execution interval and other individual settings. 
+
+Pypyr-Scheduler is built on `pypyr <https://github.com/pypyr/pypyr-cli>`_ 
+and `apscheduler <https://apscheduler.readthedocs.io>`_.
+
+The scheduler runs as own process and is controlled with a RPC client
+(pypyr-scheduler-rpc-client). There is also a command line interface
+(pypyr-scheduler-cli) for convenience. This documentation covers all three components.
+
+
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: Contents:
 
-   usage/installation
-   usage/configuration
-
-   api/api_with_pipeline.rst
-
-   devel/notes_on_wsl
+   server
+   cli
+   rpc
 
 Indices and tables
 ==================

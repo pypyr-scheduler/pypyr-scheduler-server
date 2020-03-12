@@ -10,17 +10,16 @@ pytest-runner = "*"
 black = "*"
 sphinx = "*"
 sphinx-rtd-theme = "*"
-
 coverage = "==4.5.4"
 pytest-cov = "*"
 python-coveralls = "*"
 coveralls = "*"
-
 setuptools = "*"
 wheel = "*"
 twine = "*"
 gunicorn = "*"
 sqlalchemy = "*"
+sphinx-autobuild = "*"
 
 [packages]
 apscheduler = "*"
@@ -35,6 +34,8 @@ python_version = "3.8"
 [scripts]
 tests = "pytest tests"
 server = "python -m pyrsched.server"
+docs = "sphinx-build docs dist-docs"
+docs-preview = "sphinx-autobuild docs dist-docs"
 
 [pipenv]
 allow_prereleases = true

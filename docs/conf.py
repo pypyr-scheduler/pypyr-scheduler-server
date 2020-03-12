@@ -21,7 +21,7 @@ sys.path.insert(0, os.path.abspath('../tests'))
 # -- Project information -----------------------------------------------------
 
 project = 'pypyr-scheduler'
-copyright = '2019, David Zerrenner, Ivan Rancati, Stefan Friese, Kevin Becker'
+copyright = '2019 - 2020, David Zerrenner, Ivan Rancati, Stefan Friese, Kevin Becker'
 author = 'David Zerrenner'
 
 
@@ -33,7 +33,6 @@ master_doc = 'index'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinxcontrib.openapi',
     'sphinx.ext.autodoc',
 ]
 
