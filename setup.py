@@ -2,7 +2,7 @@ from setuptools import (setup, find_namespace_packages)
 from os import path
 from pkg_resources import parse_version
 
-NAME = "pypyr-scheduler"
+NAME = "pypyr-scheduler-server"
 VERSION = str(parse_version("2.0.0"))
 
 here = path.abspath(path.dirname(__file__))
