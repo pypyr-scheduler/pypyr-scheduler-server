@@ -5,7 +5,7 @@ Schedule [pypyr](https://github.com/pypyr/pypyr-cli) pipelines with [apscheduler
 
 ![Travis (.org)](https://img.shields.io/travis/pypyr-scheduler/pypyr-scheduler-server)
 ![Coveralls github](https://img.shields.io/coveralls/github/pypyr-scheduler/pypyr-scheduler-server)
-![Read the Docs](https://img.shields.io/readthedocs/pypyr-scheduler-server)
+[![Documentation Status](https://readthedocs.org/projects/pypyr-scheduler/badge/?version=latest)](https://pypyr-scheduler.readthedocs.io/en/latest/?badge=latest)
 ![GitHub](https://img.shields.io/github/license/pypyr-scheduler/pypyr-scheduler-server)
 
 ## Documentation status
