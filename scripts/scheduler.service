@@ -1,0 +1,22 @@
+[Unit]
+Description=Pypyr Scheduler 
+After=network.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+RootDirectory=<install directory>
+WorkingDirectory=<install directory>
+Environment="PYTHONPATH=<python directory>/lib/python3.8/site-packages"
+ExecStart=<python directory>/bin/pipenv run python -Wignore -m pyrsched.server -c /<install directory>/conf
+ExecReload=/bin/kill -s HUP $MAINPID
+KillMode=mixed
+TimeoutStopSec=5
+PrivateTmp=true
+# Avoid logging to syslog
+# StandardOutput=null
+# StandardError=null
+
+[Install]
+WantedBy=multi-user.target

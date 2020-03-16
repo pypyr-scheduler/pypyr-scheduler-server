@@ -16,7 +16,7 @@ setup(
     description="Schedule pypyr pipelines with apscheduler",
     long_description=LONG_DESCRIPTION,
     long_description_content_type='text/markdown',
-    url="https://github.com/pypyr-scheduler/pypyr-scheduler-server",
+    url=f"https://github.com/pypyr-scheduler/{NAME}",
     license='MIT',
 
     author='David Zerrenner',

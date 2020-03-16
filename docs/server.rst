@@ -61,6 +61,10 @@ you'll have to tunnel a connection.
 Running the server
 ------------------
 
-Run the server with::
+Run the server with (starting at the same ::
 
-    pipenv run server
+    pipenv run python -m pyrsched.server -c <config directory>
+
+This repository also contains a systemd script (see the ``scripts`` directory)
+which could be used to run the server automatically at system start. You'll 
+have to adjust some paths there.
