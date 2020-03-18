@@ -109,5 +109,6 @@ if __name__ == "__main__":
             try:
                 twine_res = cli.dispatch(["upload", "dist/*"])
             except (exceptions.TwineException, requests.HTTPError) as exc:
-                print("{}: {}".format(exc.__class__.__name__, exc.args[0])
+                print("{}: {}".format(exc.__class__.__name__, exc.args[0]))
+
             print(f"Twine response: {twine_res}")
