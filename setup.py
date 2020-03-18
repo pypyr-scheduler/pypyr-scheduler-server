@@ -1,9 +1,8 @@
 from setuptools import (setup, find_namespace_packages)
 from os import path
-from pkg_resources import parse_version
+from pyrsched.server import VERSION
 
 NAME = "pypyr-scheduler-server"
-VERSION = str(parse_version("2.0.0"))
 
 here = path.abspath(path.dirname(__file__))
 
@@ -23,11 +22,12 @@ setup(
     author_email="dazer017@gmail.com",
 
     classifiers=[
-                 'Development Status :: 3 - Alpha',
-                 'Intended Audience :: Developers',
+                 "Development Status :: 5 - Production/Stable",
+                 "Intended Audience :: Developers",
+                 "Intended Audience :: System Administrators",
                  "License :: OSI Approved :: MIT License",
                  "Programming Language :: Python",
-                 "Programming Language :: Python :: 3.7",
+                 "Programming Language :: Python :: 3.8",
     ],
 
     keywords=["Pypyr", "Scheduler", "Taskrunner"],
