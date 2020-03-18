@@ -112,3 +112,6 @@ if __name__ == "__main__":
                 print("{}: {}".format(exc.__class__.__name__, exc.args[0]))
 
             print(f"Twine response: {twine_res}")
+            setup_version, git_version, pypi_version = get_versions()
+
+    print("all done...")
