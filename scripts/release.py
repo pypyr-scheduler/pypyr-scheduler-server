@@ -97,9 +97,11 @@ if __name__ == "__main__":
             dist_path = Path("dist").resolve()
             for f in dist_path.iterdir():
                 f.unlink()
+            
             # build package
             from setuptools.sandbox import run_setup
-                run_setup("setup.py", ["sdist", "bdist_wheel"])
+            run_setup("setup.py", ["sdist", "bdist_wheel"])
+
             # upload package
             from twine import cli
             from twine import exceptions
