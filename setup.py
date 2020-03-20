@@ -1,8 +1,6 @@
 from setuptools import (setup, find_namespace_packages)
 from os import path
-from pyrsched.server import VERSION
-
-NAME = "pypyr-scheduler-server"
+from pyrsched.server import (VERSION, NAME)
 
 here = path.abspath(path.dirname(__file__))
 

@@ -7,18 +7,17 @@ from git.cmd import Git
 from importlib import reload
 
 TAB_LENGTH = 50
-NAME = "pypyr-scheduler-server"
-PYPI_URL = f"https://pypi.org/pypi/{NAME}/json"
 
 
 def get_setup_version():
-    return pyrsched.server.VERSION  # import is done in the main script while checking the correct working dir
+    return VERSION  # import is done in the main script while checking the correct working dir
 
 def get_git_tag():
     g = Git(Path().resolve())
     return g.describe("--abbrev=0")
 
-def get_pypi_version():
+def get_pypi_version():    
+    PYPI_URL = f"https://pypi.org/pypi/{NAME}/json"    
     import requests
     r = requests.get(PYPI_URL)
     pypi_version = r.json()["info"]["version"]
@@ -47,6 +46,8 @@ if __name__ == "__main__":
         print("This is most likely due to starting this script directly. Please use [bold]pipenv run release[/bold] instead.")
         print("Make sure that the working directory is the root directory of the package (where setup.py is located).")
         sys.exit(1)
+
+    from pyrsched.server import (NAME, VERSION)
 
     setup_version, git_version, pypi_version = get_versions()
 
