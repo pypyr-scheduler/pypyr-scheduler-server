@@ -15,8 +15,8 @@ KillMode=mixed
 TimeoutStopSec=5
 PrivateTmp=true
 # Avoid logging to syslog
-# StandardOutput=null
-# StandardError=null
+StandardOutput=null
+StandardError=null
 
 [Install]
 WantedBy=multi-user.target
