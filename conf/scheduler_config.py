@@ -18,6 +18,7 @@ pypyr = {
     'pipelines.base_path': 'pipelines',
     'pipelines.log_path': 'logs',
     'pipelines.log_level': logging.INFO,
+    'pipelines.sensitive_keywords': ['db_passwd', ],
     'server_port': 12345,
 }
 
