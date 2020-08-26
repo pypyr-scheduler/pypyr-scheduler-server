@@ -4,10 +4,9 @@ import re
 
 
 class PipelineLoggingContext:
-    def __init__(self, logger, loglevel=None, handler=None, formatter=None, filter_list=None):
+    def __init__(self, logger, loglevel=None, handler=None, filter_list=None):
         self.logger = logger
         self.handler = handler
-        self.formatter = formatter
         self.filter_list = filter_list
         self.loglevel = loglevel
         self.lock = threading.Lock()
