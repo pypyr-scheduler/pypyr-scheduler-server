@@ -20,7 +20,7 @@ class TestJobExecution:
         # this runs one pipeline with custom configuration. 
         # Its function is checked by its log messages 
         # (see: https://docs.pytest.org/en/latest/logging.html#caplog-fixture).
-        job_function("helloworld", "logs", logging.INFO, None, "tests/testdata")
+        job_function("helloworld", "logs", logging.INFO, None, "tests/testdata", sensitive_keys=None)
         
         # at least one entry in the log has the level NOTIFY
         notify_records = [r for r in caplog.records if r.levelname == "NOTIFY"]
@@ -28,6 +28,8 @@ class TestJobExecution:
 
         # one of these entries contains the job output: "Hello World!"
         assert any("Hello World!" in r.getMessage() for r in notify_records)
+    
+    # TODO: add testcase for Log filter
 
 
 class TestState:

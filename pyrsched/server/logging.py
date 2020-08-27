@@ -45,9 +45,9 @@ class SensitiveValueFilter(logging.Filter):
     """
     def __init__(self, name='', sensitive_keys=None):
         super().__init__(name)
-        self.sensitive_keys = sensitive_keys
+        self.sensitive_keys = sensitive_keys if sensitive_keys else []
         self.regex_list = []
-        for key in  self.sensitive_keys:            
+        for key in self.sensitive_keys:            
             self.regex_list.append( re.compile(r"\'(?P<key>" + key + r")\':\s*\'.*?\'") )
 
     def filter(self, record):
