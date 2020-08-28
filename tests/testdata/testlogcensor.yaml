@@ -1,0 +1,8 @@
+steps:
+  - name: pypyr.steps.echo
+    in:
+      echoMe: "'sensitive_value': 'should not be logged'"
+  - name: pypyr.steps.echo
+    in: 
+      echoMe: "in foreach"
+    foreach: ["'loop': '1', 'sensitive_value': 'secret'", "'loop': '2', 'sensitive_value': 'classified'",]
