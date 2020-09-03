@@ -28,26 +28,6 @@ class TestJobExecution:
 
         # one of these entries contains the job output: "Hello World!"
         assert any("Hello World!" in r.getMessage() for r in notify_records)
-    
-    def test_job_function_with_censor(self, caplog):
-        from pyrsched.server.service import job_function
-
-        # create log dir (on TravisCI, there is no directory configured)
-        # /home/travis/build/pypyr-scheduler/pypyr-scheduler-server/logs/helloworld.log
-        log_path = Path("./logs")
-        log_path.mkdir(parents=True, exist_ok=True)
-
-        # this runs one pipeline with custom configuration. 
-        # Its function is checked by its log messages 
-        # (see: https://docs.pytest.org/en/latest/logging.html#caplog-fixture).
-        job_function("testlogcensor", "logs", logging.INFO, None, "tests/testdata", sensitive_keys=['sensitive_value', ])
-        
-        # caplog only sees logging.LogRecords which are then formatted with pytests logger.
-        # we have to format them with our own formatter to thet it.
-        from pyrsched.server.logging import SensitiveValueFormatter
-        formatter = SensitiveValueFormatter(sensitive_keys=['sensitive_value', ])
-        formatted_messages = [formatter.format(r) for r in caplog.records]
-        assert any("'sensitive_value': '*****'" in m for m in formatted_messages)
 
 
 class TestState:

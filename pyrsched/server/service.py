@@ -8,7 +8,7 @@ from apscheduler.triggers.interval import IntervalTrigger
 from apscheduler.jobstores.base import JobLookupError
 from pypyr.pipelinerunner import main as pipeline_runner
 
-from .logging import PipelineLoggingContext, SensitiveValueFormatter
+from .logging import PipelineLoggingContext
 
 NEW_JOB_MAX_INSTANCES = 1
 
@@ -16,11 +16,7 @@ def job_function(pipeline_name, log_path, log_level, log_format, pipeline_path, 
     logger = logging.getLogger("pypyr")
     log_filename = Path(log_path) / f"{pipeline_name}.log"
 
-    # ToDo: could the handler be instantiated outside and be reused?
-    pipeline_handler = logging.FileHandler(log_filename)
-    pipeline_handler.setFormatter(SensitiveValueFormatter(fmt=log_format, sensitive_keys=sensitive_keys))
-
-    with PipelineLoggingContext(logger, loglevel=log_level, handler=pipeline_handler):
+    with PipelineLoggingContext(logger, loglevel=log_level, log_format=log_format, log_filename=log_filename, sensitive_keys=sensitive_keys):
         pipeline_runner(
             pipeline_name, pipeline_context_input="", working_dir=Path(pipeline_path),
         )

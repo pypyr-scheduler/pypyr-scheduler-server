@@ -4,11 +4,13 @@ import re
 
 
 class PipelineLoggingContext:
-    def __init__(self, logger, loglevel=None, handler=None):
+    def __init__(self, logger, loglevel=None, log_format=None, log_filename="", sensitive_keys=[]):
         self.logger = logger
-        self.handler = handler
         self.loglevel = loglevel
         self.lock = threading.Lock()
+
+        self.handler = logging.FileHandler(log_filename)
+        self.handler.setFormatter(SensitiveValueFormatter(fmt=log_format, sensitive_keys=sensitive_keys))
 
     def __enter__(self):
         self.lock.acquire()
