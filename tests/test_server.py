@@ -18,3 +18,4 @@ class TestServer:
         # this secret is expected to be in the form 
         # 12345678-1234-5678-1234-567812345678 (32 hex digits with 4 hyphens)
         assert len(caplog.records[1].getMessage()) == 36
+        # os.environ["PYRSCHED_SECRET"] = "not-so-secret"
