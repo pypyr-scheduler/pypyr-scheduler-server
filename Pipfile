@@ -4,42 +4,42 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-flake8 = "*"
-pytest = "*"
-pytest-runner = "*"
 black = "*"
-sphinx = "*"
-sphinx-rtd-theme = "*"
-coverage = "==4.5.4"
-pytest-cov = "*"
-python-coveralls = "*"
+coverage = "*"
 coveralls = "*"
-setuptools = "*"
-wheel = "*"
-twine = "*"
-gunicorn = "*"
-sqlalchemy = "*"
-sphinx-autobuild = "*"
-rich = "*"
-requests = "*"
+flake8 = "*"
 gitpython = "*"
+gunicorn = "*"
+pytest = "*"
+pytest-cov = "*"
+pytest-runner = "*"
+python-coveralls = "*"
+requests = "*"
+rich = "*"
+setuptools = "*"
+sphinx = "*"
+sphinx-autobuild = "*"
+sphinx-rtd-theme = "*"
+sqlalchemy = "*"
+twine = "*"
+wheel = "*"
 
 [packages]
 apscheduler = "*"
-pytz = "*"
-psutil = "*"
 click = "*"
+psutil = "*"
 pypyr = ">=3.1"
+pytz = "*"
 
 [requires]
-python_version = "3.8"
+python_version = "3.10"
 
 [scripts]
-tests = "pytest tests"
-server = "python -m pyrsched.server"
 docs = "sphinx-build docs dist-docs"
 docs-preview = "sphinx-autobuild docs dist-docs"
 release = "python scripts/release.py"
+server = "python -m pyrsched.server"
+tests = "pytest tests"
 
 [pipenv]
 allow_prereleases = true

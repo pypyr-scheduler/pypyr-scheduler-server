@@ -6,20 +6,20 @@ import psutil
 
 from apscheduler.triggers.interval import IntervalTrigger
 from apscheduler.jobstores.base import JobLookupError
-from pypyr.pipelinerunner import main as pipeline_runner
+from pypyr.pipelinerunner import run as pipeline_runner
 
 from .logging import PipelineLoggingContext
 
 NEW_JOB_MAX_INSTANCES = 1
+
 
 def job_function(pipeline_name, log_path, log_level, log_format, pipeline_path, sensitive_keys):
     logger = logging.getLogger("pypyr")
     log_filename = Path(log_path) / f"{pipeline_name}.log"
 
     with PipelineLoggingContext(logger, loglevel=log_level, log_format=log_format, log_filename=log_filename, sensitive_keys=sensitive_keys):
-        pipeline_runner(
-            pipeline_name, pipeline_context_input="", working_dir=Path(pipeline_path),
-        )
+        pipeline_runner(Path(pipeline_path, pipeline_name))
+
 
 class SchedulerService(object):
     def __init__(self, scheduler=None, config=None, logger=None):
@@ -88,7 +88,7 @@ class SchedulerService(object):
                 "log_level": self._config.pypyr.get(
                     "pipelines.log_level", logging.WARNING
                 ),
-                "pipeline_path": pipeline_path, 
+                "pipeline_path": pipeline_path,
                 "sensitive_keys": self._config.pypyr.get(
                     "pipelines.sensitive_keywords", None
                 ),
